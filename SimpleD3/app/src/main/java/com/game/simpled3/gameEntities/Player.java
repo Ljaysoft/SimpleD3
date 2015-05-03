@@ -2,6 +2,7 @@ package com.game.simpled3.gameEntities;
 
 import android.content.res.Resources;
 
+import com.game.simpled3.R;
 import com.game.simpled3.gameEntities.Enums.GameEnums.ItemSlot;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Player {
     }
 
     private void initialize(Resources res) {
-        mItems = new ArrayList<>(12);
+        mItems = new ArrayList<>(res.getInteger(R.integer.number_of_item_slots));
     }
 
     public static Player createPlayer(Resources res) {
@@ -81,8 +82,9 @@ public class Player {
     }
 
     public void giveItem(Item item) {
-        @ItemSlot int iSlot = item.getSlot();
-        mItems.set(iSlot,item);
+        //TODO Player receives items
+        //@ItemSlot int iSlot = item.getSlot();
+        //mItems.set(iSlot,item);
     }
 
     public boolean takeGold(double gold) {

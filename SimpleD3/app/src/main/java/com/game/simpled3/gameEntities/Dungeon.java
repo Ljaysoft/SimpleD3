@@ -1,5 +1,7 @@
 package com.game.simpled3.gameEntities;
 
+import java.util.ArrayList;
+
 /**
  * Created by JFCaron on 2015-04-27.
  */

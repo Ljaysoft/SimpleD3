@@ -16,8 +16,18 @@ public class Item {
     private int mSlot = ITEM_SLOT_HELM;
     private double mDPS = 0.0;
     private double mDEF = 0.0;
+
     //private bitmap mImage = null;
 
+    private Item(int lvl) {
+        mIlvl = lvl;
+    }
+
+    public static Item createItem(int lvl) {
+        return new Item(lvl);
+    }
+
+    // TODO make gear
     public boolean generateStats(Resources res) {
         return true;
     }
