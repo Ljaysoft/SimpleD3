@@ -143,13 +143,13 @@
         <item>1</item>
         <item>1</item>
     </integer-array>
-    <integer-array name="float_array_ipower_coef_for_color">
+    <array name="float_array_ipower_coef_for_color">
         <item>0.75</item>
         <item>1</item>
         <item>1.25</item>
         <item>1.5</item>
         <item>2</item>
-    </integer-array>
+    </array>
     <integer-array name="int_array_shard_for_dungeon_lvl">
         <item>1</item>
         <item>2</item>
@@ -159,6 +159,7 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
+        <item>9</item>
     </integer-array>
     <integer-array name="int_nb_monsters_for_lvl">
         <item>100</item>
