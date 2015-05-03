@@ -21,7 +21,7 @@ public class Game {
     String[][] mGearSuffixfortype = null;
 
     float[] mPowerCoefForColor = null;
-    private ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
+    private ArrayList<Dungeon> mDungeons = new ArrayList<>();
     int mCurrentDungeonLvl = 0;
 
     int[] mXpForDungeonLvl = null;
@@ -114,6 +114,7 @@ public class Game {
         }
 
         tempLvlitarator = 0;
+        mDungeons.ensureCapacity(tempNumberOfLvl);
         while (tempLvlitarator < tempNumberOfLvl) {
             mDungeons.add(new Dungeon(tempLvlitarator,mNbMonsterForLvl[tempLvlitarator],
                                   mShardForDungeonLvl[tempLvlitarator] ) );
