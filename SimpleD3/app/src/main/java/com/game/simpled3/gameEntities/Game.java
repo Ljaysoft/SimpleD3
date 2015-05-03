@@ -21,7 +21,7 @@ public class Game {
     String[][] mGearSuffixfortype = null;
 
     float[] mPowerCoefForColor = null;
-    private ArrayList<Dungeon> mDungeons = new ArrayList<Dungeon>(100);
+    private ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
     int mCurrentDungeonLvl = 0;
 
     int[] mXpForDungeonLvl = null;
@@ -36,7 +36,7 @@ public class Game {
 
     //Acquisition des données des arrays
     private void initialize(Resources res) {
-        int tempNumberOfLvl = 0;
+        int tempNumberOfLvl;
         int tempLvlitarator = 0;
         mRes = res;
         TypedArray resourceTypedArr = mRes.obtainTypedArray(R.array.float_array_xp_to_lvl);

@@ -9,5 +9,4 @@
     <integer name="base_shards_per_level">1</integer>
     <integer name="base_gold_per_monster">1</integer>
     <integer name="base_bonus_gold_per_level">100</integer>
-    <integer name=""
 </resources>

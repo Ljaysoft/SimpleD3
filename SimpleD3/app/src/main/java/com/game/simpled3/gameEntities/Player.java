@@ -22,7 +22,7 @@ public class Player {
     }
 
     private void initialize(Resources res) {
-        mItems = new ArrayList<Item>(12);
+        mItems = new ArrayList<>(12);
     }
 
     public static Player createPlayer(Resources res) {
@@ -110,8 +110,7 @@ public class Player {
             DPS+= item.getDPS();
             DEF+= item.getDEF();
         }
-        if (mDPS != DPS | DEF != mDEF) return true;
-        else return false;
+        return mDPS != DPS | DEF != mDEF;
     }
 
 }
