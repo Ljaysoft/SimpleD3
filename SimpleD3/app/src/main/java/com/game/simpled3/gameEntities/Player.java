@@ -3,7 +3,6 @@ package com.game.simpled3.gameEntities;
 import android.content.res.Resources;
 
 import com.game.simpled3.R;
-import com.game.simpled3.gameEntities.Enums.GameEnums.ItemSlot;
 
 import java.util.ArrayList;
 
@@ -11,23 +10,32 @@ import java.util.ArrayList;
  * Created by JFCaron on 2015-04-27.
  */
 public class Player {
-    private int mLevel = 0;
-    private float mXpToLevel = 0;
-    private double mDPS = 1.0;
-    private double mDEF = 1.0;
-    private double mGold = 0;
-    private double mShards = 0;
-    private ArrayList<Item> mItems;
-    private Player(Resources res) {
-        initialize(res);
+    private static Player sInstance;
+    private static boolean sIsInit = false;
+
+    private static int mLevel = 0;
+    private static float mXpToLevel = 0;
+    private static double mDPS = 1.0;
+    private static double mDEF = 1.0;
+    private static double mGold = 0;
+    private static double mShards = 0;
+    private static ArrayList<Item> mItems;
+
+    private Player() {
     }
 
-    private void initialize(Resources res) {
+    public static Player getInstance() {
+        if (sInstance == null) {
+            sInstance = new Player();
+        }
+        return sInstance;
+    }
+
+    public static void initialize(Resources res) {
+        if (sInstance == null && sIsInit == true)
+            return;
         mItems = new ArrayList<>(res.getInteger(R.integer.number_of_item_slots));
-    }
-
-    public static Player createPlayer(Resources res) {
-        return new Player(res);
+        sIsInit = true;
     }
 
     public double getDEF() {

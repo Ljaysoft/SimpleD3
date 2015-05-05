@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.game.simpled3.gameEntities.Game;
+import com.game.simpled3.gameEntities.ItemFactory;
 import com.game.simpled3.gameEntities.Player;
 
 import java.text.DecimalFormat;
@@ -22,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
 
     static Game mMainGame = null;
     static Player mPlayer = null;
+    static ItemFactory mItemFactory = null;
 
     private static ProgressBar mProgressBar;
     private static int mProgressValue = 0;
@@ -47,8 +49,12 @@ public class MainActivity extends ActionBarActivity {
 
     void initializeGame(){
         Resources res = getResources();
-        mMainGame = Game.createGame(res);
-        mPlayer = Player.createPlayer(res);
+        mMainGame = Game.getInstance();
+        Game.initialize(res);
+        mPlayer = Player.getInstance();
+        Player.initialize(res);
+        mItemFactory = ItemFactory.getInstance();
+        ItemFactory.initialize(res);
     }
 
     @Override

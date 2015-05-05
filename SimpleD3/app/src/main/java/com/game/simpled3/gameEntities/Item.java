@@ -27,11 +27,6 @@ public class Item {
         return new Item(lvl);
     }
 
-    // TODO make gear
-    public boolean generateStats(Resources res) {
-        return true;
-    }
-
     public int getIlvl() {
         return mIlvl;
     }

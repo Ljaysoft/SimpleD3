@@ -11,39 +11,51 @@ import java.util.ArrayList;
  * Created by JFCaron on 2015-04-27.
  */
 public class Game {
+    private static Game sInstance;
+    private static boolean sIsInit = false;
+
     private static Resources mRes;
-    float[] mXpToLvl = null;
-    float[] mGoldCoefPerLvl = null;
-    int[] mItemPowerPerLvl = null;
-    float[] mItemPowerForItemType = null;
-    int mNbItemTypes = 0;
-    int mNbItemColors = 0;
+    static private float[] mXpToLvl = null;
+    static private float[] mGoldCoefPerLvl = null;
+    static private int[] mItemPowerPerLvl = null;
+    static private float[] mItemPowerForItemType = null;
+    static private int mNbItemTypes = 0;
+    static private int mNbItemColors = 0;
     //name
-    String[][] mGearPrefixForGearType = null;
-    String[][] mGearSuffixForGearType = null;
+    static private String[][] mGearPrefixForGearType = null;
+    static private String[][] mGearSuffixForGearType = null;
 
-    float[] mPowerCoefForColor = null;
-    private ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
-    int mCurrentDungeonLvl = 0;
-    int mMaxDungeonLevel = 0;
+    static private float[] mPowerCoefForColor = null;
+    static private ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
+    static private int mCurrentDungeonLvl = 0;
+    static private int mMaxDungeonLevel = 0;
 
-    int[] mXpForDungeonLvl = null;
-    int[] mShardForDungeonLvl = null;
-    int mNbMonsterPerDungeon = 0;
-    int mMaxPlayerLevel = 0;
-    int mBaseMonsterXP = 0;
-    int mBaseDungeonBonusGold = 0;
-    int mBaseNumberOfItemPerLvl = 0;
-    int mBaseGoldPerMonster = 0;
+    static private int[] mXpForDungeonLvl = null;
+    static private int[] mShardForDungeonLvl = null;
+    static private int mNbMonsterPerDungeon = 0;
+    static private int mMaxPlayerLevel = 0;
+    static private int mBaseMonsterXP = 0;
+    static private int mBaseDungeonBonusGold = 0;
+    static private int mBaseNumberOfItemPerLvl = 0;
+    static private int mBaseGoldPerMonster = 0;
 
-    double mChanceToDie = 0.0;
+    static private double mChanceToDie = 0.0;
 
-    private Game(Resources res) {
-        initialize(res);
+    private Game() {
+
     }
 
+    public static Game getInstance() {
+        if (sInstance == null) {
+            sInstance = new Game();
+        }
+        return sInstance;
+    }
     //Acquisition des données des arrays
-    private void initialize(Resources res) {
+    public static void initialize(Resources res) {
+        if (sInstance == null && sIsInit == true)
+            return;
+
         mRes = res;
 
         //Init ints
@@ -108,11 +120,7 @@ public class Game {
             lvl++;
         }
 
-        //
-
-    }
-    public static Game createGame(Resources res) {
-        return new Game(res);
+        sIsInit = true;
     }
 
     public int updateDungeonProgress(Player player) {
@@ -142,13 +150,7 @@ public class Game {
     }
 
     public Loot generateLoot(Dungeon dungeon, Player player) {
-        ArrayList<Item> items = new ArrayList<>(mBaseNumberOfItemPerLvl);
-        Item item;
-        for (int i = 0; i < mBaseNumberOfItemPerLvl; i++) {
-            item = Item.createItem(player.getLevel());
-            item.generateStats(mRes);
-            items.add(item);
-        }
+        ArrayList<Item> items = ItemFactory.createItems(mBaseNumberOfItemPerLvl);
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
                         dungeon.getShards(), items);
     }
