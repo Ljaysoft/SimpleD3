@@ -127,7 +127,7 @@ public class Game {
     }
 
     public Loot generateLoot(Dungeon dungeon) {
-        ArrayList<Item> items = ItemFactory.createItems(mBaseNumberOfItemPerDungeon);
+        ArrayList<Item> items = ItemFactory.BuildNewItems(mBaseNumberOfItemPerDungeon);
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
                 dungeon.getShards(), items);
     }
