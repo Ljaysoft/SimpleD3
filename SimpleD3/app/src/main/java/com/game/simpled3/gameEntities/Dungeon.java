@@ -53,6 +53,7 @@ public class Dungeon {
      */
     public int playerAttacked(Player player) {
         double pDPS = player.getDPS();
+        //TODO player gets attacked back
         double pDEF = player.getDEF();
         int monstersKilledPerSec = (int) (pDPS / mMonsterHP);
         if (mNbMonstersKilled < mNbMonsters) {
