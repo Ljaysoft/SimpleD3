@@ -1,7 +1,5 @@
 package com.game.simpled3.gameEntities;
 
-import java.util.ArrayList;
-
 /**
  * Created by JFCaron on 2015-04-27.
  */
@@ -45,7 +43,7 @@ public class Dungeon {
     }
 
     public int getProgress() {
-        return mNbMonstersKilled *100 / mNbMonsters;
+        return mNbMonstersKilled * 100 / mNbMonsters;
     }
 
     /*

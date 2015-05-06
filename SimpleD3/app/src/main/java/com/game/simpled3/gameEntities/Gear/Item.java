@@ -25,7 +25,7 @@ public class Item {
         return new Item(lvl);
     }
 
-    public int getIlvl() {
+    public int getILvl() {
         return mILvl;
     }
 

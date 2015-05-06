@@ -54,6 +54,7 @@ public class Game {
         }
         return sInstance;
     }
+
     //Acquisition des données des arrays
     public static void initialize(Resources res) {
         if (sInstance == null && sIsInit)
@@ -82,6 +83,7 @@ public class Game {
             mXpToLvl[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
+        resourceTypedArr.recycle();
 
         lvl = 0;
         resourceTypedArr = mRes.obtainTypedArray(R.array.float_array_gold_coef_per_lvl);
@@ -90,6 +92,7 @@ public class Game {
             mGoldCoefPerLvl[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
+        resourceTypedArr.recycle();
 
         // Item arrays
         mItemPowerPerLvl = mRes.getIntArray(R.array.int_array_ipower_for_lvl);
@@ -101,6 +104,7 @@ public class Game {
             mItemPowerForItemType[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
+        resourceTypedArr.recycle();
 
         lvl = 0;
         resourceTypedArr = mRes.obtainTypedArray(R.array.float_array_ipower_coef_for_color);
@@ -109,6 +113,8 @@ public class Game {
             mPowerCoefForColor[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
+
+        resourceTypedArr.recycle();
 
         mGearPrefixForGearType = new String[12][5];
         mGearSuffixForGearType = new String[12][5];
@@ -119,7 +125,7 @@ public class Game {
         lvl = 0;
         while (lvl < mMaxDungeonLevel) {
             mDungeons.add(new Dungeon(lvl, mNbMonsterPerDungeon,
-                                      mShardForDungeonLvl[lvl] ) );
+                    mShardForDungeonLvl[lvl]));
             lvl++;
         }
 
@@ -138,7 +144,7 @@ public class Game {
             Loot loot = generateLoot(currentDungeon, player);
             player.giveShards(loot.getShards());
             player.giveGold(loot.getGold());
-            for(Item item: loot.getItems()) {
+            for (Item item : loot.getItems()) {
                 player.giveItem(item);
             }
 
@@ -155,10 +161,10 @@ public class Game {
     public Loot generateLoot(Dungeon dungeon, Player player) {
         ArrayList<Item> items = ItemFactory.createItems(mBaseNumberOfItemPerLvl);
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
-                        dungeon.getShards(), items);
+                dungeon.getShards(), items);
     }
 
-    public int getDungeonLevelForDisplay(){
-        return mCurrentDungeonLvl+1;
+    public int getDungeonLevelForDisplay() {
+        return mCurrentDungeonLvl + 1;
     }
 }

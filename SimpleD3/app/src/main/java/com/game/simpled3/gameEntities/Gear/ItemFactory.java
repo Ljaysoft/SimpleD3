@@ -13,9 +13,10 @@ public class ItemFactory {
 
     private static int lvl = 0;
 
-    private ItemFactory(){}
+    private ItemFactory() {
+    }
 
-    public static ItemFactory getInstance(){
+    public static ItemFactory getInstance() {
         if (sInstance == null) {
             sInstance = new ItemFactory();
         }
@@ -30,7 +31,7 @@ public class ItemFactory {
         sIsInit = true;
     }
 
-    public static Item createItem(){
+    public static Item createItem() {
         return Item.createItem(lvl);
     }
 

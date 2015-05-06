@@ -20,7 +20,8 @@ public class GameEnums {
             ITEM_COLOR_YELLOW,
             ITEM_COLOR_ORANGE})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface ItemColor {}
+    public @interface ItemColor {
+    }
 
     public static final int ITEM_COLOR_GRAY = 0;
     public static final int ITEM_COLOR_WHITE = 1;
@@ -47,7 +48,8 @@ public class GameEnums {
             ITEM_SLOT_LEFT_WEAPON,
             ITEM_SLOT_RIGHT_WEAPON})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface ItemSlot {}
+    public @interface ItemSlot {
+    }
 
     public static final int ITEM_SLOT_ANY = 0;
     public static final int ITEM_SLOT_HELM = 1;

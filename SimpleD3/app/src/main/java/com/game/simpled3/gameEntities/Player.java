@@ -78,8 +78,8 @@ public class Player {
     public void giveXP(float xpToGive, float[] xpToLvlArr) {
         double xpLeftToGive = xpToGive;
         boolean isDoneGivingXp = false;
-        while (!isDoneGivingXp){
-            if( xpLeftToGive <= mXpToLevel){
+        while (!isDoneGivingXp) {
+            if (xpLeftToGive <= mXpToLevel) {
                 mXpToLevel -= xpLeftToGive;
                 isDoneGivingXp = true;
             } else {
@@ -118,8 +118,8 @@ public class Player {
         double DPS = 0;
         double DEF = 0;
         for (Item item : mItems) {
-            DPS+= item.getDPS();
-            DEF+= item.getDEF();
+            DPS += item.getDPS();
+            DEF += item.getDEF();
         }
         return mDPS != DPS | DEF != mDEF;
     }

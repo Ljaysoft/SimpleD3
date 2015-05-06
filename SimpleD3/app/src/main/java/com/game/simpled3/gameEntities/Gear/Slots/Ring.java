@@ -7,7 +7,7 @@ import static com.game.simpled3.gameEntities.Enums.GameEnums.ITEM_SLOT_RING1;
 /**
  * Created by JFCaron on 2015-05-05.
  */
-public class Ring extends Item{
+public class Ring extends Item {
 
     private boolean mIsRight = false;
 
@@ -16,7 +16,7 @@ public class Ring extends Item{
         mSlot = ITEM_SLOT_RING1;
     }
 
-    public boolean isRight(){
+    public boolean isRight() {
         return mIsRight;
     }
 
