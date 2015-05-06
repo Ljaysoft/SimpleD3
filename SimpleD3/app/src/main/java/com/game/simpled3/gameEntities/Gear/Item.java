@@ -1,6 +1,4 @@
-package com.game.simpled3.gameEntities;
-
-import android.content.res.Resources;
+package com.game.simpled3.gameEntities.Gear;
 
 import static com.game.simpled3.gameEntities.Enums.GameEnums.*;
 
@@ -8,19 +6,19 @@ import static com.game.simpled3.gameEntities.Enums.GameEnums.*;
  * Created by JFCaron on 2015-04-27.
  */
 public class Item {
-    private int mIlvl = 0;
+    private int mILvl = 0;
     private String mName = "";
     @ItemColor
     private int mColor = ITEM_COLOR_GRAY;
     @ItemSlot
-    private int mSlot = ITEM_SLOT_HELM;
+    protected int mSlot = ITEM_SLOT_ANY;
     private double mDPS = 0.0;
     private double mDEF = 0.0;
 
     //private bitmap mImage = null;
 
-    private Item(int lvl) {
-        mIlvl = lvl;
+    protected Item(int lvl) {
+        mILvl = lvl;
     }
 
     public static Item createItem(int lvl) {
@@ -28,7 +26,7 @@ public class Item {
     }
 
     public int getIlvl() {
-        return mIlvl;
+        return mILvl;
     }
 
     public String getName() {

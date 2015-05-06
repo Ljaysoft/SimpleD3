@@ -4,6 +4,9 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 
 import com.game.simpled3.R;
+import com.game.simpled3.gameEntities.Gear.Item;
+import com.game.simpled3.gameEntities.Gear.ItemFactory;
+import com.game.simpled3.gameEntities.Gear.Loot;
 
 import java.util.ArrayList;
 
@@ -53,7 +56,7 @@ public class Game {
     }
     //Acquisition des données des arrays
     public static void initialize(Resources res) {
-        if (sInstance == null && sIsInit == true)
+        if (sInstance == null && sIsInit)
             return;
 
         mRes = res;

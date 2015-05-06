@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.game.simpled3.gameEntities.Game;
-import com.game.simpled3.gameEntities.ItemFactory;
+import com.game.simpled3.gameEntities.Gear.ItemFactory;
 import com.game.simpled3.gameEntities.Player;
 
 import java.text.DecimalFormat;

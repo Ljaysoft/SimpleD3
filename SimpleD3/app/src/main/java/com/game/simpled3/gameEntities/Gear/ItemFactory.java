@@ -1,4 +1,4 @@
-package com.game.simpled3.gameEntities;
+package com.game.simpled3.gameEntities.Gear;
 
 import android.content.res.Resources;
 
@@ -23,7 +23,7 @@ public class ItemFactory {
     }
 
     public static void initialize(Resources res) {
-        if (sInstance == null && sIsInit == true)
+        if (sInstance == null && sIsInit)
             return;
 
         //TODO init factory

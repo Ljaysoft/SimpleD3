@@ -32,12 +32,14 @@ public class GameEnums {
      *
      */
     // ITEM_SLOT
-    @IntDef({ITEM_SLOT_HELM,
+    @IntDef({ITEM_SLOT_ANY,
+            ITEM_SLOT_HELM,
             ITEM_SLOT_SHOULDER,
             ITEM_SLOT_CHEST,
             ITEM_SLOT_NECK,
             ITEM_SLOT_GLOVE,
             ITEM_SLOT_BRACER,
+            ITEM_SLOT_BELT,
             ITEM_SLOT_PANTS,
             ITEM_SLOT_BOOTS,
             ITEM_SLOT_RING1,
@@ -47,17 +49,19 @@ public class GameEnums {
     @Retention(RetentionPolicy.SOURCE)
     public @interface ItemSlot {}
 
-    public static final int ITEM_SLOT_HELM = 0;
-    public static final int ITEM_SLOT_SHOULDER = 1;
-    public static final int ITEM_SLOT_CHEST = 2;
-    public static final int ITEM_SLOT_NECK = 3;
-    public static final int ITEM_SLOT_GLOVE = 4;
-    public static final int ITEM_SLOT_BRACER = 5;
-    public static final int ITEM_SLOT_PANTS = 6;
-    public static final int ITEM_SLOT_BOOTS = 7;
-    public static final int ITEM_SLOT_RING1 = 8;
-    public static final int ITEM_SLOT_RING2 = 9;
-    public static final int ITEM_SLOT_LEFT_WEAPON = 10;
-    public static final int ITEM_SLOT_RIGHT_WEAPON = 11;
+    public static final int ITEM_SLOT_ANY = 0;
+    public static final int ITEM_SLOT_HELM = 1;
+    public static final int ITEM_SLOT_SHOULDER = 2;
+    public static final int ITEM_SLOT_CHEST = 3;
+    public static final int ITEM_SLOT_NECK = 4;
+    public static final int ITEM_SLOT_GLOVE = 5;
+    public static final int ITEM_SLOT_BRACER = 6;
+    public static final int ITEM_SLOT_BELT = 7;
+    public static final int ITEM_SLOT_PANTS = 8;
+    public static final int ITEM_SLOT_BOOTS = 9;
+    public static final int ITEM_SLOT_RING1 = 10;
+    public static final int ITEM_SLOT_RING2 = 11;
+    public static final int ITEM_SLOT_LEFT_WEAPON = 12;
+    public static final int ITEM_SLOT_RIGHT_WEAPON = 13;
 
 }

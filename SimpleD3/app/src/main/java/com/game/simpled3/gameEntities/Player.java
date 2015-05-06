@@ -3,6 +3,7 @@ package com.game.simpled3.gameEntities;
 import android.content.res.Resources;
 
 import com.game.simpled3.R;
+import com.game.simpled3.gameEntities.Gear.Item;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class Player {
     }
 
     public static void initialize(Resources res) {
-        if (sInstance == null && sIsInit == true)
+        if (sInstance == null && sIsInit)
             return;
         mItems = new ArrayList<>(res.getInteger(R.integer.number_of_item_slots));
         sIsInit = true;

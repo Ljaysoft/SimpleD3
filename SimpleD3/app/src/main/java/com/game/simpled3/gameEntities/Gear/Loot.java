@@ -1,4 +1,4 @@
-package com.game.simpled3.gameEntities;
+package com.game.simpled3.gameEntities.Gear;
 
 import java.util.ArrayList;
 
