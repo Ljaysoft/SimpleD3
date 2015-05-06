@@ -6,6 +6,7 @@ import static com.game.simpled3.gameEntities.Enums.GameEnums.ITEM_SLOT_LEFT_WEAP
 
 /**
  * Created by JFCaron on 2015-05-05.
+ *
  */
 public class Weapon extends Item {
 

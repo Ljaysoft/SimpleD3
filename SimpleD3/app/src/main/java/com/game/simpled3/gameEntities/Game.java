@@ -20,15 +20,7 @@ public class Game {
     private static Resources mRes;
     static private float[] mXpToLvl = null;
     static private float[] mGoldCoefPerLvl = null;
-    static private int[] mItemPowerPerLvl = null;
-    static private float[] mItemPowerForItemType = null;
-    static private int mNbItemTypes = 0;
-    static private int mNbItemColors = 0;
-    //name
-    static private String[][] mGearPrefixForGearType = null;
-    static private String[][] mGearSuffixForGearType = null;
 
-    static private float[] mPowerCoefForColor = null;
     static private ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
     static private int mCurrentDungeonLvl = 0;
     static private int mMaxDungeonLevel = 0;
@@ -39,8 +31,8 @@ public class Game {
     static private int mMaxPlayerLevel = 0;
     static private int mBaseMonsterXP = 0;
     static private int mBaseDungeonBonusGold = 0;
-    static private int mBaseNumberOfItemPerLvl = 0;
     static private int mBaseGoldPerMonster = 0;
+    static private int mBaseNumberOfItemPerDungeon = 0;
 
     static private double mChanceToDie = 0.0;
 
@@ -67,10 +59,7 @@ public class Game {
         mBaseDungeonBonusGold = mRes.getInteger(R.integer.base_bonus_gold_per_dungeon);
         mMaxPlayerLevel = mRes.getInteger(R.integer.number_of_player_levels);
         mMaxDungeonLevel = mRes.getInteger(R.integer.number_of_dungeon_levels);
-        mNbItemTypes = mRes.getInteger(R.integer.number_of_item_slots);
-        mNbItemColors = mRes.getInteger(R.integer.number_of_item_colors);
         mBaseMonsterXP = mRes.getInteger(R.integer.base_monster_xp);
-        mBaseNumberOfItemPerLvl = mRes.getInteger(R.integer.base_number_of_item_per_lvl);
         mBaseGoldPerMonster = mRes.getInteger(R.integer.base_gold_per_monster);
 
         //Init Arrays
@@ -94,33 +83,10 @@ public class Game {
         }
         resourceTypedArr.recycle();
 
-        // Item arrays
-        mItemPowerPerLvl = mRes.getIntArray(R.array.int_array_ipower_for_lvl);
-
-        lvl = 0;
-        resourceTypedArr = mRes.obtainTypedArray(R.array.float_array_ipower_for_type);
-        mItemPowerForItemType = new float[mNbItemTypes];
-        while (lvl < mNbItemTypes) {
-            mItemPowerForItemType[lvl] = resourceTypedArr.getFloat(lvl, 0);
-            lvl++;
-        }
-        resourceTypedArr.recycle();
-
-        lvl = 0;
-        resourceTypedArr = mRes.obtainTypedArray(R.array.float_array_ipower_coef_for_color);
-        mPowerCoefForColor = new float[mNbItemColors];
-        while (lvl < mNbItemColors) {
-            mPowerCoefForColor[lvl] = resourceTypedArr.getFloat(lvl, 0);
-            lvl++;
-        }
-
-        resourceTypedArr.recycle();
-
-        mGearPrefixForGearType = new String[12][5];
-        mGearSuffixForGearType = new String[12][5];
         mShardForDungeonLvl = mRes.getIntArray(R.array.int_array_shard_for_dungeon_lvl);
         mXpForDungeonLvl = mRes.getIntArray(R.array.int_array_xp_for_dungeon_lvl);
 
+        mBaseNumberOfItemPerDungeon = mRes.getInteger(R.integer.base_number_of_item_per_dungeon);
         //Create Dungeons
         lvl = 0;
         while (lvl < mMaxDungeonLevel) {
@@ -128,6 +94,8 @@ public class Game {
                     mShardForDungeonLvl[lvl]));
             lvl++;
         }
+
+
 
         sIsInit = true;
     }
@@ -141,7 +109,7 @@ public class Game {
         int monstersKilled = currentDungeon.playerAttacked(player);
 
         if (currentDungeon.isDone()) {
-            Loot loot = generateLoot(currentDungeon, player);
+            Loot loot = generateLoot(currentDungeon);
             player.giveShards(loot.getShards());
             player.giveGold(loot.getGold());
             for (Item item : loot.getItems()) {
@@ -158,8 +126,8 @@ public class Game {
                 mXpToLvl);
     }
 
-    public Loot generateLoot(Dungeon dungeon, Player player) {
-        ArrayList<Item> items = ItemFactory.createItems(mBaseNumberOfItemPerLvl);
+    public Loot generateLoot(Dungeon dungeon) {
+        ArrayList<Item> items = ItemFactory.createItems(mBaseNumberOfItemPerDungeon);
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
                 dungeon.getShards(), items);
     }

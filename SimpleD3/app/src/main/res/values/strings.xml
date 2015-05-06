@@ -1,4 +1,31 @@
 <resources>
     <string name="app_name">SimpleD3</string>
     <string name="action_settings">Settings</string>
+    <typed-array name="string_array_gear_name_for_type">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </typed-array>
+    <string-array name="string_array_gear_prefix_for_color">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="string_array_gear_suffixes">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
 </resources>

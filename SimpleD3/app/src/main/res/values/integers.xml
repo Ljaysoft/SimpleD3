@@ -11,5 +11,5 @@
     <integer name="base_shards_per_level">1</integer>
     <integer name="base_gold_per_monster">1000</integer>
     <integer name="base_bonus_gold_per_dungeon">100</integer>
-    <integer name="base_number_of_item_per_lvl">3</integer>
+    <integer name="base_number_of_item_per_dungeon">3</integer>
 </resources>
