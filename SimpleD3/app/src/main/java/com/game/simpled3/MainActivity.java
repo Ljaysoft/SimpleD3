@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.game.simpled3.Utils.StringManipulation;
 import com.game.simpled3.gameEntities.Game;
 import com.game.simpled3.gameEntities.Gear.ItemFactory;
 import com.game.simpled3.gameEntities.Player;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -118,25 +116,11 @@ public class MainActivity extends ActionBarActivity {
     private void updateUI() {
         mProgressBar.setProgress(mProgressValue);
         mPlayerLevelTextView.setText((String.valueOf(mPlayer.getLevel())));
-        mXpToLevelTextView.setText(formatBigNumbers((double) mPlayer.getXpToLevel()));
+        mXpToLevelTextView.setText(StringManipulation.formatBigNumbers((double) mPlayer.getXpToLevel()));
         mPlayerDPSTextView.setText((String.valueOf(mPlayer.getDPS())));
         mPlayerDEFTextView.setText((String.valueOf(mPlayer.getDEF())));
         mPlayerShardsTextView.setText((String.valueOf(mPlayer.getShards())));
-        mPlayerGoldTextView.setText(formatBigNumbers(mPlayer.getGold()));
+        mPlayerGoldTextView.setText(StringManipulation.formatBigNumbers(mPlayer.getGold()));
         mDungeonLevelTextView.setText((String.valueOf(mMainGame.getDungeonLevelForDisplay())));
-    }
-
-    // TODO move into utils package
-    private static String formatBigNumbers(double value) {
-        int power;
-        String suffix = " KMBT";
-        String formattedNumber = "";
-
-        NumberFormat formatter = new DecimalFormat("#,###.#");
-        power = (int)StrictMath.log10(value);
-        value = value/(Math.pow(10,(power/3)*3));
-        formattedNumber = formatter.format(value);
-        formattedNumber = formattedNumber + suffix.charAt(power/3);
-        return formattedNumber.length()>4 ?  formattedNumber.replaceAll("\\.[0-9]+", "") : formattedNumber;
     }
 }

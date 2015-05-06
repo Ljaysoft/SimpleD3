@@ -1,9 +1,6 @@
 package com.game.simpled3.gameEntities.Gear;
 
-import static com.game.simpled3.gameEntities.Enums.GameEnums.ITEM_COLOR_GRAY;
-import static com.game.simpled3.gameEntities.Enums.GameEnums.ITEM_SLOT_ANY;
-import static com.game.simpled3.gameEntities.Enums.GameEnums.ItemColor;
-import static com.game.simpled3.gameEntities.Enums.GameEnums.ItemSlot;
+import static com.game.simpled3.gameEntities.Enums.GameEnums.*;
 
 /**
  * Created by JFCaron on 2015-04-27.
@@ -17,6 +14,8 @@ public class Item {
     private int mColor = ITEM_COLOR_GRAY;
     private double mDPS = 0.0;
     private double mDEF = 0.0;
+
+    private boolean mIsDiscovered = false;
 
     //private bitmap mImage = null;
 
@@ -50,5 +49,17 @@ public class Item {
 
     public double getDEF() {
         return mDEF;
+    }
+
+    public void setStats(String name, double dps, double def, int color) {
+        if (mIsDiscovered)
+            return;
+
+        mName.concat(name);
+        mDPS = dps;
+        mDEF = def;
+        mColor = color;
+
+        mIsDiscovered = true;
     }
 }

@@ -6,9 +6,8 @@ import android.content.res.TypedArray;
 import com.game.simpled3.R;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-import static java.lang.String.copyValueOf;
+import static com.game.simpled3.gameEntities.Enums.GameEnums.ITEM_COLOR_GRAY;
 
 /**
  * Created by JFCaron on 2015-05-05.
@@ -16,7 +15,6 @@ import static java.lang.String.copyValueOf;
 public class ItemFactory {
     private static boolean sIsInit = false;
     private static ItemFactory sInstance = null;
-    private static Random mRNG = null;
 
     private static int mLvl = 0;
 
@@ -43,8 +41,6 @@ public class ItemFactory {
     public static void initialize(Resources res) {
         if (sInstance == null && sIsInit)
             return;
-
-        mRNG = new Random();
 
         mNbItemTypes = res.getInteger(R.integer.number_of_item_slots);
         mNbItemColors = res.getInteger(R.integer.number_of_item_colors);
@@ -78,9 +74,15 @@ public class ItemFactory {
 
     public static Item createItem() {
         //TODO create Item
+        Item rItem = Item.createItem(mLvl);
+        String name = buildName();
+        double dps = buildDPS();
+        double def = buildDEF();
+        int color = ITEM_COLOR_GRAY;
 
 
-        return Item.createItem(mLvl);
+        rItem.setStats(name,dps,def,color);
+        return rItem;
     }
 
     public static ArrayList<Item> createItems(int nbOfItems) {
@@ -91,5 +93,20 @@ public class ItemFactory {
             items.add(item);
         }
         return items;
+    }
+
+    private static String buildName() {
+        //TODO build name
+
+
+        return new String();
+    }
+
+    private static double buildDPS() {
+        return 0.0;
+    }
+
+    private static double buildDEF() {
+        return 0.0;
     }
 }
