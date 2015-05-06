@@ -105,10 +105,14 @@ public class MainActivity extends ActionBarActivity {
         }
     }
     //Kill monsters to gain xp and stuff
-    public void doKillMonsters(View view) {
+    public void onKillButtonClicked(View view) {
         mMainGame.playerAttacks(mPlayer);
         mProgressValue = mMainGame.updateDungeonProgress(mPlayer);
         updateUI();
+    }
+
+    public void onStartDungeonButtonClicked(View view) {
+        //TODO Start dungeon
     }
 
     private void updateUI() {
