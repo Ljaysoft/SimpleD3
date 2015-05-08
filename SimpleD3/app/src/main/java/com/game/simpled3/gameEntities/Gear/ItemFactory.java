@@ -41,7 +41,7 @@ public class ItemFactory {
     }
 
     public static void initialize(Resources res) {
-        if (sInstance == null && sIsInit)
+        if (sInstance == null || sIsInit)
             return;
 
         mNbItemTypes = res.getInteger(R.integer.number_of_item_slots);
@@ -82,7 +82,9 @@ public class ItemFactory {
         double dps = buildItemDPS(rItem);
         double def = buildItemDEF(rItem);
 
-        rItem.setStats(name, dps, def, color);
+        if (rItem != null)
+            rItem.setStats(name, dps, def, color);
+
         return rItem;
     }
 
@@ -98,7 +100,7 @@ public class ItemFactory {
 
     private static Item createItem() {
         double p = StdRandom.uniform();
-        int slot = (int) (p * ((double) mNbItemTypes - 1));
+        int slot = (int) (p * ((double) mNbItemTypes)) + 1;
         switch (slot) {
             case ITEM_SLOT_HELM:
                 return new Helmet(mLvl);
@@ -152,9 +154,11 @@ public class ItemFactory {
 
     private static String buildItemName(Item item) {
         //TODO build name
+        String prefix = "";
+        String name = "";
+        String suffix = "";
 
-
-        return new String();
+        return prefix + " " + name + " " + suffix;
     }
 
     private static double buildItemDPS(Item item) {

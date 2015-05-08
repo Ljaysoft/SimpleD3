@@ -1,0 +1,184 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.game.simpled3.GUI.EquipmentPage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.game.simpled3.GUI.EquipmentPage">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/equipment_page_title"
+        android:id="@+id/textView" />
+
+    <GridLayout
+        android:id="@+id/itemButtonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="3"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageButton
+            android:id="@+id/itemButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/itemButton7"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_toEndOf="@+id/goldTextView"
+            android:layout_toRightOf="@+id/goldTextView"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/itemButton7"
+            android:layout_column="1"
+            android:layout_toEndOf="@+id/itemButton7"
+            android:layout_toRightOf="@+id/itemButton7"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/itemButton2"
+            android:layout_alignStart="@+id/itemButton2"
+            android:layout_below="@+id/itemButton2"
+            android:layout_column="2"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/itemButton3"
+            android:layout_column="3"
+            android:layout_toEndOf="@+id/itemButton3"
+            android:layout_toRightOf="@+id/itemButton3"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemButton8"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_toEndOf="@+id/itemButton3"
+            android:layout_toRightOf="@+id/itemButton3"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/itemButton2"
+            android:layout_column="1"
+            android:layout_toEndOf="@+id/itemButton2"
+            android:layout_toRightOf="@+id/itemButton2"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/itemTextView"
+            android:layout_column="2"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/itemButton12"
+            android:layout_alignLeft="@+id/itemButton7"
+            android:layout_alignStart="@+id/itemButton7"
+            android:layout_column="3"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/itemButton7"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/itemButton12"
+            android:layout_alignLeft="@+id/itemButton8"
+            android:layout_alignStart="@+id/itemButton8"
+            android:layout_column="1"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/itemButton10"
+            android:layout_column="2"
+            android:layout_toEndOf="@+id/itemButton10"
+            android:layout_toRightOf="@+id/itemButton10"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+
+        <ImageButton
+            android:id="@+id/itemButton12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/itemButton12"
+            android:layout_column="3"
+            android:maxHeight="@dimen/item_button_height"
+            android:maxWidth="@dimen/item_button_height"
+            android:minHeight="@dimen/item_button_height"
+            android:minWidth="@dimen/item_button_height" />
+    </GridLayout>
+
+</RelativeLayout>

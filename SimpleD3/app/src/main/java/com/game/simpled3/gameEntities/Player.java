@@ -33,7 +33,7 @@ public class Player {
     }
 
     public static void initialize(Resources res) {
-        if (sInstance == null && sIsInit)
+        if (sInstance == null || sIsInit)
             return;
         mItems = new ArrayList<>(res.getInteger(R.integer.number_of_item_slots));
         sIsInit = true;

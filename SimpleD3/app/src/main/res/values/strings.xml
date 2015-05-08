@@ -28,4 +28,5 @@
         <item></item>
         <item></item>
     </string-array>
+    <string name="equipment_page_title">Equipment Page</string>
 </resources>

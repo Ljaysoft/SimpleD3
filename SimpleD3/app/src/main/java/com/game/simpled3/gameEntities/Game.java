@@ -49,7 +49,7 @@ public class Game {
 
     //Acquisition des données des arrays
     public static void initialize(Resources res) {
-        if (sInstance == null && sIsInit)
+        if (sInstance == null || sIsInit)
             return;
 
         mRes = res;
