@@ -1,4 +1,4 @@
-package com.game.simpled3.GUI;
+package com.game.simpled3.gUI;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,16 +11,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.game.simpled3.R;
-import com.game.simpled3.Utils.StringManipulation;
-import com.game.simpled3.gameEntities.Game;
-import com.game.simpled3.gameEntities.Player;
+import com.game.simpled3.engine.Game;
+import com.game.simpled3.engine.Player;
+import com.game.simpled3.utils.StringManipulation;
 
 /**
  * Player Sheet Fragment
  */
 public class PlayerSheet extends Fragment {
-
-    private OnPlayerSheetInteractionListener mListener;
 
     private static ProgressBar mProgressBar;
     private static int mProgressValue = 0;
@@ -31,6 +29,7 @@ public class PlayerSheet extends Fragment {
     private static TextView mPlayerShardsTextView;
     private static TextView mPlayerGoldTextView;
     private static TextView mDungeonLevelTextView;
+    private OnPlayerSheetInteractionListener mListener;
 
     public PlayerSheet() {
     }
@@ -77,7 +76,7 @@ public class PlayerSheet extends Fragment {
         openGearPageButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
-                public void onClick(View view) {
+                    public void onClick(View view) {
                         onOpenGearPageButtonClicked();
                         mListener.onPlayerSheetInteraction(view);
                     }
@@ -102,20 +101,6 @@ public class PlayerSheet extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnPlayerSheetInteractionListener {
-        void onPlayerSheetInteraction(View view);
     }
 
     private void updateUI(Game game, Player player) {
@@ -145,6 +130,20 @@ public class PlayerSheet extends Fragment {
 
     private void onStartDungeonButtonClicked() {
         //TODO Start dungeon
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnPlayerSheetInteractionListener {
+        void onPlayerSheetInteraction(View view);
     }
 
 

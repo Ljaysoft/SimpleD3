@@ -1,4 +1,4 @@
-package com.game.simpled3.Utils;
+package com.game.simpled3.utils;
 /**
  * **********************************************************************
  * Compilation:  javac StdRandom.java
@@ -50,12 +50,11 @@ package com.game.simpled3.Utils;
 import java.util.Random;
 
 /**
- *  <i>Standard random</i>. This class provides methods for generating
- *  random number from various distributions.
- *  <p>
- *  For additional documentation, see <a href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of
- *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
- *
+ * <i>Standard random</i>. This class provides methods for generating
+ * random number from various distributions.
+ * <p/>
+ * For additional documentation, see <a href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of
+ * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
  */
 public final class StdRandom {
 
@@ -74,18 +73,18 @@ public final class StdRandom {
     }
 
     /**
+     * Returns the seed of the psedurandom number generator.
+     */
+    public static long getSeed() {
+        return seed;
+    }
+
+    /**
      * Sets the seed of the psedurandom number generator.
      */
     public static void setSeed(long s) {
         seed = s;
         random = new Random(seed);
-    }
-
-    /**
-     * Returns the seed of the psedurandom number generator.
-     */
-    public static long getSeed() {
-        return seed;
     }
 
     /**
