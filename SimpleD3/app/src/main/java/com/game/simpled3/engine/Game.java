@@ -1,12 +1,12 @@
-package com.game.simpled3.gameEntities;
+package com.game.simpled3.engine;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 
 import com.game.simpled3.R;
-import com.game.simpled3.gameEntities.Gear.Item;
-import com.game.simpled3.gameEntities.Gear.ItemFactory;
-import com.game.simpled3.gameEntities.Gear.Loot;
+import com.game.simpled3.engine.gear.Item;
+import com.game.simpled3.engine.gear.ItemFactory;
+import com.game.simpled3.engine.gear.Loot;
 
 import java.util.ArrayList;
 
@@ -94,7 +94,6 @@ public class Game {
                     mShardForDungeonLvl[lvl]));
             lvl++;
         }
-
 
 
         sIsInit = true;

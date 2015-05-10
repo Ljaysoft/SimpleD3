@@ -2,9 +2,7 @@ package com.game.simpled3;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,17 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 
-
-import com.game.simpled3.GUI.EquipmentPage;
-import com.game.simpled3.GUI.PlayerSheet;
-import com.game.simpled3.gameEntities.Game;
-import com.game.simpled3.gameEntities.Gear.ItemFactory;
-import com.game.simpled3.gameEntities.Player;
+import com.game.simpled3.engine.Game;
+import com.game.simpled3.engine.Player;
+import com.game.simpled3.engine.gear.ItemFactory;
+import com.game.simpled3.gUI.EquipmentPage;
+import com.game.simpled3.gUI.PlayerSheet;
 
 
 public class MainActivity extends AppCompatActivity
-                          implements PlayerSheet.OnPlayerSheetInteractionListener,
-                                     EquipmentPage.OnEquipmentPageInteractionListener {
+        implements PlayerSheet.OnPlayerSheetInteractionListener,
+        EquipmentPage.OnEquipmentPageInteractionListener {
     final Context context = this;
 
     @Override
@@ -62,7 +59,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPlayerSheetInteraction(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.openGearPageButton:
                 showEquipmentPage();
 

@@ -1,9 +1,9 @@
-package com.game.simpled3.gameEntities;
+package com.game.simpled3.engine;
 
 import android.content.res.Resources;
 
 import com.game.simpled3.R;
-import com.game.simpled3.gameEntities.Gear.Item;
+import com.game.simpled3.engine.gear.Item;
 
 import java.util.ArrayList;
 

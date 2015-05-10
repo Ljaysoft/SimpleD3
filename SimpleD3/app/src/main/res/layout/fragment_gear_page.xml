@@ -3,7 +3,7 @@
     android:name="com.game.simpled3.GUI.EquipmentPage"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="com.game.simpled3.GUI.EquipmentPage">
+    tools:context="com.game.simpled3.gUI.EquipmentPage">
 
     <TextView
         android:layout_width="wrap_content"

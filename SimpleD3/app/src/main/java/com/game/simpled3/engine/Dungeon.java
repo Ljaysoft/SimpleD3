@@ -1,4 +1,4 @@
-package com.game.simpled3.gameEntities;
+package com.game.simpled3.engine;
 
 /**
  * Created by JFCaron on 2015-04-27.
