@@ -1,12 +1,10 @@
 package com.game.simpled3;
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
@@ -16,7 +14,6 @@ import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.ItemFactory;
 import com.game.simpled3.gUI.EquipmentPage;
 import com.game.simpled3.gUI.PlayerSheet;
-
 
 public class MainActivity extends AppCompatActivity
         implements PlayerSheet.OnPlayerSheetInteractionListener,
@@ -29,12 +26,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             initializeGame();
-
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-            transaction.add(R.id.mainActivityContent, new PlayerSheet());
-            transaction.add(new EquipmentPage(), "gear_page");
-            transaction.commit();
         }
     }
 
@@ -66,35 +57,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void showEquipmentPage() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-        View dialoglayout = getLayoutInflater().inflate(R.layout.fragment_gear_page, null);
-        alertDialogBuilder.setView(dialoglayout);
-        /*alertDialogBuilder.setNeutralButton(android.R.string.ok,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });*/
-        AlertDialog gearPage = alertDialogBuilder.create();
-        gearPage.show();
+        DialogFragment gearPage = new EquipmentPage();
+        gearPage.show(getFragmentManager(), "gear_page");
     }
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 }
