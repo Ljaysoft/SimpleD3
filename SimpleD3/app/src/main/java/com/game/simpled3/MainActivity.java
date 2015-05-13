@@ -1,8 +1,6 @@
 package com.game.simpled3;
 
 import android.app.DialogFragment;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +11,11 @@ import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.ItemFactory;
 import com.game.simpled3.gUI.EquipmentPage;
-import com.game.simpled3.gUI.PlayerSheet;
+import com.game.simpled3.gUI.PlayerStatPage;
 
 public class MainActivity extends AppCompatActivity
-        implements PlayerSheet.OnPlayerSheetInteractionListener,
+        implements PlayerStatPage.OnPlayerSheetInteractionListener,
         EquipmentPage.OnEquipmentPageInteractionListener {
-    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

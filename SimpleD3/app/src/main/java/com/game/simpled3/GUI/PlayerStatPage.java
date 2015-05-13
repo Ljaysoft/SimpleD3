@@ -18,7 +18,7 @@ import com.game.simpled3.utils.StringManipulation;
 /**
  * Player Sheet Fragment
  */
-public class PlayerSheet extends Fragment {
+public class PlayerStatPage extends Fragment {
 
     private static ProgressBar mProgressBar;
     private static int mProgressValue = 0;
@@ -31,7 +31,7 @@ public class PlayerSheet extends Fragment {
     private static TextView mDungeonLevelTextView;
     private OnPlayerSheetInteractionListener mListener;
 
-    public PlayerSheet() {
+    public PlayerStatPage() {
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PlayerSheet extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_player_sheet, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_player_stat_page, container, false);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         mPlayerLevelTextView = (TextView) rootView.findViewById(R.id.lvlValueTtextView);
         mXpToLevelTextView = (TextView) rootView.findViewById(R.id.xpToLvlValueTextView);

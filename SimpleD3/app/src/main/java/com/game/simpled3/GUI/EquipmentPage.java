@@ -3,7 +3,6 @@ package com.game.simpled3.gUI;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +10,6 @@ import android.view.ViewGroup;
 import com.game.simpled3.R;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnEquipmentPageInteractionListener} interface
- * to handle interaction events.
- * Use the {@link EquipmentPage#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EquipmentPage extends DialogFragment {
 
     private OnEquipmentPageInteractionListener mListener;

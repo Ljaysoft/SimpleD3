@@ -10,9 +10,9 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.game.simpled3.gUI.PlayerSheet"
+        android:name="com.game.simpled3.gUI.PlayerStatPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_player_sheet" />
+        tools:layout="@layout/fragment_player_stat_page" />
 
 </LinearLayout>
