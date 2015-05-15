@@ -21,7 +21,7 @@ public class EquipmentPage extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setStyle(DialogFragment.STYLE_NO_FRAME, 0);
     }
 
     @Override

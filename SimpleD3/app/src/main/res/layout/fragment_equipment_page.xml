@@ -3,7 +3,9 @@
     android:layout_width="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#ff000000"
-    android:padding="2dp">
+    android:padding="2dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -129,7 +131,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pantsButton"
-        android:minHeight="97dp"
+        android:minHeight="98dp"
         android:minWidth="72dp"
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@+id/charImageView"
