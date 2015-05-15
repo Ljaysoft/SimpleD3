@@ -35,7 +35,8 @@
         android:layout_marginLeft="34dp"
         android:layout_marginTop="27dp"
         android:minHeight="98dp"
-        android:minWidth="72dp" />
+        android:minWidth="72dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -45,7 +46,8 @@
         android:minHeight="76dp"
         android:minWidth="72dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/charImageView" />
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -57,7 +59,8 @@
         android:layout_alignRight="@+id/charImageView"
         android:layout_alignEnd="@+id/charImageView"
         android:layout_marginRight="42dp"
-        android:layout_marginTop="47dp" />
+        android:layout_marginTop="47dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -67,7 +70,8 @@
         android:minWidth="88dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="73dp"
-        android:layout_alignTop="@+id/charImageView" />
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -80,7 +84,8 @@
         android:layout_alignStart="@+id/charImageView"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="11dp"
-        android:layout_alignTop="@+id/charImageView" />
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -91,7 +96,8 @@
         android:layout_marginTop="126dp"
         android:layout_alignTop="@+id/charImageView"
         android:layout_alignRight="@+id/charImageView"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -101,7 +107,8 @@
         android:minWidth="88dp"
         android:layout_alignTop="@+id/charImageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="192dp" />
+        android:layout_marginTop="192dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -112,7 +119,8 @@
         android:minHeight="52dp"
         android:layout_alignTop="@+id/charImageView"
         android:layout_marginTop="226dp"
-        android:minWidth="48dp" />
+        android:minWidth="48dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -123,7 +131,8 @@
         android:layout_alignRight="@+id/charImageView"
         android:layout_marginRight="20dp"
         android:layout_alignTop="@+id/charImageView"
-        android:layout_marginTop="226dp" />
+        android:layout_marginTop="226dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -133,7 +142,8 @@
         android:minWidth="72dp"
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@+id/charImageView"
-        android:layout_marginTop="230dp" />
+        android:layout_marginTop="230dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -143,7 +153,8 @@
         android:minWidth="72dp"
         android:layout_marginTop="322dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/charImageView" />
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -155,7 +166,8 @@
         android:layout_alignStart="@+id/glovesButton"
         android:layout_alignTop="@+id/charImageView"
         android:layout_marginTop="281dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:alpha="0.65" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -167,6 +179,7 @@
         android:layout_alignTop="@+id/charImageView"
         android:layout_alignRight="@+id/charImageView"
         android:layout_marginTop="281dp"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:alpha="0.65" />
 
 </RelativeLayout>
