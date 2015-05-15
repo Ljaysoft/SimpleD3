@@ -1,0 +1,172 @@
+<RelativeLayout
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/equipment_page_title"
+        android:id="@+id/textView"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/charImageView"
+        android:maxHeight="426dp"
+        android:maxWidth="304dp"
+        android:minHeight="426dp"
+        android:minWidth="304dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/character_front" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoulderButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_alignStart="@+id/charImageView"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="27dp"
+        android:minHeight="98dp"
+        android:minWidth="72dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/helmButton"
+        android:layout_marginTop="3dp"
+        android:minHeight="76dp"
+        android:minWidth="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/charImageView" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/neckButton"
+        android:minHeight="66dp"
+        android:minWidth="62dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_alignEnd="@+id/charImageView"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="47dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chestButton"
+        android:minHeight="125dp"
+        android:minWidth="88dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:layout_alignTop="@+id/charImageView" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/glovesButton"
+        android:minHeight="98dp"
+        android:minWidth="72dp"
+        android:layout_marginTop="126dp"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_alignStart="@+id/charImageView"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="11dp"
+        android:layout_alignTop="@+id/charImageView" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bracerButton"
+        android:minHeight="98dp"
+        android:minWidth="72dp"
+        android:layout_marginTop="126dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_marginRight="8dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/beltButton"
+        android:minHeight="44dp"
+        android:minWidth="88dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="192dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leftRingButton"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_marginLeft="20dp"
+        android:minHeight="52dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="226dp"
+        android:minWidth="48dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rightRingButton"
+        android:minHeight="52dp"
+        android:minWidth="48dp"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_marginRight="20dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="226dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pantsButton"
+        android:minHeight="97dp"
+        android:minWidth="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="230dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bootButton"
+        android:minHeight="98dp"
+        android:minWidth="72dp"
+        android:layout_marginTop="322dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/charImageView" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leftWeaponButton"
+        android:minHeight="140dp"
+        android:minWidth="72dp"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_alignStart="@+id/glovesButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="281dp"
+        android:layout_marginLeft="8dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rightWeaponButton"
+        android:minHeight="140dp"
+        android:minWidth="72dp"
+        android:layout_alignEnd="@+id/bracerButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_marginTop="281dp"
+        android:layout_marginRight="8dp" />
+
+</RelativeLayout>
