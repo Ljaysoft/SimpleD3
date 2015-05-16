@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.game.simpled3.R;
 import com.game.simpled3.engine.Player;
+import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.slots.Helmet;
 import com.game.simpled3.engine.gear.slots.Shoulders;
 import com.game.simpled3.engine.gear.slots.Weapon;
@@ -40,169 +42,153 @@ public class EquipmentPage extends DialogFragment {
         View rootView = inflater.inflate(R.layout.fragment_equipment_page, container, false);
 
         ImageButton shoulderButton = (ImageButton) rootView.findViewById(R.id.shoulderButton);
-        shoulderButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        shoulderButton.setOnTouchListener(new View.OnTouchListener() {
+                                              @Override
+                                              public boolean onTouch(View view, MotionEvent event) {
+                                                  onSlotButtonPressed(view, event);
+                                                  return true;
+                                              }
+                                          }
         );
 
         ImageButton helmButton = (ImageButton) rootView.findViewById(R.id.helmButton);
-        helmButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        helmButton.setOnTouchListener(new View.OnTouchListener() {
+                                          @Override
+                                          public boolean onTouch(View view, MotionEvent event) {
+                                              onSlotButtonPressed(view, event);
+                                              return true;
+                                          }
+                                      }
         );
 
         ImageButton neckButton = (ImageButton) rootView.findViewById(R.id.neckButton);
-        neckButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        neckButton.setOnTouchListener(new View.OnTouchListener() {
+                                          @Override
+                                          public boolean onTouch(View view, MotionEvent event) {
+                                              onSlotButtonPressed(view, event);
+                                              return true;
+                                          }
+                                      }
         );
 
         ImageButton chestButton = (ImageButton) rootView.findViewById(R.id.chestButton);
-        chestButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        chestButton.setOnTouchListener(new View.OnTouchListener() {
+                                           @Override
+                                           public boolean onTouch(View view, MotionEvent event) {
+                                               onSlotButtonPressed(view, event);
+                                               return true;
+                                           }
+                                       }
         );
 
         ImageButton glovesButton = (ImageButton) rootView.findViewById(R.id.glovesButton);
-        glovesButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        glovesButton.setOnTouchListener(new View.OnTouchListener() {
+                                            @Override
+                                            public boolean onTouch(View view, MotionEvent event) {
+                                                onSlotButtonPressed(view, event);
+                                                return true;
+                                            }
+                                        }
         );
 
         ImageButton bracerButton = (ImageButton) rootView.findViewById(R.id.bracerButton);
-        bracerButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        bracerButton.setOnTouchListener(new View.OnTouchListener() {
+                                            @Override
+                                            public boolean onTouch(View view, MotionEvent event) {
+                                                onSlotButtonPressed(view, event);
+                                                return true;
+                                            }
+                                        }
         );
 
         ImageButton beltButton = (ImageButton) rootView.findViewById(R.id.beltButton);
-        beltButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        beltButton.setOnTouchListener(new View.OnTouchListener() {
+                                          @Override
+                                          public boolean onTouch(View view, MotionEvent event) {
+                                              onSlotButtonPressed(view, event);
+                                              return true;
+                                          }
+                                      }
         );
 
         ImageButton pantsButton = (ImageButton) rootView.findViewById(R.id.pantsButton);
-        pantsButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        pantsButton.setOnTouchListener(new View.OnTouchListener() {
+                                           @Override
+                                           public boolean onTouch(View view, MotionEvent event) {
+                                               onSlotButtonPressed(view, event);
+                                               return true;
+                                           }
+                                       }
         );
 
         ImageButton bootsButton = (ImageButton) rootView.findViewById(R.id.bootButton);
-        bootsButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        bootsButton.setOnTouchListener(new View.OnTouchListener() {
+                                           @Override
+                                           public boolean onTouch(View view, MotionEvent event) {
+                                               onSlotButtonPressed(view, event);
+                                               return true;
+                                           }
+                                       }
         );
 
         ImageButton leftRingButton = (ImageButton) rootView.findViewById(R.id.leftRingButton);
-        leftRingButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        leftRingButton.setOnTouchListener(new View.OnTouchListener() {
+                                              @Override
+                                              public boolean onTouch(View view, MotionEvent event) {
+                                                  onSlotButtonPressed(view, event);
+                                                  return true;
+                                              }
+                                          }
         );
 
         ImageButton rightRingButton = (ImageButton) rootView.findViewById(R.id.rightRingButton);
-        rightRingButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        rightRingButton.setOnTouchListener(new View.OnTouchListener() {
+                                               @Override
+                                               public boolean onTouch(View view, MotionEvent event) {
+                                                   onSlotButtonPressed(view, event);
+                                                   return true;
+                                               }
+                                           }
         );
 
         ImageButton leftWeaponButton = (ImageButton) rootView.findViewById(R.id.leftWeaponButton);
-        leftWeaponButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        leftWeaponButton.setOnTouchListener(new View.OnTouchListener() {
+                                                @Override
+                                                public boolean onTouch(View view, MotionEvent event) {
+                                                    onSlotButtonPressed(view, event);
+                                                    return true;
+                                                }
+                                            }
         );
 
         ImageButton rightWeaponButton = (ImageButton) rootView.findViewById(R.id.rightWeaponButton);
-        rightWeaponButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onSlotButtonPressed(view);
-                        mListener.onEquipmentPageInteraction(view);
-                    }
-                }
+        rightWeaponButton.setOnTouchListener(new View.OnTouchListener() {
+                                                 @Override
+                                                 public boolean onTouch(View view, MotionEvent event) {
+                                                     onSlotButtonPressed(view, event);
+                                                     return true;
+                                                 }
+                                             }
         );
 
 
         return rootView;
     }
 
-    public void onSlotButtonPressed(View view) {
-        if (mListener != null) {
-            mListener.onEquipmentPageInteraction(view);
+    public void onSlotButtonPressed(View view, MotionEvent event) {
+        if (event.getAction() !=  MotionEvent.ACTION_DOWN) {
+            return;
         }
+        Item item = Item.createItem(0);
         ItemViewPage itemView = new ItemViewPage(view.getContext());
         switch (view.getId()) {
             case R.id.shoulderButton:
-                Shoulders shoulders = new Shoulders(Player.getInstance().getLevel());
-                shoulders.setStats("Super Shoulders of the Bear", 2.0, 4.0, ITEM_COLOR_ORANGE);
-                itemView.setItemToShow(shoulders);
-                itemView.show(view);
+                item = new Shoulders(Player.getInstance().getLevel());
+                item.setStats("Super Shoulders of the Bear", 2.0, 4.0, ITEM_COLOR_ORANGE);
                 break;
             case R.id.helmButton:
-                Helmet helm = new Helmet(Player.getInstance().getLevel());
-                helm.setStats("Large Cap of the Whale", 2.0, 2.5, ITEM_COLOR_BLUE);
-                itemView.setItemToShow(helm);
-                itemView.show(view);
+                item = new Helmet(Player.getInstance().getLevel());
+                item.setStats("Large Cap of the Whale", 2.0, 2.5, ITEM_COLOR_BLUE);
                 break;
             case R.id.neckButton:
                 break;
@@ -224,11 +210,12 @@ public class EquipmentPage extends DialogFragment {
                 break;
             case R.id.leftWeaponButton:
             case R.id.rightWeaponButton:
-                Weapon weapon = new Weapon(Player.getInstance().getLevel(),true);
-                weapon.setStats("Flamming Sword of Destruction",4.5,4.0, ITEM_COLOR_YELLOW);
-                itemView.setItemToShow(weapon);
-                itemView.show(view);
+                item = new Weapon(Player.getInstance().getLevel(), true);
+                item.setStats("Flamming Sword of Destruction", 4.5, 4.0, ITEM_COLOR_YELLOW);
                 break;
+        }
+        if (mListener != null) {
+            mListener.onEquipmentPageInteraction(view, event, item);
         }
     }
 
@@ -260,7 +247,7 @@ public class EquipmentPage extends DialogFragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnEquipmentPageInteractionListener {
-        void onEquipmentPageInteraction(View view);
+        void onEquipmentPageInteraction(View view, MotionEvent event, Item item);
     }
 
 }
