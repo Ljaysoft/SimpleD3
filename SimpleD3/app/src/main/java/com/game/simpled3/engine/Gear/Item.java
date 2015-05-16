@@ -12,7 +12,7 @@ public class Item {
     @ItemSlot
     protected int mSlot = ITEM_SLOT_ANY;
     private int mILvl = 0;
-    private String mName = "";
+    private String mName = "no_name";
     @ItemColor
     private int mColor = ITEM_COLOR_GRAY;
     private double mDPS = 0.0;

@@ -37,7 +37,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
 public class ItemViewPage extends PopupWindow {
 
     Context context;
-    Item mCurrentItem = null;
+    Item mCurrentItem;
     AutoResizeTextView mItemName;
     TextView mSlot;
     TextView miLvl;
@@ -56,6 +56,7 @@ public class ItemViewPage extends PopupWindow {
         setHeight(res.getDimensionPixelSize(R.dimen.item_view_height));
         setFocusable(true);
 
+        mCurrentItem = Item.createItem(1);
         mItemName = (AutoResizeTextView) popupView.findViewById(R.id.itemNameTextView);
         mSlot = (TextView) popupView.findViewById(R.id.slotTextView);
         miLvl = (TextView) popupView.findViewById(R.id.itemILvlTextView);
@@ -112,7 +113,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setText("Weapon");
                 break;
         }
-        miLvl.setText("Lvl " + String.valueOf(mCurrentItem.getILvl() + 1));
+        miLvl.setText("Lvl " + String.valueOf(mCurrentItem.getILvl()));
         switch (mCurrentItem.getColor()) {
             case ITEM_COLOR_GRAY:
                 mColor.setText("Junk");
