@@ -58,4 +58,6 @@ public class MainActivity extends AppCompatActivity
         DialogFragment gearPage = new EquipmentPage();
         gearPage.show(getFragmentManager(), "gear_page");
     }
+
+
 }

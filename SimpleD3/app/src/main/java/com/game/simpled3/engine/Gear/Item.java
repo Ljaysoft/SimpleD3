@@ -58,7 +58,7 @@ public class Item {
         if (mIsDiscovered)
             return;
 
-        mName.concat(name);
+        mName = name;
         mDPS = dps;
         mDEF = def;
         mColor = color;
