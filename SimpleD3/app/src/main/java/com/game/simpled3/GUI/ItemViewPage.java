@@ -1,9 +1,8 @@
 package com.game.simpled3.gUI;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Rect;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.game.simpled3.R;
 import com.game.simpled3.engine.gear.Item;
+import com.game.simpled3.utils.AutoResizeTextView;
 
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GRAY;
@@ -38,7 +38,7 @@ public class ItemViewPage extends PopupWindow {
 
     Context context;
     Item mCurrentItem = null;
-    TextView mItemName;
+    AutoResizeTextView mItemName;
     TextView mSlot;
     TextView miLvl;
     TextView mColor;
@@ -49,13 +49,14 @@ public class ItemViewPage extends PopupWindow {
         super(ctx);
 
         context = ctx;
+        Resources res = context.getResources();
         setContentView(LayoutInflater.from(context).inflate(R.layout.fragment_item_view, null));
         View popupView = getContentView();
-        setWidth(600);
-        setHeight(800);
+        setWidth(res.getDimensionPixelSize(R.dimen.item_view_width));
+        setHeight(res.getDimensionPixelSize(R.dimen.item_view_height));
         setFocusable(true);
 
-        mItemName = (TextView) popupView.findViewById(R.id.itemNameTextView);
+        mItemName = (AutoResizeTextView) popupView.findViewById(R.id.itemNameTextView);
         mSlot = (TextView) popupView.findViewById(R.id.slotTextView);
         miLvl = (TextView) popupView.findViewById(R.id.itemILvlTextView);
         mColor = (TextView) popupView.findViewById(R.id.colorTextView);
@@ -63,34 +64,13 @@ public class ItemViewPage extends PopupWindow {
         mDEF = (TextView) popupView.findViewById(R.id.itemDefTextView);
     }
 
-    public void showItem(Item item) {
+    public void setItemToShow(Item item) {
         mCurrentItem = item;
         updateItemValues();
     }
 
     public void show(View view) {
-        Rect locateView = locateView(view);
-        showAtLocation(view, Gravity.NO_GRAVITY, locateView.left, locateView.top);
-    }
-
-    public static Rect locateView(View v)
-    {
-        int[] loc_int = new int[2];
-        if (v == null) return null;
-        try
-        {
-            v.getLocationOnScreen(loc_int);
-        } catch (NullPointerException e)
-        {
-            //Happens when the view doesn't exist on screen anymore.
-            return null;
-        }
-        Rect location = new Rect();
-        location.left = loc_int[0];
-        location.top = loc_int[1];
-        location.right = location.left + v.getWidth();
-        location.bottom = location.top + v.getHeight();
-        return location;
+        showAsDropDown(view);
     }
 
     private void updateItemValues() {
@@ -132,27 +112,42 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setText("Weapon");
                 break;
         }
-        miLvl.setText("Lvl " + String.valueOf(mCurrentItem.getILvl()+1));
+        miLvl.setText("Lvl " + String.valueOf(mCurrentItem.getILvl() + 1));
         switch (mCurrentItem.getColor()) {
             case ITEM_COLOR_GRAY:
                 mColor.setText("Junk");
                 mColor.setTextColor(Color.GRAY);
+                mSlot.setTextColor(Color.GRAY);
+                mItemName.setTextColor(Color.GRAY);
+                mItemName.setBackgroundResource(R.drawable.black_item_title);
                 break;
             case ITEM_COLOR_WHITE:
                 mColor.setText("Common");
                 mColor.setTextColor(Color.WHITE);
+                mSlot.setTextColor(Color.WHITE);
+                mItemName.setTextColor(Color.WHITE);
+                mItemName.setBackgroundResource(R.drawable.white_item_title);
                 break;
             case ITEM_COLOR_BLUE:
                 mColor.setText("Magic");
                 mColor.setTextColor(Color.BLUE);
+                mSlot.setTextColor(Color.BLUE);
+                mItemName.setTextColor(Color.BLUE);
+                mItemName.setBackgroundResource(R.drawable.blue_item_title);
                 break;
             case ITEM_COLOR_YELLOW:
                 mColor.setText("Rare");
                 mColor.setTextColor(Color.YELLOW);
+                mSlot.setTextColor(Color.YELLOW);
+                mItemName.setTextColor(Color.YELLOW);
+                mItemName.setBackgroundResource(R.drawable.yellow_item_title);
                 break;
             case ITEM_COLOR_ORANGE:
                 mColor.setText("Legendary");
                 mColor.setTextColor(Color.parseColor("#FFA500"));
+                mSlot.setTextColor(Color.parseColor("#FFA500"));
+                mItemName.setTextColor(Color.parseColor("#FFA500"));
+                mItemName.setBackgroundResource(R.drawable.orange_item_title);
                 break;
 
         }

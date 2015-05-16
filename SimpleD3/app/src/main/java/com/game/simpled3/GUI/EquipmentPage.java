@@ -10,12 +10,13 @@ import android.widget.ImageButton;
 
 import com.game.simpled3.R;
 import com.game.simpled3.engine.Player;
-import com.game.simpled3.engine.gear.slots.Chestpiece;
 import com.game.simpled3.engine.gear.slots.Helmet;
 import com.game.simpled3.engine.gear.slots.Shoulders;
+import com.game.simpled3.engine.gear.slots.Weapon;
 
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_ORANGE;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_YELLOW;
 
 
 public class EquipmentPage extends DialogFragment {
@@ -194,13 +195,13 @@ public class EquipmentPage extends DialogFragment {
             case R.id.shoulderButton:
                 Shoulders shoulders = new Shoulders(Player.getInstance().getLevel());
                 shoulders.setStats("Super Shoulders of the Bear", 2.0, 4.0, ITEM_COLOR_ORANGE);
-                itemView.showItem(shoulders);
+                itemView.setItemToShow(shoulders);
                 itemView.show(view);
                 break;
             case R.id.helmButton:
                 Helmet helm = new Helmet(Player.getInstance().getLevel());
                 helm.setStats("Large Cap of the Whale", 2.0, 2.5, ITEM_COLOR_BLUE);
-                itemView.showItem(helm);
+                itemView.setItemToShow(helm);
                 itemView.show(view);
                 break;
             case R.id.neckButton:
@@ -222,8 +223,11 @@ public class EquipmentPage extends DialogFragment {
             case R.id.bootButton:
                 break;
             case R.id.leftWeaponButton:
-                break;
             case R.id.rightWeaponButton:
+                Weapon weapon = new Weapon(Player.getInstance().getLevel(),true);
+                weapon.setStats("Flamming Sword of Destruction",4.5,4.0, ITEM_COLOR_YELLOW);
+                itemView.setItemToShow(weapon);
+                itemView.show(view);
                 break;
         }
     }
