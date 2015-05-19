@@ -2,7 +2,10 @@ package com.game.simpled3.gUI;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
@@ -36,14 +39,16 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
  */
 public class ItemViewPage extends PopupWindow {
 
-    Context context;
-    Item mCurrentItem;
-    AutoResizeTextView mItemName;
-    TextView mSlot;
-    TextView miLvl;
-    TextView mColor;
-    TextView mDPS;
-    TextView mDEF;
+    private Context context;
+    private Item mCurrentItem;
+    private AutoResizeTextView mItemName;
+    private TextView mSlot;
+    private TextView miLvl;
+    private TextView mColor;
+    private TextView mDPS;
+    private TextView mDEF;
+    private Bitmap mTooltipBorders;
+    private int tooltipTitleHeight;
 
     public ItemViewPage(Context ctx) {
         super(ctx);
@@ -54,6 +59,7 @@ public class ItemViewPage extends PopupWindow {
         View popupView = getContentView();
         setWidth(res.getDimensionPixelSize(R.dimen.item_view_width));
         setHeight(res.getDimensionPixelSize(R.dimen.item_view_height));
+        tooltipTitleHeight = res.getDimensionPixelSize(R.dimen.item_view_title_height);
         setFocusable(true);
 
         mCurrentItem = Item.createItem(1);
@@ -63,6 +69,8 @@ public class ItemViewPage extends PopupWindow {
         mColor = (TextView) popupView.findViewById(R.id.colorTextView);
         mDPS = (TextView) popupView.findViewById(R.id.itemDpsTextView);
         mDEF = (TextView) popupView.findViewById(R.id.itemDefTextView);
+
+        mTooltipBorders = BitmapFactory.decodeResource(res, R.drawable.tooltip_titles);
     }
 
     public void setItemToShow(Item item) {
@@ -113,42 +121,48 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setText("Weapon");
                 break;
         }
-        miLvl.setText("Lvl " + String.valueOf(mCurrentItem.getILvl()));
+        miLvl.setText("Lvl " + String.valueOf(mCurrentItem.getILvl() + 1));
+        Bitmap title;
         switch (mCurrentItem.getColor()) {
             case ITEM_COLOR_GRAY:
                 mColor.setText("Junk");
                 mColor.setTextColor(Color.GRAY);
                 mSlot.setTextColor(Color.GRAY);
                 mItemName.setTextColor(Color.GRAY);
-                mItemName.setBackgroundResource(R.drawable.black_item_title);
+                title = Bitmap.createBitmap(mTooltipBorders, 0, 0, mTooltipBorders.getWidth(), tooltipTitleHeight);
+                mItemName.setBackground(new BitmapDrawable(context.getResources(), title));
                 break;
             case ITEM_COLOR_WHITE:
                 mColor.setText("Common");
                 mColor.setTextColor(Color.WHITE);
                 mSlot.setTextColor(Color.WHITE);
                 mItemName.setTextColor(Color.WHITE);
-                mItemName.setBackgroundResource(R.drawable.white_item_title);
+                title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight, mTooltipBorders.getWidth(), tooltipTitleHeight);
+                mItemName.setBackground(new BitmapDrawable(context.getResources(), title));
                 break;
             case ITEM_COLOR_BLUE:
                 mColor.setText("Magic");
                 mColor.setTextColor(Color.BLUE);
                 mSlot.setTextColor(Color.BLUE);
                 mItemName.setTextColor(Color.BLUE);
-                mItemName.setBackgroundResource(R.drawable.blue_item_title);
+                title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight * 2, mTooltipBorders.getWidth(), tooltipTitleHeight);
+                mItemName.setBackground(new BitmapDrawable(context.getResources(), title));
                 break;
             case ITEM_COLOR_YELLOW:
                 mColor.setText("Rare");
                 mColor.setTextColor(Color.YELLOW);
                 mSlot.setTextColor(Color.YELLOW);
                 mItemName.setTextColor(Color.YELLOW);
-                mItemName.setBackgroundResource(R.drawable.yellow_item_title);
+                title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight * 3, mTooltipBorders.getWidth(), tooltipTitleHeight);
+                mItemName.setBackground(new BitmapDrawable(context.getResources(), title));
                 break;
             case ITEM_COLOR_ORANGE:
                 mColor.setText("Legendary");
                 mColor.setTextColor(Color.parseColor("#FFA500"));
                 mSlot.setTextColor(Color.parseColor("#FFA500"));
                 mItemName.setTextColor(Color.parseColor("#FFA500"));
-                mItemName.setBackgroundResource(R.drawable.orange_item_title);
+                title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight * 4, mTooltipBorders.getWidth(), tooltipTitleHeight);
+                mItemName.setBackground(new BitmapDrawable(context.getResources(), title));
                 break;
 
         }

@@ -1,8 +1,8 @@
 package com.game.simpled3.gUI;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
+import com.game.simpled3.utils.FontCache;
 import com.game.simpled3.utils.StringManipulation;
 
 /**
@@ -22,13 +23,26 @@ public class PlayerStatPage extends Fragment {
 
     private static ProgressBar mProgressBar;
     private static int mProgressValue = 0;
+
+    //labels
     private static TextView mPlayerLevelTextView;
     private static TextView mXpToLevelTextView;
     private static TextView mPlayerDPSTextView;
     private static TextView mPlayerDEFTextView;
     private static TextView mPlayerShardsTextView;
     private static TextView mPlayerGoldTextView;
+    private static TextView mItemsTextView;
     private static TextView mDungeonLevelTextView;
+    private static TextView mProgressTextView;
+
+    // values
+    private static TextView mPlayerLevelValueTextView;
+    private static TextView mXpToLevelValueTextView;
+    private static TextView mPlayerDPSValueTextView;
+    private static TextView mPlayerDEFValueTextView;
+    private static TextView mPlayerShardsValueTextView;
+    private static TextView mPlayerGoldValueTextView;
+    private static TextView mDungeonLevelValueTextView;
     private OnPlayerSheetInteractionListener mListener;
 
     public PlayerStatPage() {
@@ -45,14 +59,28 @@ public class PlayerStatPage extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_player_stat_page, container, false);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-        mPlayerLevelTextView = (TextView) rootView.findViewById(R.id.lvlValueTtextView);
-        mXpToLevelTextView = (TextView) rootView.findViewById(R.id.xpToLvlValueTextView);
-        mPlayerDPSTextView = (TextView) rootView.findViewById(R.id.dpsValueTextView);
-        mPlayerDEFTextView = (TextView) rootView.findViewById(R.id.defValueTextView);
-        mPlayerShardsTextView = (TextView) rootView.findViewById(R.id.shardValueTextView);
-        mPlayerGoldTextView = (TextView) rootView.findViewById(R.id.goldValueTextView);
-        mDungeonLevelTextView = (TextView) rootView.findViewById(R.id.dungeonLvlValueTextView);
+
+
+
+
+        // value textview fonts
+        mPlayerLevelValueTextView = (TextView) rootView.findViewById(R.id.lvlValueTextView);
+        mPlayerLevelValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mXpToLevelValueTextView = (TextView) rootView.findViewById(R.id.xpToLvlValueTextView);
+        mXpToLevelValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerDPSValueTextView = (TextView) rootView.findViewById(R.id.dpsValueTextView);
+        mPlayerDPSValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerDEFValueTextView = (TextView) rootView.findViewById(R.id.defValueTextView);
+        mPlayerDEFValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerShardsValueTextView = (TextView) rootView.findViewById(R.id.shardValueTextView);
+        mPlayerShardsValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerGoldValueTextView = (TextView) rootView.findViewById(R.id.goldValueTextView);
+        mPlayerGoldValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mDungeonLevelValueTextView = (TextView) rootView.findViewById(R.id.dungeonLvlValueTextView);
+        mDungeonLevelValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+
         Button killButton = (Button) rootView.findViewById(R.id.killButton);
+        killButton.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         killButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -63,6 +91,7 @@ public class PlayerStatPage extends Fragment {
                 }
         );
         Button startButton = (Button) rootView.findViewById(R.id.startDungeonButton);
+        startButton.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         startButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -73,6 +102,7 @@ public class PlayerStatPage extends Fragment {
                 }
         );
         Button openGearPageButton = (Button) rootView.findViewById(R.id.openGearPageButton);
+        openGearPageButton.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         openGearPageButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -82,7 +112,6 @@ public class PlayerStatPage extends Fragment {
                     }
                 }
         );
-
         return rootView;
     }
 
@@ -105,17 +134,16 @@ public class PlayerStatPage extends Fragment {
 
     private void updateUI(Game game, Player player) {
         mProgressBar.setProgress(mProgressValue);
-        mPlayerLevelTextView.setText((String.valueOf(player.getLevel())));
-        mXpToLevelTextView.setText(StringManipulation.formatBigNumbers((double) player.getXpToLevel()));
-        mPlayerDPSTextView.setText((String.valueOf(player.getDPS())));
-        mPlayerDEFTextView.setText((String.valueOf(player.getDEF())));
-        mPlayerShardsTextView.setText((String.valueOf(player.getShards())));
-        mPlayerGoldTextView.setText(StringManipulation.formatBigNumbers(player.getGold()));
-        mDungeonLevelTextView.setText((String.valueOf(game.getDungeonLevelForDisplay())));
+        mPlayerLevelValueTextView.setText((String.valueOf(player.getLevel())));
+        mXpToLevelValueTextView.setText(StringManipulation.formatBigNumbers((double) player.getXpToLevel()));
+        mPlayerDPSValueTextView.setText((String.valueOf(player.getDPS())));
+        mPlayerDEFValueTextView.setText((String.valueOf(player.getDEF())));
+        mPlayerShardsValueTextView.setText((String.valueOf(player.getShards())));
+        mPlayerGoldValueTextView.setText(StringManipulation.formatBigNumbers(player.getGold()));
+        mDungeonLevelValueTextView.setText((String.valueOf(game.getDungeonLevelForDisplay())));
     }
 
     private void onOpenGearPageButtonClicked() {
-
     }
 
     //Kill monsters to gain xp and stuff

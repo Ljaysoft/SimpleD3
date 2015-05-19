@@ -53,7 +53,8 @@
         android:layout_below="@+id/itemDefTextView"
         android:text="ilvl"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:paddingLeft="1dp" />
+        android:paddingLeft="1dp"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/itemDpsTextView"

@@ -180,7 +180,6 @@ public class EquipmentPage extends DialogFragment {
             return;
         }
         Item item = Item.createItem(0);
-        ItemViewPage itemView = new ItemViewPage(view.getContext());
         switch (view.getId()) {
             case R.id.shoulderButton:
                 item = new Shoulders(Player.getInstance().getLevel());
