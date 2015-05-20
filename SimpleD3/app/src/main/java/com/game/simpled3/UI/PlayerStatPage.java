@@ -1,4 +1,4 @@
-package com.game.simpled3.gUI;
+package com.game.simpled3.UI;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -60,7 +60,25 @@ public class PlayerStatPage extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_player_stat_page, container, false);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
-
+        // label texview fonts
+        mPlayerLevelTextView = (TextView) rootView.findViewById(R.id.lvlTextView);
+        mPlayerLevelTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mXpToLevelTextView = (TextView) rootView.findViewById(R.id.xpTextView);
+        mXpToLevelTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerDPSTextView = (TextView) rootView.findViewById(R.id.dpsTextView);
+        mPlayerDPSTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerDEFTextView = (TextView) rootView.findViewById(R.id.defTextView);
+        mPlayerDEFTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerShardsTextView = (TextView) rootView.findViewById(R.id.shardTextView);
+        mPlayerShardsTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mPlayerGoldTextView = (TextView) rootView.findViewById(R.id.goldTextView);
+        mPlayerGoldTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mItemsTextView = (TextView) rootView.findViewById(R.id.itemTextView);
+        mItemsTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mDungeonLevelTextView = (TextView) rootView.findViewById(R.id.dungeonLvlTextView);
+        mDungeonLevelTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
+        mProgressTextView = (TextView) rootView.findViewById(R.id.progressTextView);
+        mProgressTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
 
 
         // value textview fonts

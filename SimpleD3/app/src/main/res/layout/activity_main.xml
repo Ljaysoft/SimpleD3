@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.game.simpled3.gUI.PlayerStatPage"
+        android:name="com.game.simpled3.UI.PlayerStatPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_player_stat_page" />

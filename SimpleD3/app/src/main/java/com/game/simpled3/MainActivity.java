@@ -12,9 +12,9 @@ import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.ItemFactory;
-import com.game.simpled3.gUI.EquipmentPage;
-import com.game.simpled3.gUI.ItemViewPage;
-import com.game.simpled3.gUI.PlayerStatPage;
+import com.game.simpled3.UI.EquipmentPage;
+import com.game.simpled3.UI.ItemViewPage;
+import com.game.simpled3.UI.PlayerStatPage;
 
 public class MainActivity extends AppCompatActivity
         implements PlayerStatPage.OnPlayerSheetInteractionListener,

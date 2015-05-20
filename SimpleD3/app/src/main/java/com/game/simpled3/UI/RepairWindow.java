@@ -1,4 +1,4 @@
-package com.game.simpled3.gUI;
+package com.game.simpled3.UI;
 
 import android.app.Fragment;
 

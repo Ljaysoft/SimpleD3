@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/item_view_width"
     android:layout_height="@dimen/item_view_height"
-    tools:context="com.game.simpled3.gUI.ItemViewPage"
+    tools:context="com.game.simpled3.UI.ItemViewPage"
     android:alpha="0.75"
     android:background="@drawable/item_view_border"
     android:clickable="false"
