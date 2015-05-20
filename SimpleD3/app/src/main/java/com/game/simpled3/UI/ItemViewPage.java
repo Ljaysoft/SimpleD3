@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.utils.AutoResizeTextView;
+import com.game.simpled3.utils.FontCache;
 
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GRAY;
@@ -39,7 +40,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
  */
 public class ItemViewPage extends PopupWindow {
 
-    private Context context;
+    private Context context = null;
     private Item mCurrentItem;
     private AutoResizeTextView mItemName;
     private TextView mSlot;
@@ -71,6 +72,7 @@ public class ItemViewPage extends PopupWindow {
         mDEF = (TextView) popupView.findViewById(R.id.itemDefTextView);
 
         mTooltipBorders = BitmapFactory.decodeResource(res, R.drawable.tooltip_titles);
+        FontCache.applyFont(popupView);
     }
 
     public void setItemToShow(Item item) {

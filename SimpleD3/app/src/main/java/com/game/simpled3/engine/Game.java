@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by JFCaron on 2015-04-27.
  */
 public class Game {
-    private static Game sInstance;
+    private static Game sInstance = null;
     private static boolean sIsInit = false;
 
     private static Resources mRes;

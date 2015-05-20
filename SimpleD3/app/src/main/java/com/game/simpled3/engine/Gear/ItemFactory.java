@@ -57,7 +57,7 @@ public class ItemFactory {
     static private String[] mGearPrefixForGearColor = null;
     static private String[] mGearSuffixes = null;
 
-    private ItemFactory() {
+    protected ItemFactory() {
     }
 
     public static ItemFactory getInstance() {

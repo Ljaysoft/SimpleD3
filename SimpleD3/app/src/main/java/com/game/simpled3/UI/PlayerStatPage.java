@@ -24,17 +24,6 @@ public class PlayerStatPage extends Fragment {
     private static ProgressBar mProgressBar;
     private static int mProgressValue = 0;
 
-    //labels
-    private static TextView mPlayerLevelTextView;
-    private static TextView mXpToLevelTextView;
-    private static TextView mPlayerDPSTextView;
-    private static TextView mPlayerDEFTextView;
-    private static TextView mPlayerShardsTextView;
-    private static TextView mPlayerGoldTextView;
-    private static TextView mItemsTextView;
-    private static TextView mDungeonLevelTextView;
-    private static TextView mProgressTextView;
-
     // values
     private static TextView mPlayerLevelValueTextView;
     private static TextView mXpToLevelValueTextView;
@@ -60,45 +49,16 @@ public class PlayerStatPage extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_player_stat_page, container, false);
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
-        // label texview fonts
-        mPlayerLevelTextView = (TextView) rootView.findViewById(R.id.lvlTextView);
-        mPlayerLevelTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mXpToLevelTextView = (TextView) rootView.findViewById(R.id.xpTextView);
-        mXpToLevelTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mPlayerDPSTextView = (TextView) rootView.findViewById(R.id.dpsTextView);
-        mPlayerDPSTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mPlayerDEFTextView = (TextView) rootView.findViewById(R.id.defTextView);
-        mPlayerDEFTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mPlayerShardsTextView = (TextView) rootView.findViewById(R.id.shardTextView);
-        mPlayerShardsTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mPlayerGoldTextView = (TextView) rootView.findViewById(R.id.goldTextView);
-        mPlayerGoldTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mItemsTextView = (TextView) rootView.findViewById(R.id.itemTextView);
-        mItemsTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mDungeonLevelTextView = (TextView) rootView.findViewById(R.id.dungeonLvlTextView);
-        mDungeonLevelTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-        mProgressTextView = (TextView) rootView.findViewById(R.id.progressTextView);
-        mProgressTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
-
-
         // value textview fonts
         mPlayerLevelValueTextView = (TextView) rootView.findViewById(R.id.lvlValueTextView);
-        mPlayerLevelValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         mXpToLevelValueTextView = (TextView) rootView.findViewById(R.id.xpToLvlValueTextView);
-        mXpToLevelValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         mPlayerDPSValueTextView = (TextView) rootView.findViewById(R.id.dpsValueTextView);
-        mPlayerDPSValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         mPlayerDEFValueTextView = (TextView) rootView.findViewById(R.id.defValueTextView);
-        mPlayerDEFValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         mPlayerShardsValueTextView = (TextView) rootView.findViewById(R.id.shardValueTextView);
-        mPlayerShardsValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         mPlayerGoldValueTextView = (TextView) rootView.findViewById(R.id.goldValueTextView);
-        mPlayerGoldValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         mDungeonLevelValueTextView = (TextView) rootView.findViewById(R.id.dungeonLvlValueTextView);
-        mDungeonLevelValueTextView.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
 
         Button killButton = (Button) rootView.findViewById(R.id.killButton);
-        killButton.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         killButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -109,7 +69,6 @@ public class PlayerStatPage extends Fragment {
                 }
         );
         Button startButton = (Button) rootView.findViewById(R.id.startDungeonButton);
-        startButton.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         startButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -120,7 +79,6 @@ public class PlayerStatPage extends Fragment {
                 }
         );
         Button openGearPageButton = (Button) rootView.findViewById(R.id.openGearPageButton);
-        openGearPageButton.setTypeface(FontCache.get("fonts/diablo_h.ttf", rootView.getContext()));
         openGearPageButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -130,6 +88,7 @@ public class PlayerStatPage extends Fragment {
                     }
                 }
         );
+        FontCache.applyFont(rootView);
         return rootView;
     }
 
