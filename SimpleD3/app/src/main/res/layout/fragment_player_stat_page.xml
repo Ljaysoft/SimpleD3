@@ -197,7 +197,7 @@
         android:enabled="false"
         android:text="Start Dungeon"
         android:singleLine="false"
-        android:textSize="14dp" />
+        android:textSize="12dp" />
 
     <TextView
         android:id="@+id/dungeonLvlTextView"
