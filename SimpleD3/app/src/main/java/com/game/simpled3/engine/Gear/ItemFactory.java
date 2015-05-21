@@ -43,27 +43,24 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
  */
 public class ItemFactory {
     private static boolean sIsInit = false;
-    private static ItemFactory sInstance = null;
+    private static final ItemFactory sInstance = new ItemFactory();
 
-    private static int mLvl = 0;
+    private int mLvl = 0;
 
-    static private int[] mItemPowerPerLvl = null;
-    static private int mNbItemTypes = 0;
-    static private int mNbItemColors = 0;
-    static private float[] mItemPowerForItemType = null;
-    static private float[] mPowerCoefForColor = null;
+    private int[] mItemPowerPerLvl = null;
+    private int mNbItemTypes = 0;
+    private int mNbItemColors = 0;
+    private float[] mItemPowerForItemType = null;
+    private float[] mPowerCoefForColor = null;
 
-    static private String[] mGearNamesForGearType = null;
-    static private String[] mGearPrefixForGearColor = null;
-    static private String[] mGearSuffixes = null;
+    private String[] mGearNamesForGearType = null;
+    private String[] mGearPrefixForGearColor = null;
+    private String[] mGearSuffixes = null;
 
     protected ItemFactory() {
     }
 
     public static ItemFactory getInstance() {
-        if (sInstance == null) {
-            sInstance = new ItemFactory();
-        }
         return sInstance;
     }
 
@@ -71,32 +68,32 @@ public class ItemFactory {
         if (sInstance == null || sIsInit)
             return;
 
-        mNbItemTypes = res.getInteger(R.integer.number_of_item_slots);
-        mNbItemColors = res.getInteger(R.integer.number_of_item_colors);
+        sInstance.mNbItemTypes = res.getInteger(R.integer.number_of_item_slots);
+        sInstance.mNbItemColors = res.getInteger(R.integer.number_of_item_colors);
 
-        mItemPowerPerLvl = res.getIntArray(R.array.int_array_ipower_for_lvl);
+        sInstance.mItemPowerPerLvl = res.getIntArray(R.array.int_array_ipower_for_lvl);
 
         TypedArray resourceTypedArr = res.obtainTypedArray(R.array.float_array_ipower_for_type);
-        mItemPowerForItemType = new float[mNbItemTypes];
+        sInstance.mItemPowerForItemType = new float[sInstance.mNbItemTypes];
         int lvl = 0;
-        while (lvl < mNbItemTypes) {
-            mItemPowerForItemType[lvl] = resourceTypedArr.getFloat(lvl, 0);
+        while (lvl < sInstance.mNbItemTypes) {
+            sInstance.mItemPowerForItemType[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
         resourceTypedArr.recycle();
 
         lvl = 0;
         resourceTypedArr = res.obtainTypedArray(R.array.float_array_ipower_coef_for_color);
-        mPowerCoefForColor = new float[mNbItemColors];
-        while (lvl < mNbItemColors) {
-            mPowerCoefForColor[lvl] = resourceTypedArr.getFloat(lvl, 0);
+        sInstance.mPowerCoefForColor = new float[sInstance.mNbItemColors];
+        while (lvl < sInstance.mNbItemColors) {
+            sInstance.mPowerCoefForColor[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
         resourceTypedArr.recycle();
 
-        mGearNamesForGearType = res.getStringArray(R.array.string_array_gear_name_for_type);
-        mGearPrefixForGearColor = res.getStringArray(R.array.string_array_gear_prefix_for_color);
-        mGearSuffixes = res.getStringArray(R.array.string_array_gear_suffixes);
+        sInstance.mGearNamesForGearType = res.getStringArray(R.array.string_array_gear_name_for_type);
+        sInstance.mGearPrefixForGearColor = res.getStringArray(R.array.string_array_gear_prefix_for_color);
+        sInstance.mGearSuffixes = res.getStringArray(R.array.string_array_gear_suffixes);
 
         sIsInit = true;
     }
@@ -127,34 +124,34 @@ public class ItemFactory {
 
     private static Item createItem() {
         double p = StdRandom.uniform();
-        int slot = (int) (p * ((double) mNbItemTypes)) + 1;
+        int slot = (int) (p * ((double) sInstance.mNbItemTypes)) + 1;
         switch (slot) {
             case ITEM_SLOT_HELM:
-                return new Helmet(mLvl);
+                return new Helmet(sInstance.mLvl);
             case ITEM_SLOT_SHOULDER:
-                return new Shoulders(mLvl);
+                return new Shoulders(sInstance.mLvl);
             case ITEM_SLOT_CHEST:
-                return new Chestpiece(mLvl);
+                return new Chestpiece(sInstance.mLvl);
             case ITEM_SLOT_NECK:
-                return new Neck(mLvl);
+                return new Neck(sInstance.mLvl);
             case ITEM_SLOT_GLOVE:
-                return new Gloves(mLvl);
+                return new Gloves(sInstance.mLvl);
             case ITEM_SLOT_BRACER:
-                return new Bracers(mLvl);
+                return new Bracers(sInstance.mLvl);
             case ITEM_SLOT_BELT:
-                return new Belt(mLvl);
+                return new Belt(sInstance.mLvl);
             case ITEM_SLOT_PANTS:
-                return new Pants(mLvl);
+                return new Pants(sInstance.mLvl);
             case ITEM_SLOT_BOOTS:
-                return new Boots(mLvl);
+                return new Boots(sInstance.mLvl);
             case ITEM_SLOT_RING1:
-                return new Ring(mLvl, false);
+                return new Ring(sInstance.mLvl, false);
             case ITEM_SLOT_RING2:
-                return new Ring(mLvl, true);
+                return new Ring(sInstance.mLvl, true);
             case ITEM_SLOT_LEFT_WEAPON:
-                return new Weapon(mLvl, false);
+                return new Weapon(sInstance.mLvl, false);
             case ITEM_SLOT_RIGHT_WEAPON:
-                return new Weapon(mLvl, true);
+                return new Weapon(sInstance.mLvl, true);
         }
         return null;
     }
@@ -162,7 +159,7 @@ public class ItemFactory {
     private static int buildItemColor() {
         int lambda = 1;
         double p = StdRandom.exp(lambda);
-        int color = (int) (p * ((double) mNbItemColors - 1));
+        int color = (int) (p * ((double) sInstance.mNbItemColors - 1));
         switch (color) {
             case ITEM_COLOR_WHITE:
                 return ITEM_COLOR_WHITE;

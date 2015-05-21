@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_item_view_border">#ff392d18</color>
+    <color name="color_death_page_border">#FF020202</color>
 </resources>

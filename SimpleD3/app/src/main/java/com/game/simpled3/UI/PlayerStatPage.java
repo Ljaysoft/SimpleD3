@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
-import com.game.simpled3.utils.FontCache;
+import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
 
 /**
@@ -88,7 +88,7 @@ public class PlayerStatPage extends Fragment {
                     }
                 }
         );
-        FontCache.applyFont(rootView);
+        FontHelper.applyFont(rootView);
         return rootView;
     }
 
@@ -112,7 +112,7 @@ public class PlayerStatPage extends Fragment {
     private void updateUI(Game game, Player player) {
         mProgressBar.setProgress(mProgressValue);
         mPlayerLevelValueTextView.setText((String.valueOf(player.getLevel())));
-        mXpToLevelValueTextView.setText(StringManipulation.formatBigNumbers((double) player.getXpToLevel()));
+        mXpToLevelValueTextView.setText(StringManipulation.formatBigNumbers(player.getXpToLevel()));
         mPlayerDPSValueTextView.setText((String.valueOf(player.getDPS())));
         mPlayerDEFValueTextView.setText((String.valueOf(player.getDEF())));
         mPlayerShardsValueTextView.setText((String.valueOf(player.getShards())));
@@ -137,16 +137,6 @@ public class PlayerStatPage extends Fragment {
         //TODO Start dungeon
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnPlayerSheetInteractionListener {
         void onPlayerSheetInteraction(View view);
     }

@@ -11,32 +11,30 @@ import java.util.ArrayList;
  * Created by JFCaron on 2015-04-27.
  */
 public class Player {
-    private static Player sInstance = null;
-    private static boolean sIsInit = false;
+    private static final Player sInstance = new Player();
+    private boolean sIsInit = false;
 
-    private static int mLevel = 0;
-    private static float mXpToLevel = 0;
-    private static double mDPS = 1.0;
-    private static double mDEF = 1.0;
-    private static double mGold = 0;
-    private static double mShards = 0;
-    private static ArrayList<Item> mItems;
+    private int mLevel = 0;
+    private double mXpToLevel = 0;
+    private double mDPS = 1.0;
+    private double mDEF = 1.0;
+    private double mGold = 0;
+    private double mShards = 0;
+    private ArrayList<Item> mItems;
+    private boolean isDead = false;
 
     private Player() {
     }
 
     public static Player getInstance() {
-        if (sInstance == null) {
-            sInstance = new Player();
-        }
         return sInstance;
     }
 
     public static void initialize(Resources res) {
-        if (sInstance == null || sIsInit)
+        if (sInstance == null || sInstance.sIsInit)
             return;
-        mItems = new ArrayList<>(res.getInteger(R.integer.number_of_item_slots));
-        sIsInit = true;
+        sInstance.mItems = new ArrayList<>(res.getInteger(R.integer.number_of_item_slots));
+        sInstance.sIsInit = true;
     }
 
     public double getDEF() {
@@ -59,13 +57,15 @@ public class Player {
         return mShards;
     }
 
-    public float getXpToLevel() {
+    public double getXpToLevel() {
         return mXpToLevel;
     }
 
     public ArrayList<Item> getItems() {
         return mItems;
     }
+
+    public boolean isDead() { return isDead;}
 
     public void giveGold(double goldGiven) {
         mGold += goldGiven;
@@ -122,6 +122,19 @@ public class Player {
             DEF += item.getDEF();
         }
         return mDPS != DPS | DEF != mDEF;
+    }
+
+    public void loseDurability(double durabilityLoss) {
+        //lose durability
+    }
+
+    public void kill() {
+        isDead = true;
+        loseDurability(0.1);
+    }
+
+    public void revive() {
+        isDead = false;
     }
 
 }

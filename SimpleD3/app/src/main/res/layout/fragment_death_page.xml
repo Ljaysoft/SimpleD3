@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@drawable/item_view_border">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="You have died."
-        android:id="@+id/textView"
+        android:id="@+id/youHaveDiedTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="39dp"
@@ -18,9 +21,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your items have lost 10% durability."
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
+        android:id="@+id/durabilityLostTextView"
+        android:layout_below="@+id/youHaveDiedTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp"
         android:textAlignment="center" />
+
+    <Button
+        style="@style/framed_button_style"
+        android:id="@+id/okDeathButton"
+        android:text="OK"
+        android:layout_below="@+id/durabilityLostTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

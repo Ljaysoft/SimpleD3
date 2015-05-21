@@ -4,10 +4,10 @@ import android.app.DialogFragment;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.game.simpled3.UI.DeathPage;
 import com.game.simpled3.UI.EquipmentPage;
 import com.game.simpled3.UI.ItemViewPage;
 import com.game.simpled3.UI.PlayerStatPage;
@@ -18,10 +18,15 @@ import com.game.simpled3.engine.gear.ItemFactory;
 
 public class MainActivity extends AppCompatActivity
         implements PlayerStatPage.OnPlayerSheetInteractionListener,
-        EquipmentPage.OnEquipmentPageInteractionListener {
+        EquipmentPage.OnEquipmentPageInteractionListener,
+        DeathPage.OnDeathPageInteractionListener {
 
     DialogFragment gearPage = null;
     ItemViewPage itemView = null;
+    DeathPage deathPage = null;
+    final Game game = Game.getInstance();
+    final Player player = Player.getInstance();
+    final ItemFactory itemFactory = ItemFactory.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +39,12 @@ public class MainActivity extends AppCompatActivity
 
     void initializeGame() {
         Resources res = getResources();
-        Game.getInstance().initialize(res);
-        Player.getInstance().initialize(res);
-        ItemFactory.getInstance().initialize(res);
+        game.initialize(res);
+        player.initialize(res);
+        itemFactory.initialize(res);
         gearPage = new EquipmentPage();
         itemView = new ItemViewPage(getApplicationContext());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        deathPage = new DeathPage();
     }
 
     @Override
@@ -53,7 +52,12 @@ public class MainActivity extends AppCompatActivity
         switch (view.getId()) {
             case R.id.openGearPageButton:
                 showEquipmentPage();
-
+                break;
+            case R.id.killButton:
+                if(player.isDead()) {
+                    deathPage.setCancelable(false);
+                    deathPage.show(getFragmentManager(), "death_page");
+                }
         }
     }
 
@@ -66,5 +70,14 @@ public class MainActivity extends AppCompatActivity
     public void onEquipmentPageInteraction(View view, MotionEvent event, Item item) {
         itemView.setItemToShow(item);
         itemView.show(view);
+    }
+
+    @Override
+    public void onDeathPageInteraction(View view) {
+        switch (view.getId()) {
+            case R.id.okDeathButton:
+                player.revive();
+                deathPage.dismiss();
+        }
     }
 }
