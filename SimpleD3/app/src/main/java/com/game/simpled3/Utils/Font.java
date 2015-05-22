@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 public class Font {
     private static Font font;
     public Typeface DIABLO_H;
+    public Typeface PALATINO_LINOTYPE_I;
 
     private Font() {
 
@@ -27,5 +28,7 @@ public class Font {
 
         DIABLO_H = Typeface.createFromAsset(context.getAssets(),
                 "fonts/diablo_h.ttf");
+        PALATINO_LINOTYPE_I = Typeface.createFromAsset(context.getAssets(),
+                "fonts/palatino_linotype_i.ttf");
     }
 }

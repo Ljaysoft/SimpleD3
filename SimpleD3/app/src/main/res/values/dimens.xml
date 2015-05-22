@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="item_view_height">300dp</dimen>
+    <dimen name="item_view_height">240dp</dimen>
     <dimen name="item_view_width">236dp</dimen>
     <dimen name="item_view_title_height">40px</dimen>
 </resources>

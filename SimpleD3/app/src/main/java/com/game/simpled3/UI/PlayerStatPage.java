@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
+import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
 
@@ -21,8 +22,10 @@ import com.game.simpled3.utils.StringManipulation;
  */
 public class PlayerStatPage extends Fragment {
 
+    private OnPlayerSheetInteractionListener mListener;
+
     private static ProgressBar mProgressBar;
-    private static int mProgressValue = 0;
+    private static byte mProgressValue = 0;
 
     // values
     private static TextView mPlayerLevelValueTextView;
@@ -32,8 +35,8 @@ public class PlayerStatPage extends Fragment {
     private static TextView mPlayerShardsValueTextView;
     private static TextView mPlayerGoldValueTextView;
     private static TextView mDungeonLevelValueTextView;
-    private OnPlayerSheetInteractionListener mListener;
-
+    private static Button mKillButton;
+    private static Button mStartDungeonButton;
     public PlayerStatPage() {
     }
 
@@ -58,23 +61,23 @@ public class PlayerStatPage extends Fragment {
         mPlayerGoldValueTextView = (TextView) rootView.findViewById(R.id.goldValueTextView);
         mDungeonLevelValueTextView = (TextView) rootView.findViewById(R.id.dungeonLvlValueTextView);
 
-        Button killButton = (Button) rootView.findViewById(R.id.killButton);
-        killButton.setOnClickListener(
+        mKillButton = (Button) rootView.findViewById(R.id.killButton);
+        mKillButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         onKillButtonClicked();
-                        mListener.onPlayerSheetInteraction(view);
+                        mListener.onPlayerSheetButtonClicked(view);
                     }
                 }
         );
-        Button startButton = (Button) rootView.findViewById(R.id.startDungeonButton);
-        startButton.setOnClickListener(
+        mStartDungeonButton = (Button) rootView.findViewById(R.id.startDungeonButton);
+        mStartDungeonButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         onStartDungeonButtonClicked();
-                        mListener.onPlayerSheetInteraction(view);
+                        mListener.onPlayerSheetButtonClicked(view);
                     }
                 }
         );
@@ -84,11 +87,11 @@ public class PlayerStatPage extends Fragment {
                     @Override
                     public void onClick(View view) {
                         onOpenGearPageButtonClicked();
-                        mListener.onPlayerSheetInteraction(view);
+                        mListener.onPlayerSheetButtonClicked(view);
                     }
                 }
         );
-        FontHelper.applyFont(rootView);
+        FontHelper.applyFont(rootView, false, true);
         return rootView;
     }
 
@@ -109,15 +112,18 @@ public class PlayerStatPage extends Fragment {
         mListener = null;
     }
 
-    private void updateUI(Game game, Player player) {
-        mProgressBar.setProgress(mProgressValue);
+    public void updateUI(Game game, Player player) {
+        player.updateDPSandDEF();
+        mProgressBar.setProgress(game.updateDungeonProgress());
         mPlayerLevelValueTextView.setText((String.valueOf(player.getLevel())));
         mXpToLevelValueTextView.setText(StringManipulation.formatBigNumbers(player.getXpToLevel()));
-        mPlayerDPSValueTextView.setText((String.valueOf(player.getDPS())));
-        mPlayerDEFValueTextView.setText((String.valueOf(player.getDEF())));
+        mPlayerDPSValueTextView.setText(StringManipulation.formatBigNumbers(player.getDPS()));
+        mPlayerDEFValueTextView.setText(StringManipulation.formatBigNumbers(player.getDEF()));
         mPlayerShardsValueTextView.setText((String.valueOf(player.getShards())));
         mPlayerGoldValueTextView.setText(StringManipulation.formatBigNumbers(player.getGold()));
         mDungeonLevelValueTextView.setText((String.valueOf(game.getDungeonLevelForDisplay())));
+        mKillButton.setEnabled(!player.isDead() && (game.isDungeonInProgress() && !game.isDungeonDone()));
+        mStartDungeonButton.setEnabled(!player.isDead() && (!game.isDungeonInProgress() || game.isDungeonDone()));
     }
 
     private void onOpenGearPageButtonClicked() {
@@ -128,18 +134,16 @@ public class PlayerStatPage extends Fragment {
         Game game = Game.getInstance();
         Player player = Player.getInstance();
 
-        game.playerAttacks(player);
-        mProgressValue = game.updateDungeonProgress(player);
+        mListener.onGetReward(game.playerAttacks(player));
         updateUI(game, player);
     }
 
     private void onStartDungeonButtonClicked() {
-        //TODO Start dungeon
+        mStartDungeonButton.setEnabled(false);
     }
 
     public interface OnPlayerSheetInteractionListener {
-        void onPlayerSheetInteraction(View view);
+        void onPlayerSheetButtonClicked(View view);
+        void onGetReward(Loot loot);
     }
-
-
 }

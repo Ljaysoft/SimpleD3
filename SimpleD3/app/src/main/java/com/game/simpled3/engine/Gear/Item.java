@@ -1,7 +1,7 @@
 package com.game.simpled3.engine.gear;
 
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GRAY;
-import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_ANY;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_DUMMY;
 import static com.game.simpled3.engine.enums.GameEnums.ItemColor;
 import static com.game.simpled3.engine.enums.GameEnums.ItemSlot;
 
@@ -10,7 +10,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ItemSlot;
  */
 public class Item {
     @ItemSlot
-    protected int mSlot = ITEM_SLOT_ANY;
+    protected int mSlot = ITEM_SLOT_DUMMY;
     private int mILvl = 0;
     private String mName = "no_name";
     @ItemColor
@@ -24,6 +24,10 @@ public class Item {
 
     protected Item(int lvl) {
         mILvl = lvl;
+    }
+
+    public static Item getDummy() {
+        return new Item(0);
     }
 
     public static Item createItem(int lvl) {

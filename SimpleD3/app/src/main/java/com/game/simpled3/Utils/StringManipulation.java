@@ -13,6 +13,8 @@ public class StringManipulation {
     }
 
     public static String formatBigNumbers(double value) {
+        if (value == 0)
+            return "0";
         int power;
         String suffix = " KMBT";
         String formattedNumber = "";

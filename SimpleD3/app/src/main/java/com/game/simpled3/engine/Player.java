@@ -3,6 +3,7 @@ package com.game.simpled3.engine;
 import android.content.res.Resources;
 
 import com.game.simpled3.R;
+import com.game.simpled3.engine.enums.GameEnums;
 import com.game.simpled3.engine.gear.Item;
 
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class Player {
     private double mShards = 0;
     private ArrayList<Item> mItems;
     private boolean isDead = false;
+    private boolean isGearBroke = false;
+    private byte durability = 100;
+    private static final byte MAX_DURABILITY = 100;
 
     private Player() {
     }
@@ -31,9 +35,13 @@ public class Player {
     }
 
     public static void initialize(Resources res) {
-        if (sInstance == null || sInstance.sIsInit)
+        if (sInstance.sIsInit)
             return;
-        sInstance.mItems = new ArrayList<>(res.getInteger(R.integer.number_of_item_slots));
+        int numberOfItemSlots = res.getInteger(R.integer.number_of_item_slots);
+        sInstance.mItems = new ArrayList<>(numberOfItemSlots);
+        for (int slot = 0; slot < numberOfItemSlots; slot++) {
+            sInstance.mItems.add(slot, Item.getDummy());
+        }
         sInstance.sIsInit = true;
     }
 
@@ -65,7 +73,13 @@ public class Player {
         return mItems;
     }
 
-    public boolean isDead() { return isDead;}
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public boolean isGearBroke() {
+        return isGearBroke;
+    }
 
     public void giveGold(double goldGiven) {
         mGold += goldGiven;
@@ -92,8 +106,10 @@ public class Player {
 
     public void giveItem(Item item) {
         //TODO Player receives items
-        //@ItemSlot int iSlot = item.getSlot();
-        //mItems.set(iSlot,item);
+        @GameEnums.ItemSlot int iSlot = item.getSlot();
+        if (iSlot != GameEnums.ITEM_SLOT_DUMMY) {
+            mItems.set(iSlot, item);
+        }
     }
 
     public boolean takeGold(double gold) {
@@ -115,17 +131,22 @@ public class Player {
     }
 
     public boolean updateDPSandDEF() {
-        double DPS = 0;
-        double DEF = 0;
+        double DPS = 1.0;
+        double DEF = 1.0;
         for (Item item : mItems) {
             DPS += item.getDPS();
             DEF += item.getDEF();
         }
-        return mDPS != DPS | DEF != mDEF;
+        mDPS = DPS;
+        mDEF = DEF;
+        return mDPS != DPS || DEF != mDEF;
     }
 
     public void loseDurability(double durabilityLoss) {
-        //lose durability
+        if (!isGearBroke)
+            durability-=MAX_DURABILITY*durabilityLoss;
+        if (durability <= 0)
+            isGearBroke = true;
     }
 
     public void kill() {

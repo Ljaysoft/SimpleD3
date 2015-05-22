@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_item_view_border">#ff392d18</color>
+    <color name="color_item_view_border">#FF392D18</color>
     <color name="color_death_page_border">#FF020202</color>
+    <color name="color_item_flavor_text">#FFAD835A</color>
+    <color name="color_reward_page_border">#FF2B2723</color>
 </resources>

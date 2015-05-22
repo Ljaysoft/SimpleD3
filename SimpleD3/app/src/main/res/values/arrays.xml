@@ -306,20 +306,21 @@
         <item>99</item>
         <item>100</item>
     </integer-array>
-    <integer-array name="float_array_ipower_for_type">
+    <array name="float_array_ipower_for_type">
+        <item>1</item>
+        <item>0.77</item>
         <item>1</item>
         <item>1</item>
+        <item>0.77</item>
+        <item>0.55</item>
+        <item>0.77</item>
+        <item>1</item>
+        <item>0.77</item>
+        <item>0.55</item>
+        <item>0.55</item>
         <item>1</item>
         <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-    </integer-array>
+    </array>
     <array name="float_array_ipower_coef_for_color">
         <item>0.75</item>
         <item>1</item>

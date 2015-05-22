@@ -9,7 +9,7 @@
     tools:ignore="MergeRootFrame">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/playerStatPage"
         android:name="com.game.simpled3.UI.PlayerStatPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

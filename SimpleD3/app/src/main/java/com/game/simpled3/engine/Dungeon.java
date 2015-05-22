@@ -7,14 +7,15 @@ public class Dungeon {
     private int mDungeonLvl = 1;
     private int mNbMonsters = 100;
     private int mNbMonstersKilled = 0;
-    private double mMonsterHP = 0.1;
+    private double mMonsterHP = 1;
     private double mMonsterDMG = 1;
     private double mShards = 1;
     private boolean mIsDone = false;
 
-    public Dungeon(int lvl, int monsters, double shards) {
+    public Dungeon(int lvl, int monsters, int monsterHP, double shards) {
         mDungeonLvl = lvl;
         mNbMonsters = monsters;
+        mMonsterHP = monsterHP;
         mShards = shards;
     }
 
@@ -39,11 +40,13 @@ public class Dungeon {
     }
 
     public boolean isDone() {
-        return mIsDone;
+        return mNbMonstersKilled >= mNbMonsters;
     }
 
-    public int getProgress() {
-        return mNbMonstersKilled * 100 / mNbMonsters;
+    public byte getProgress() {
+        if (isDone())
+            return 100;
+        return (byte)(mNbMonstersKilled * 100 / mNbMonsters);
     }
 
     /*
@@ -53,13 +56,16 @@ public class Dungeon {
         double pDPS = player.getDPS();
         //TODO player gets attacked back
         double pDEF = player.getDEF();
-        int monstersKilledPerSec = (int) (pDPS / mMonsterHP);
-        if (mNbMonstersKilled < mNbMonsters) {
-            mNbMonstersKilled += monstersKilledPerSec;
-        } else {
-            mIsDone = true;
-            return 0;
+        int newMonstersKilled = (int) (pDPS / mMonsterHP);
+
+        if ((mNbMonsters - mNbMonstersKilled) > newMonstersKilled) {
+            mNbMonstersKilled += newMonstersKilled;
         }
-        return 1;
+        else {
+            newMonstersKilled = mNbMonsters - mNbMonstersKilled;
+            mNbMonstersKilled = mNbMonsters;
+        }
+
+        return newMonstersKilled;
     }
 }

@@ -12,13 +12,22 @@ import android.widget.ImageButton;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.Item;
-import com.game.simpled3.engine.gear.slots.Helmet;
-import com.game.simpled3.engine.gear.slots.Shoulders;
-import com.game.simpled3.engine.gear.slots.Weapon;
 
-import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
-import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_ORANGE;
-import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_YELLOW;
+import java.util.ArrayList;
+
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BELT;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BOOTS;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BRACER;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_CHEST;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_GLOVE;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_HELM;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_LEFT_WEAPON;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_NECK;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_PANTS;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_RIGHT_WEAPON;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_RING1;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_RING2;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
 
 
 public class EquipmentPage extends DialogFragment {
@@ -177,39 +186,49 @@ public class EquipmentPage extends DialogFragment {
         if (event.getAction() !=  MotionEvent.ACTION_UP) {
             return;
         }
-        Item item = Item.createItem(0);
+        ArrayList<Item> items = Player.getInstance().getItems();
+        Item item = Item.getDummy();
         switch (view.getId()) {
             case R.id.shoulderButton:
-                item = new Shoulders(Player.getInstance().getLevel());
-                item.setStats("Super Shoulders of the Bear", 2.0, 4.0, ITEM_COLOR_ORANGE);
+                item = items.get(ITEM_SLOT_SHOULDER);
                 break;
             case R.id.helmButton:
-                item = new Helmet(Player.getInstance().getLevel());
-                item.setStats("Large Cap of the Whale", 2.0, 2.5, ITEM_COLOR_BLUE);
+                item = items.get(ITEM_SLOT_HELM);
                 break;
             case R.id.neckButton:
+                item = items.get(ITEM_SLOT_NECK);
                 break;
             case R.id.chestButton:
+                item = items.get(ITEM_SLOT_CHEST);
                 break;
             case R.id.glovesButton:
+                item = items.get(ITEM_SLOT_GLOVE);
                 break;
             case R.id.bracerButton:
+                item = items.get(ITEM_SLOT_BRACER);
                 break;
             case R.id.beltButton:
+                item = items.get(ITEM_SLOT_BELT);
                 break;
             case R.id.leftRingButton:
+                item = items.get(ITEM_SLOT_RING1);
                 break;
             case R.id.rightRingButton:
+                item = items.get(ITEM_SLOT_RING2);
                 break;
             case R.id.pantsButton:
+                item = items.get(ITEM_SLOT_PANTS);
                 break;
             case R.id.bootButton:
+                item = items.get(ITEM_SLOT_BOOTS);
                 break;
             case R.id.leftWeaponButton:
-            case R.id.rightWeaponButton:
-                item = new Weapon(Player.getInstance().getLevel(), true);
-                item.setStats("Flamming Sword of Destruction", 4.5, 4.0, ITEM_COLOR_YELLOW);
+                item = items.get(ITEM_SLOT_LEFT_WEAPON);
                 break;
+            case R.id.rightWeaponButton:
+                item = items.get(ITEM_SLOT_RIGHT_WEAPON);
+                break;
+
         }
         if (mListener != null) {
             mListener.onEquipmentPageInteraction(view, event, item);

@@ -15,20 +15,20 @@ public class GameEnums {
     public static final int ITEM_COLOR_BLUE = 2;
     public static final int ITEM_COLOR_YELLOW = 3;
     public static final int ITEM_COLOR_ORANGE = 4;
-    public static final int ITEM_SLOT_ANY = 0;
-    public static final int ITEM_SLOT_HELM = 1;
-    public static final int ITEM_SLOT_SHOULDER = 2;
-    public static final int ITEM_SLOT_CHEST = 3;
-    public static final int ITEM_SLOT_NECK = 4;
-    public static final int ITEM_SLOT_GLOVE = 5;
-    public static final int ITEM_SLOT_BRACER = 6;
-    public static final int ITEM_SLOT_BELT = 7;
-    public static final int ITEM_SLOT_PANTS = 8;
-    public static final int ITEM_SLOT_BOOTS = 9;
-    public static final int ITEM_SLOT_RING1 = 10;
-    public static final int ITEM_SLOT_RING2 = 11;
-    public static final int ITEM_SLOT_LEFT_WEAPON = 12;
-    public static final int ITEM_SLOT_RIGHT_WEAPON = 13;
+    public static final int ITEM_SLOT_DUMMY = -1;
+    public static final int ITEM_SLOT_HELM = 0;
+    public static final int ITEM_SLOT_SHOULDER = 1;
+    public static final int ITEM_SLOT_CHEST = 2;
+    public static final int ITEM_SLOT_NECK = 3;
+    public static final int ITEM_SLOT_GLOVE = 4;
+    public static final int ITEM_SLOT_BRACER = 5;
+    public static final int ITEM_SLOT_BELT = 6;
+    public static final int ITEM_SLOT_PANTS = 7;
+    public static final int ITEM_SLOT_BOOTS = 8;
+    public static final int ITEM_SLOT_RING1 = 9;
+    public static final int ITEM_SLOT_RING2 = 10;
+    public static final int ITEM_SLOT_LEFT_WEAPON = 11;
+    public static final int ITEM_SLOT_RIGHT_WEAPON = 12;
     /**
      *
      */
@@ -45,7 +45,7 @@ public class GameEnums {
      *
      */
     // ITEM_SLOT
-    @IntDef({ITEM_SLOT_ANY,
+    @IntDef({ITEM_SLOT_DUMMY,
             ITEM_SLOT_HELM,
             ITEM_SLOT_SHOULDER,
             ITEM_SLOT_CHEST,

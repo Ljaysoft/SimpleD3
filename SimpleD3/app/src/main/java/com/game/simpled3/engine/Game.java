@@ -22,8 +22,9 @@ public class Game {
     private float[] mXpToLvl = null;
     private float[] mGoldCoefPerLvl = null;
 
+
     private ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
-    private int mCurrentDungeonLvl = 0;
+    private int mCurrentDungeonLvl = -1;
     private int mMaxDungeonLevel = 0;
 
     private int[] mXpForDungeonLvl = null;
@@ -31,11 +32,12 @@ public class Game {
     private int mNbMonsterPerDungeon = 0;
     private int mMaxPlayerLevel = 0;
     private int mBaseMonsterXP = 0;
+    private int mBaseMonsterHP = 0;
     private int mBaseDungeonBonusGold = 0;
     private int mBaseGoldPerMonster = 0;
     private int mBaseNumberOfItemPerDungeon = 0;
 
-     private double mChanceToDie = 0.25;
+     private double mChanceToDie = 0.01;
 
     private Game() {
 
@@ -47,7 +49,7 @@ public class Game {
 
     //Acquisition des données des arrays
     public static void initialize(Resources res) {
-        if (sInstance == null || sInstance.sIsInit)
+        if (sInstance.sIsInit)
             return;
 
         sInstance.mRes = res;
@@ -58,6 +60,7 @@ public class Game {
         sInstance.mMaxPlayerLevel = sInstance.mRes.getInteger(R.integer.number_of_player_levels);
         sInstance.mMaxDungeonLevel = sInstance.mRes.getInteger(R.integer.number_of_dungeon_levels);
         sInstance.mBaseMonsterXP = sInstance.mRes.getInteger(R.integer.base_monster_xp);
+        sInstance.mBaseMonsterHP = sInstance.mRes.getInteger(R.integer.base_monster_HP);
         sInstance.mBaseGoldPerMonster = sInstance.mRes.getInteger(R.integer.base_gold_per_monster);
 
         //Init Arrays
@@ -88,7 +91,7 @@ public class Game {
         //Create Dungeons
         lvl = 0;
         while (lvl < sInstance.mMaxDungeonLevel) {
-            sInstance.mDungeons.add(new Dungeon(lvl, sInstance.mNbMonsterPerDungeon,
+            sInstance.mDungeons.add(new Dungeon(lvl, sInstance.mNbMonsterPerDungeon, lvl * sInstance.mBaseMonsterHP,
                     sInstance.mShardForDungeonLvl[lvl]));
             lvl++;
         }
@@ -97,45 +100,73 @@ public class Game {
         sInstance.sIsInit = true;
     }
 
-    public int updateDungeonProgress(Player player) {
+    public byte updateDungeonProgress() {
+        if (mCurrentDungeonLvl == -1)
+            return 0;
         return mDungeons.get(mCurrentDungeonLvl).getProgress();
     }
 
-    public void playerAttacks(Player player) {
-        Dungeon currentDungeon = mDungeons.get(mCurrentDungeonLvl);
-        int monstersKilled = currentDungeon.playerAttacked(player);
+    /** Player attacks
+     *
+     * @param player
+     *
+     * @return getLoot
+     */
+    public Loot playerAttacks(Player player) {
         if (StdRandom.bernoulli(mChanceToDie)) {
             player.kill();
-            return;
+            return null;
         }
+
+        if (mCurrentDungeonLvl == -1)
+            return null;
+
+        // do stuff if broken
+        //if (player.isGearBroke()) {
+        //}
+
+
+        Dungeon currentDungeon = mDungeons.get(mCurrentDungeonLvl);
+        int monstersKilled = currentDungeon.playerAttacked(player);
 
         if (!currentDungeon.isDone()) {
             player.giveGold(monstersKilled * mBaseGoldPerMonster * mGoldCoefPerLvl[mCurrentDungeonLvl]);
             player.giveXP(monstersKilled * mBaseMonsterXP,
                     mXpToLvl);
 
-            return;
+            return null;
         }
-
-        Loot loot = generateLoot(currentDungeon);
-        player.giveShards(loot.getShards());
-        player.giveGold(loot.getGold());
-        for (Item item : loot.getItems()) {
-            player.giveItem(item);
+        else {
+            player.giveXP(mXpForDungeonLvl[mCurrentDungeonLvl], mXpToLvl);
+            return generateLoot(player, currentDungeon);
         }
-
-        player.giveXP(mXpForDungeonLvl[mCurrentDungeonLvl], mXpToLvl);
-        mCurrentDungeonLvl++;
-
     }
 
-    public Loot generateLoot(Dungeon dungeon) {
-        ArrayList<Item> items = ItemFactory.BuildNewItems(mBaseNumberOfItemPerDungeon);
+    public Loot generateLoot(Player player, Dungeon dungeon) {
+        if (mCurrentDungeonLvl == -1)
+            return null;
+        ArrayList<Item> items = ItemFactory.BuildNewItems(player.getLevel(), mBaseNumberOfItemPerDungeon);
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
                 dungeon.getShards(), items);
     }
 
     public int getDungeonLevelForDisplay() {
         return mCurrentDungeonLvl + 1;
+    }
+
+    public boolean isDungeonInProgress() {
+        if (mCurrentDungeonLvl == -1)
+            return false;
+        return mDungeons.get(mCurrentDungeonLvl).getProgress() < 100;
+    }
+
+    public boolean isDungeonDone() {
+        if (mCurrentDungeonLvl == -1)
+            return false;
+        return mDungeons.get(mCurrentDungeonLvl).getProgress() >= 100;
+    }
+
+    public void nextDungeon() {
+        mCurrentDungeonLvl++;
     }
 }

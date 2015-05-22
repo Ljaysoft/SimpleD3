@@ -1,6 +1,7 @@
 package com.game.simpled3;
 
 import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,19 +12,24 @@ import com.game.simpled3.UI.DeathPage;
 import com.game.simpled3.UI.EquipmentPage;
 import com.game.simpled3.UI.ItemViewPage;
 import com.game.simpled3.UI.PlayerStatPage;
+import com.game.simpled3.UI.RewardPage;
 import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.ItemFactory;
+import com.game.simpled3.engine.gear.Loot;
 
 public class MainActivity extends AppCompatActivity
         implements PlayerStatPage.OnPlayerSheetInteractionListener,
         EquipmentPage.OnEquipmentPageInteractionListener,
-        DeathPage.OnDeathPageInteractionListener {
+        DeathPage.OnDeathPageInteractionListener,
+        RewardPage.OnRewardPageInteractionListener {
 
     DialogFragment gearPage = null;
     ItemViewPage itemView = null;
     DeathPage deathPage = null;
+    RewardPage rewardPage = null;
+    PlayerStatPage playerStatPage = null;
     final Game game = Game.getInstance();
     final Player player = Player.getInstance();
     final ItemFactory itemFactory = ItemFactory.getInstance();
@@ -45,20 +51,36 @@ public class MainActivity extends AppCompatActivity
         gearPage = new EquipmentPage();
         itemView = new ItemViewPage(getApplicationContext());
         deathPage = new DeathPage();
+        rewardPage = new RewardPage();
+        playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
+        playerStatPage.updateUI(game,player);
     }
 
     @Override
-    public void onPlayerSheetInteraction(View view) {
+    public void onPlayerSheetButtonClicked(View view) {
         switch (view.getId()) {
             case R.id.openGearPageButton:
                 showEquipmentPage();
                 break;
+            case R.id.startDungeonButton:
+                game.nextDungeon();
+                playerStatPage.updateUI(game, player);
+                break;
             case R.id.killButton:
                 if(player.isDead()) {
-                    deathPage.setCancelable(false);
                     deathPage.show(getFragmentManager(), "death_page");
                 }
+                playerStatPage.updateUI(game,player);
+                break;
         }
+    }
+
+    @Override
+    public void onGetReward(Loot loot) {
+        if (loot == null)
+            return;
+        rewardPage.setLoot(loot);
+        rewardPage.show(getFragmentManager(), "reward_page");
     }
 
     private void showEquipmentPage() {
@@ -78,6 +100,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.okDeathButton:
                 player.revive();
                 deathPage.dismiss();
+                playerStatPage.updateUI(game,player);
         }
+    }
+
+    @Override
+    public void onRewardPageClose() {
+        rewardPage.dismiss();
+        playerStatPage.updateUI(game,player);
     }
 }

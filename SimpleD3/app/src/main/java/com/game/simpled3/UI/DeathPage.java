@@ -18,9 +18,10 @@ import com.game.simpled3.utils.FontHelper;
 public class DeathPage extends DialogFragment {
 
     private OnDeathPageInteractionListener mListener;
+
     private Button mOkButton;
     private DeathCountDownTimer mCountDownTimer;
-    private long DEATH_TIMER = 10000;
+    private long DEATH_TIMER = 5000;
     private long UPDATE_INTERVAL = 100;
     private boolean isRunning = false;
 
@@ -31,13 +32,14 @@ public class DeathPage extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_FRAME, 0);
-        mCountDownTimer = new DeathCountDownTimer(DEATH_TIMER,UPDATE_INTERVAL);
+        mCountDownTimer = new DeathCountDownTimer(DEATH_TIMER, UPDATE_INTERVAL);
+        setCancelable(false);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_death_page, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_death_page, container, false);
 
         mOkButton = (Button) rootView.findViewById(R.id.okDeathButton);
         mOkButton.setOnClickListener(
@@ -48,11 +50,10 @@ public class DeathPage extends DialogFragment {
                     }
                 }
         );
-        FontHelper.applyFont(rootView);
+        FontHelper.applyFont(rootView, false, true);
         startDeathTimer();
         return rootView;
     }
-
 
 
     @Override
@@ -67,9 +68,8 @@ public class DeathPage extends DialogFragment {
     }
 
     private class DeathCountDownTimer extends CountDownTimer {
-        public DeathCountDownTimer(long startTime, long interval)
-        {
-            super(startTime,interval);
+        public DeathCountDownTimer(long startTime, long interval) {
+            super(startTime, interval);
         }
 
         @Override
@@ -81,7 +81,7 @@ public class DeathPage extends DialogFragment {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            mOkButton.setText("Waiting to revive " + String.valueOf((int)(millisUntilFinished /1000)));
+            mOkButton.setText("Waiting to revive " + String.valueOf((int) (millisUntilFinished / 1000)));
         }
     }
 

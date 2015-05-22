@@ -194,7 +194,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:enabled="false"
         android:text="Start Dungeon"
         android:singleLine="false"
         android:textSize="12dp" />

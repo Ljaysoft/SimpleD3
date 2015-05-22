@@ -15,11 +15,10 @@
         android:layout_width="236dp"
         android:layout_height="40dp"
         android:text="ItemName"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textAlignment="center"
+        android:gravity="center"
         android:padding="3dp"
         android:textStyle="bold" />
 
@@ -28,53 +27,89 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="color"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/itemNameTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingLeft="1dp" />
+        android:paddingLeft="1dp"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/slotTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="slot"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/itemNameTextView"
         android:layout_toRightOf="@+id/colorTextView"
         android:layout_toEndOf="@+id/colorTextView"
-        android:paddingLeft="3dp" />
+        android:paddingLeft="3dp"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/itemILvlTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/itemDefTextView"
-        android:layout_below="@+id/itemDefTextView"
         android:text="ilvl"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:paddingLeft="1dp"
-        tools:ignore="RtlCompat" />
+        tools:ignore="RtlCompat"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/itemNameTextView"
+        android:layout_alignEnd="@+id/itemNameTextView"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/itemDpsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DPS"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/colorTextView"
         android:layout_alignLeft="@+id/colorTextView"
         android:layout_alignStart="@+id/colorTextView"
-        android:paddingLeft="1dp" />
+        android:textColor="@android:color/white"
+        android:paddingLeft="1dp"
+        android:textSize="40dp" />
 
     <TextView
         android:id="@+id/itemDefTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/itemDpsTextView"
-        android:layout_below="@+id/itemDpsTextView"
         android:text="DEF"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:paddingLeft="1dp" />
+        android:paddingLeft="1dp"
+        android:textSize="20dp"
+        android:layout_below="@+id/dmgPerSecTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You found this item thru a lot of pain and spilled a lot of blood to obtain it. You will replace it sooner or later."
+        android:id="@+id/flavorText"
+        android:layout_above="@+id/itemILvlTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="12dp"
+        android:textStyle="italic"
+        android:textColor="@color/color_item_flavor_text"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Damage Per Second"
+        android:id="@+id/dmgPerSecTextView"
+        android:layout_below="@+id/itemDpsTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="14dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Defense"
+        android:id="@+id/def"
+        android:textSize="14dp"
+        android:layout_below="@+id/itemDefTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

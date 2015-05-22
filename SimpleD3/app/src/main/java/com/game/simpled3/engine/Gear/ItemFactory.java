@@ -98,9 +98,9 @@ public class ItemFactory {
         sIsInit = true;
     }
 
-    public static Item BuildNewItem() {
+    public static Item BuildNewItem(int lvl) {
+        sInstance.mLvl = lvl;
         Item rItem = createItem();
-
         int color = buildItemColor();
         String name = buildItemName(rItem);
         double dps = buildItemDPS(rItem);
@@ -112,11 +112,11 @@ public class ItemFactory {
         return rItem;
     }
 
-    public static ArrayList<Item> BuildNewItems(int nbOfItems) {
+    public static ArrayList<Item> BuildNewItems(int lvl, int nbOfItems) {
         ArrayList<Item> items = new ArrayList<>(nbOfItems);
         Item item;
         for (int i = 0; i < nbOfItems; i++) {
-            item = BuildNewItem();
+            item = BuildNewItem(lvl);
             items.add(item);
         }
         return items;
@@ -124,7 +124,7 @@ public class ItemFactory {
 
     private static Item createItem() {
         double p = StdRandom.uniform();
-        int slot = (int) (p * ((double) sInstance.mNbItemTypes)) + 1;
+        int slot = (int) (p * ((double) sInstance.mNbItemTypes));
         switch (slot) {
             case ITEM_SLOT_HELM:
                 return new Helmet(sInstance.mLvl);
@@ -186,10 +186,16 @@ public class ItemFactory {
     }
 
     private static double buildItemDPS(Item item) {
-        return 0.0;
+
+        return (double)sInstance.mItemPowerPerLvl[item.getILvl()]
+                * sInstance.mPowerCoefForColor[item.getColor()]
+                * sInstance.mItemPowerForItemType[item.getSlot()];
+
     }
 
     private static double buildItemDEF(Item item) {
-        return 0.0;
+        return sInstance.mItemPowerPerLvl[item.getILvl()]
+                * sInstance.mPowerCoefForColor[item.getColor()]
+                * sInstance.mItemPowerForItemType[item.getSlot()];
     }
 }

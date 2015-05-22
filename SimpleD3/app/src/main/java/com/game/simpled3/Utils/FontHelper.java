@@ -12,20 +12,28 @@ public class FontHelper {
 
     private static Font font;
 
-    public static void applyFont(View parentView) {
+    public static void applyFont(View parentView, boolean isFlavor, boolean applyToChildren) {
 
         font = Font.getInstance(parentView.getContext());
 
-        apply((ViewGroup)parentView);
+        if (applyToChildren)
+            applyToAllChildren((ViewGroup) parentView, isFlavor);
+        else if (parentView instanceof TextView) {
+            if (isFlavor)
+                ((TextView) parentView).setTypeface(font.PALATINO_LINOTYPE_I);
+            else
+                ((TextView) parentView).setTypeface(font.DIABLO_H);
 
+        }
     }
 
-    private static void apply(ViewGroup parentView) {
+
+    private static void applyToAllChildren(ViewGroup parentView, boolean isFlavor) {
         for (int i = 0; i < parentView.getChildCount(); i++) {
 
             View view = parentView.getChildAt(i);
 
-//You can add any view element here on which you want to apply font
+//You can add any view element here on which you want to applyToAllChildren font
 
             if (view instanceof EditText) {
 
@@ -33,14 +41,14 @@ public class FontHelper {
 
             }
             if (view instanceof TextView) {
+                if (isFlavor)
+                    ((TextView) view).setTypeface(font.PALATINO_LINOTYPE_I);
+                else
+                    ((TextView) view).setTypeface(font.DIABLO_H);
 
-                ((TextView) view).setTypeface(font.DIABLO_H);
-
-            }
-
-            else if (view instanceof ViewGroup
+            } else if (view instanceof ViewGroup
                     && ((ViewGroup) view).getChildCount() > 0) {
-                apply((ViewGroup) view);
+                applyToAllChildren((ViewGroup) view, isFlavor);
             }
 
         }

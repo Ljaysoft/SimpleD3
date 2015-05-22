@@ -15,6 +15,7 @@ import com.game.simpled3.R;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.utils.AutoResizeTextView;
 import com.game.simpled3.utils.FontHelper;
+import com.game.simpled3.utils.StringManipulation;
 
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GRAY;
@@ -25,6 +26,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BELT;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BOOTS;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BRACER;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_CHEST;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_DUMMY;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_GLOVE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_HELM;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_LEFT_WEAPON;
@@ -48,6 +50,7 @@ public class ItemViewPage extends PopupWindow {
     private TextView mColor;
     private TextView mDPS;
     private TextView mDEF;
+    private TextView mFlavor;
     private Bitmap mTooltipBorders;
     private int tooltipTitleHeight;
 
@@ -62,6 +65,7 @@ public class ItemViewPage extends PopupWindow {
         setHeight(res.getDimensionPixelSize(R.dimen.item_view_height));
         tooltipTitleHeight = res.getDimensionPixelSize(R.dimen.item_view_title_height);
         setFocusable(true);
+        setAttachedInDecor(false);
 
         mCurrentItem = Item.createItem(1);
         mItemName = (AutoResizeTextView) popupView.findViewById(R.id.itemNameTextView);
@@ -70,9 +74,11 @@ public class ItemViewPage extends PopupWindow {
         mColor = (TextView) popupView.findViewById(R.id.colorTextView);
         mDPS = (TextView) popupView.findViewById(R.id.itemDpsTextView);
         mDEF = (TextView) popupView.findViewById(R.id.itemDefTextView);
-
+        mFlavor = (TextView) popupView.findViewById(R.id.flavorText);
         mTooltipBorders = BitmapFactory.decodeResource(res, R.drawable.tooltip_titles);
-        FontHelper.applyFont(popupView);
+        FontHelper.applyFont(popupView, false, true);
+        FontHelper.applyFont(mFlavor, true, false);
+
     }
 
     public void setItemToShow(Item item) {
@@ -87,6 +93,9 @@ public class ItemViewPage extends PopupWindow {
     private void updateItemValues() {
         mItemName.setText(mCurrentItem.getName());
         switch (mCurrentItem.getSlot()) {
+            case ITEM_SLOT_DUMMY:
+                mSlot.setText("Scraps");
+                break;
             case ITEM_SLOT_BELT:
                 mSlot.setText("Belt");
                 break;
@@ -123,7 +132,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setText("Weapon");
                 break;
         }
-        miLvl.setText("Lvl " + String.valueOf(mCurrentItem.getILvl() + 1));
+        miLvl.setText("Item Level: " + String.valueOf(mCurrentItem.getILvl() + 1));
         Bitmap title;
         switch (mCurrentItem.getColor()) {
             case ITEM_COLOR_GRAY:
@@ -168,8 +177,8 @@ public class ItemViewPage extends PopupWindow {
                 break;
 
         }
-        mDPS.setText(String.valueOf(mCurrentItem.getDPS()) + " DPS");
-        mDEF.setText(String.valueOf(mCurrentItem.getDEF()) + " DEF");
+        mDPS.setText(StringManipulation.formatBigNumbers(mCurrentItem.getDPS()));
+        mDEF.setText(StringManipulation.formatBigNumbers(mCurrentItem.getDEF()));
     }
 
 }

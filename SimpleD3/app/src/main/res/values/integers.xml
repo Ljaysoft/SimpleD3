@@ -5,7 +5,7 @@
     <integer name="number_of_item_colors">5</integer>
     <integer name="number_of_item_slots">13</integer>
     <integer name="base_monster_xp">10000</integer>
-    <integer name="base_monster_HP">10</integer>
+    <integer name="base_monster_HP">1</integer>
     <integer name="base_monster_DMG">1</integer>
     <integer name="base_number_monsters_per_dungeon">100</integer>
     <integer name="base_shards_per_level">1</integer>
