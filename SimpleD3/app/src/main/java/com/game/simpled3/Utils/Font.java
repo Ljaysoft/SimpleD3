@@ -6,7 +6,7 @@ import android.graphics.Typeface;
 /**
  * Created by JFCaron on 2015-05-20.
  */
-public class Font {
+public final class Font {
     private static Font font;
     public Typeface DIABLO_H;
     public Typeface PALATINO_LINOTYPE_I;

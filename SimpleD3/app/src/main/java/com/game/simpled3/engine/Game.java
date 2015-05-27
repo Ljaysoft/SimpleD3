@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by JFCaron on 2015-04-27.
  */
-public class Game {
+public final class Game {
     private static final Game sInstance = new Game();
     private boolean sIsInit = false;
 
@@ -145,7 +145,16 @@ public class Game {
     public Loot generateLoot(Player player, Dungeon dungeon) {
         if (mCurrentDungeonLvl == -1)
             return null;
-        ArrayList<Item> items = ItemFactory.BuildNewItems(player.getLevel(), mBaseNumberOfItemPerDungeon);
+        ArrayList<Item> items = ItemFactory.buildNewItems(player.getLevel(), mBaseNumberOfItemPerDungeon);
+        //ArrayList<Item> items = new ArrayList<>();
+        ItemFactory.buildItemFromName("leorics-crown");
+        /*while (ItemFactory.getNewItem() == null)
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
+        //items.add(ItemFactory.getNewItem());
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
                 dungeon.getShards(), items);
     }

@@ -8,7 +8,7 @@ import android.widget.TextView;
 /**
  * Created by JFCaron on 2015-05-19.
  */
-public class FontHelper {
+public final class FontHelper {
 
     private static Font font;
 

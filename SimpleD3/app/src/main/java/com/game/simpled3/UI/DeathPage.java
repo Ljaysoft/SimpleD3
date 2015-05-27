@@ -12,6 +12,9 @@ import android.widget.Button;
 import com.game.simpled3.R;
 import com.game.simpled3.utils.FontHelper;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by JFCaron on 2015-05-15.
  */
@@ -19,7 +22,7 @@ public class DeathPage extends DialogFragment {
 
     private OnDeathPageInteractionListener mListener;
 
-    private Button mOkButton;
+    @InjectView(R.id.okDeathButton) Button mOkButton;
     private DeathCountDownTimer mCountDownTimer;
     private long DEATH_TIMER = 5000;
     private long UPDATE_INTERVAL = 100;
@@ -40,8 +43,7 @@ public class DeathPage extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_death_page, container, false);
-
-        mOkButton = (Button) rootView.findViewById(R.id.okDeathButton);
+        ButterKnife.inject(this, rootView);
         mOkButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

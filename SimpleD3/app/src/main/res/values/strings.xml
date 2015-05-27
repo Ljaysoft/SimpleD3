@@ -29,4 +29,5 @@
         <item></item>
     </string-array>
     <string name="equipment_page_title">Equipment Page</string>
+    <string name="item_view_flavor">You found this item through a lot of pain and spilled a lot of blood to obtain it. You will replace it sooner or later.</string>
 </resources>

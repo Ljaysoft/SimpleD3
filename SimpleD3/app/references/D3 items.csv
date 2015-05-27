@@ -1,0 +1,329 @@
+Type;Item;Legendary;Set;Special A;Max A;Special B;Max B;Special C;Max C;Special D;Max D
+1 Hand;Axe;Genzaniku;-;Damage Vs. Humans;6;-;-;-;-;-;-
+1 Hand;Axe;The Wedge;-;Cold Resistance;20;-;-;-;-;-;-
+1 Hand;Axe;Flesh Tearer;-;Bleed Chance %;95;Min Bleed Damage;1700;Max Bleed Damage;3200;Critical Hit Chance %;1
+1 Hand;Axe;The Butcher's Sickle;-;Chance to Drag;25;-;-;-;-;-;-
+1 Hand;Axe;The Burning Axe of Sankis;-;Increased Fire Skill Dmg.;25;Fire Resistance;50;-;-;-;-
+1 Hand;Axe;Sky Splitter;-;Life per Second;599;Chance to Smite;20;-;-;-;-
+1 Hand;Axe;-;Hallowed Storm;-;-;-;-;-;-;-;-
+1 Hand;Dagger;The Barber;-;-;-;-;-;-;-;-;-
+1 Hand;Dagger;Pig Sticker;-;Damage Vs. Humans;8;Damage Vs. Beasts;30;-;-;-;-
+1 Hand;Dagger;Kill;-;Critical Hit Chance;1;-;-;-;-;-;-
+1 Hand;Dagger;Blood-Magic Blade;-;Blood oozes from you;-;-;-;-;-;-;-
+1 Hand;Dagger;Wizardspike;-;Arcane Power on Crit;10;Chance to Hurl Frozen Orb;35;Resistance All;80;-;-
+1 Hand;Mace;Odyn Son;-;Chain Lightning Chance;40;-;-;-;-;-;-
+1 Hand;Mace;Nutcracker;-;Critical Hit Chance;1;-;-;-;-;-;-
+1 Hand;Mace;Telranden's Hand;-;-;-;-;-;-;-;-;-
+1 Hand;Mace;Nailbiter;-;Return Damage;811;-;-;-;-;-;-
+1 Hand;Mace;Earthshatter;-;Chance to Shudder;35;-;-;-;-;-;-
+1 Hand;Mace;Echoing Fury;-;Chance to Fear;20;-;-;-;-;-;-
+1 Hand;Mace;Sun Keeper;-;Magic Find;45;Damage Vs. Elites;10;-;-;-;-
+1 Hand;Spear;Scrimshaw;-;Increased Movement Speed;9;-;-;-;-;-;-
+1 Hand;Spear;Arreat's Law;-;Critical Hit Chance;1;-;-;-;-;-;-
+1 Hand;Spear;The Three Hundredth Spear;-;Movement Speed;12;Reduced Damage from Melee;4;Increased Ancient Spear Damage;50;Increased Weapon Throw Damage;50
+1 Hand;Spear;Empyrean Messenger;-;Resist All;80;-;-;-;-;-;-
+1 Hand;Sword;Monster Hunter;-;Damage Vs. Beasts;6;-;-;-;-;-;-
+1 Hand;Sword;Wildwood;-;-;-;-;-;-;-;-;-
+1 Hand;Sword;The Ancient Bonesaber of Zumakalis;-;-;-;-;-;-;-;-;-
+1 Hand;Sword;Doombringer;-;Life Percentage;10;-;-;-;-;-;-
+1 Hand;Sword;Skycutter;-;Damage Vs. Demons;11;Chance for Angelic Assistance;1;-;-;-;-
+1 Hand;Sword;Griswold's Masterpiece;-;-;-;-;-;-;-;-;-
+1 Hand;Sword;Sever;-;Damage Vs. Demons;25;Critical Hit Chance %;1;Enemies rest in pieces;1;-;-
+1 Hand;Sword;Azurewrath;-;Chance to Freeze;15;Forcefully Repel Undead;1;-;-;-;-
+1 Hand;Sword;Devil Tongue;-;-;-;-;-;-;-;-;-
+1 Hand;Sword;-;Born's Searing Spite;Critical Hit Chance;1;-;-;-;-;-;-
+1 Hand;Mighty Weapon;Fjord Cutter;-;Chance of Chilling Aura;30;-;-;-;-;-;-
+1 Hand;Mighty Weapon;Ambo's Pride;-;-;-;-;-;-;-;-;-
+1 Hand;Mighty Weapon;Harvest Moon;-;-;-;-;-;-;-;-;-
+1 Hand;Mighty Weapon;Blade of the Warlord;-;Life per Fury Spent;20;-;-;-;-;-;-
+1 Hand;Mighty Weapon;-;Hallowed Reckoning;-;-;-;-;-;-;-;-
+1 Hand;Mighty Weapon;-;Bul-Kathos's Solemn Vow;-;-;-;-;-;-;-;-
+1 Hand;Mighty Weapon;-;Bul-Kathos's Warrior Blood;-;-;-;-;-;-;-;-
+1 Hand;Wand;Starfire;-;-;-;-;-;-;-;-;-
+1 Hand;Wand;Blackhand Key;-;Fire Resistance;15;-;-;-;-;-;-
+1 Hand;Wand;Gesture of Orpheus;-;-;-;-;-;-;-;-;-
+1 Hand;Wand;Fragment of Destiny;-;Increased Cold Skill Dmg. %;25;Increased Fire Skill Dmg. %;25;Increased Lightning Skill Dmg. %;25;Increased Spectral Blade Damage;30
+1 Hand;Wand;Ruinstoke;-;-;-;-;-;-;-;-;-
+1 Hand;Wand;Slorak's Madness;-;Finds Death Humorous;-;-;-;-;-;-;-
+1 Hand;Wand;-;Hallowed Scepter;-;-;-;-;-;-;-;-
+1 Hand;Wand;-;Chantodo's Will;-;-;-;-;-;-;-;-
+1 Hand;Hand Crossbow;Deadeye;-;Damage Vs. Undead;9;-;-;-;-;-;-
+1 Hand;Hand Crossbow;Izzuccob;-;-;-;-;-;-;-;-;-
+1 Hand;Hand Crossbow;Balefire Caster;-;-;-;-;-;-;-;-;-
+1 Hand;Hand Crossbow;Dawn;-;-;-;-;-;-;-;-;-
+1 Hand;Hand Crossbow;Calamity;-;Chance to Mark for Death;50;-;-;-;-;-;-
+1 Hand;Hand Crossbow;-;Hallowed Judgment;-;-;-;-;-;-;-;-
+1 Hand;Hand Crossbow;-;Danetta's Revenge;-;-;-;-;-;-;-;-
+1 Hand;Hand Crossbow;-;Danetta's Spite;-;-;-;-;-;-;-;-
+1 Hand;Hand Crossbow;-;Natalya's Slayer;Critical Hit Chance;1;-;-;-;-;-;-
+1 Hand;Ceremonial Knife;Moon Slayer;-;-;-;-;-;-;-;-;-
+1 Hand;Ceremonial Knife;Umbral Oath;-;-;-;-;-;-;-;-;-
+1 Hand;Ceremonial Knife;Ziggurat Tooth;-;Life Percentage;7;Gold Find;20;-;-;-;-
+1 Hand;Ceremonial Knife;Anessazi Edge;-;-;-;-;-;-;-;-;-
+1 Hand;Ceremonial Knife;The Gidbinn;-;Magic Find;35;-;-;-;-;-;-
+1 Hand;Ceremonial Knife;Last Breath;-;Life Per Second;599;-;-;-;-;-;-
+1 Hand;Ceremonial Knife;-;Hallowed Salvation;-;-;-;-;-;-;-;-
+1 Hand;Ceremonial Knife;-;Manajuma's Carving Knife;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;Rabid Strike;-;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;Fleshrake;-;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;Scarbringer;-;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;Sledge fist;-;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;Demon Hand;-;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;Logan's Claw;-;Life Per Second;141;-;-;-;-;-;-
+1 Hand;Fist Weapon;Won Khim Lau;-;Increased Lighting Skill Dmg %;25;-;-;-;-;-;-
+1 Hand;Fist Weapon;Crystal Fist;-;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;The Fist of Az'Turrasq;-;Chance to Stun;5.6;-;-;-;-;-;-
+1 Hand;Fist Weapon;-;Hallowed Hand;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;-;Shenlong's Fist of Legend;-;-;-;-;-;-;-;-
+1 Hand;Fist Weapon;-;Shenlong's Relentless Assault;-;-;-;-;-;-;-;-
+2 Hand;Axe;The Executioner;-;Magic Find;15;Move Speed;9;-;-;-;-
+2 Hand;Axe;Butcher's Carver;-;-;-;-;-;-;-;-;-
+2 Hand;Axe;Messerschmidt's Reaver;-;-;-;-;-;-;-;-;-
+2 Hand;Axe;Fire Brand;-;Chance to cast Fireball;50;Fire Resistance;45;-;-;-;-
+2 Hand;Axe;Skorn;-;Bleed Chance %;100;Min Bleed Damage;7000;Max Bleed Damage;13000;-;-
+2 Hand;Mace;Boneshatter;-;Critical Hit Chance;1;Enemies Rest in Pieces;1;-;-;-;-
+2 Hand;Mace;Crushbane;-;-;-;-;-;-;-;-;-
+2 Hand;Mace;Wrath of the Bone King;-;Critical Hit Chance;1;-;-;-;-;-;-
+2 Hand;Mace;Skywarden;-;-;-;-;-;-;-;-;-
+2 Hand;Mace;Cataclysm;-;Chance to Sunder;50;-;-;-;-;-;-
+2 Hand;Mace;Sledge of Athskeleng;-;Movement Speed;12;-;-;-;-;-;-
+2 Hand;Mace;Schaefers's Hammer;-;Incresed Lightning Skill Dmg %;25;Adds % to Lightning Dmg;8;Lightning Resistance;60;Chance to be Protected;50
+2 Hand;Polearm;Pledge of Caldeum;-;-;-;-;-;-;-;-;-
+2 Hand;Polearm;Standoff;-;-;-;-;-;-;-;-;-
+2 Hand;Polearm;Heart Slaughter;-;Life Percentage;10;-;-;-;-;-;-
+2 Hand;Polearm;Vigilance;-;Chance to Cast Sanctuary;1;-;-;-;-;-;-
+2 Hand;Staff;Autumn's Call;-;-;-;-;-;-;-;-;-
+2 Hand;Staff;The Magi;-;Reduce Impairing Effects;6;-;-;-;-;-;-
+2 Hand;Staff;The Broken Staff;-;Magic Find;20;-;-;-;-;-;-
+2 Hand;Staff;Maloth's Focus;-;Chance to Flee;1;-;-;-;-;-;-
+2 Hand;Staff;Wormwood;-;-;-;-;-;-;-;-;-
+2 Hand;Staff;The Tormentor;-;Chance to Charm;1;-;-;-;-;-;-
+2 Hand;Staff;The Grand Vizier;-;Gold Find;50;Magic Find;45;-;-;-;-
+2 Hand;Sword;The Zweihander;-;Critical Hit Chance;1;-;-;-;-;-;-
+2 Hand;Sword;Faithful Memory;-;Return Damage;12;-;-;-;-;-;-
+2 Hand;Sword;Scourge;-;Life Regeneration;25;Chance for Demonic Fury;45;-;-;-;-
+2 Hand;Sword;Blackguard;-;Reduce Impairing Effects;8;-;-;-;-;-;-
+2 Hand;Sword;The Sultan of Blinding Sand;-;Gold Find;30;Chance to Blind;15;-;-;-;-
+2 Hand;Sword;Blade of Prophecy;-;Gold Find;35;Magic Find;35;-;-;-;-
+2 Hand;Sword;Warmonger;-;-;-;-;-;-;-;-;-
+2 Hand;Sword;Maximus;-;Increased Fire Skill Dmg.%;25;Damage Vs Demons;15;Chance to summon a Demonic Slave;1;-;-
+2 Hand;Sword;The Grandfather;-;Life Percentage;16;-;-;-;-;-;-
+2 Hand;Mighty Weapon;Unending War;-;-;-;-;-;-;-;-;-
+2 Hand;Mighty Weapon;Bastion's Revered;-;Critical Hit Chance;1;-;-;-;-;-;-
+2 Hand;Mighty Weapon;The Gavel of Judgment;-;-;-;-;-;-;-;-;-
+2 Hand;Mighty Weapon;Fury of the Vanished Peak;-;-;-;-;-;-;-;-;-
+2 Hand;Mighty Weapon;-;Immortal King's Boulder Breaker;-;-;-;-;-;-;-;-
+2 Hand;Daibo;Balance;-;-;-;-;-;-;-;-;-
+2 Hand;Daibo;Lai Yui's Taiji;-;-;-;-;-;-;-;-;-
+2 Hand;Daibo;The Clouds and the Moon;-;Life Percentage;7;-;-;-;-;-;-
+2 Hand;Daibo;The Paddle;-;Slap!;1;-;-;-;-;-;-
+2 Hand;Daibo;Rozpedin's Staff;-;-;-;-;-;-;-;-;-
+2 Hand;Daibo;Flying Dragon;-;Chance to double attack speed;1;-;-;-;-;-;-
+2 Hand;Daibo;-;Inna's Reach;-;-;-;-;-;-;-;-
+2 Hand;Bow;Uskang;-;-;-;-;-;-;-;-;-
+2 Hand;Bow;Longshot;-;-;-;-;-;-;-;-;-
+2 Hand;Bow;The Raven's Wing;-;Ravens Flock;1;-;-;-;-;-;-
+2 Hand;Bow;Etrayu;-;-;-;-;-;-;-;-;-
+2 Hand;Bow;Cluckeye;-;Chance to Cluck;50;-;-;-;-;-;-
+2 Hand;Bow;Venomhusk;-;-;-;-;-;-;-;-;-
+2 Hand;Bow;Windforce;-;Hatred Regeneration;1.33;Chance to Knockback;50;-;-;-;-
+2 Hand;Crossbow;Bakkan Caster;-;Critical Hit Chance;1;-;-;-;-;-;-
+2 Hand;Crossbow;Demon Machine (Legacy);-;All Resistance;20;-;-;-;-;-;-
+2 Hand;Crossbow;Demon Machine;-;Chance for Explosive Bolts;65;Bonus Armor;72;Bonus Class Resource (Varies);1;-;-
+2 Hand;Crossbow;Buriza-Do Kyanon;-;Bonus Armor;126;Chance to Freeze;15;Chance to Pierce;80;-;-
+2 Hand;Crossbow;Starspine;-;-;-;-;-;-;-;-;-
+2 Hand;Crossbow;Pus Spitter;-;Adds % to Poison Dmg;4;Chance to Acid Blob;50;Poison Resistance;40;-;-
+2 Hand;Crossbow;Hellrack;-;Chance to Root;1;-;-;-;-;-;-
+2 Hand;Crossbow;Manticore;-;-;-;-;-;-;-;-;-
+Off Hand;Shield;Wall of Bone;-;Chance for Shield of Bones;30;-;-;-;-;-;-
+Off Hand;Shield;Denial;-;-;-;-;-;-;-;-;-
+Off Hand;Shield;Centurion;-;-;-;-;-;-;-;-;-
+Off Hand;Shield;Lidless Wall;-;Increased Attack Speed;7;Chance to be shielded;0;Resource Bonus Relative Value;2;-;-
+Off Hand;Shield;Ivory Tower;-;-;-;-;-;-;-;-;-
+Off Hand;Shield;Stormshield;-;-;-;-;-;-;-;-;-
+Off Hand;Shield;-;Hallowed Defender;-;-;-;-;-;-;-;-
+Off Hand;Mojo;Gazing Demise;-;-;-;-;-;-;-;-;-
+Off Hand;Mojo;Bitterness;-;-;-;-;-;-;-;-;-
+Off Hand;Mojo;Homunculus (Legacy);-;Resist All;40;-;-;-;-;-;-
+Off Hand;Mojo;Homunculus;-;Resist All;40;Reduced Cool Down of Zombie Dogs;20;Reduced Cool Down of Gargantuan;20;Reduced Dmg. from Elites;5
+Off Hand;Mojo;Thing of the Deep;-;Pickup Radius;20;-;-;-;-;-;-
+Off Hand;Mojo;Uhkapian Serpent;-;-;-;-;-;-;-;-;-
+Off Hand;Mojo;-;Manajuma's Gory Fetch;-;-;-;-;-;-;-;-
+Off Hand;Mojo;-;Zunimassa's String of Skulls;-;-;-;-;-;-;-;-
+Off Hand;Orb;Winter Flurry;-;Adds % Cold Damage;3;-;-;-;-;-;-
+Off Hand;Orb;Singularity;-;-;-;-;-;-;-;-;-
+Off Hand;Orb;Triumvirate;-;Adds % Fire Damage;6;Adds % Lightning Damage;6;Adds % Arcane Damage;6;-;-
+Off Hand;Orb;The Oculus;-;Reduce Teleport Cooldown;4;-;-;-;-;-;-
+Off Hand;Orb;-;Chantodo's Force;Attack Speed;9;-;-;-;-;-;-
+Off Hand;Orb;-;Tal Rasha's Unwavering Glare;-;-;-;-;-;-;-;-
+Off Hand;Quiver;Sin Seekers;-;-;-;-;-;-;-;-;-
+Off Hand;Quiver;Fletcher's Pride;-;-;-;-;-;-;-;-;-
+Off Hand;Quiver;silverstarpiercers;-;-;-;-;-;-;-;-;-
+Off Hand;Quiver;Holy Point Shot;-;Life per Kill;198;-;-;-;-;-;-
+Off Hand;Quiver;Flint Ripper Arrowheads;-;Life per Kill;198;-;-;-;-;-;-
+Off Hand;Quiver;Black Bone Arrows;-;-;-;-;-;-;-;-;-
+Off Hand;Quiver;Dead Man's Legacy;-;-;-;-;-;-;-;-;-
+Armor;Helm;Broken Crown;-;Attack Speed;4;-;-;-;-;-;-
+Armor;Helm;Leoric's Crown;-;-;-;-;-;-;-;-;-
+Armor;Helm;Blind Faith;-;Chance to Blind;2;-;-;-;-;-;-
+Armor;Helm;Giant Skull;-;Chance to Knockback;3.5;-;-;-;-;-;-
+Armor;Helm;Andariel's Visage;-;Attack Speed;9;More Fire Dmg Taken %;25;Chance for Poison Nova;40;-;-
+Armor;Helm;The Helm of Command;-;Chance to Block;8;-;-;-;-;-;-
+Armor;Helm;Mempo of Twilight;-;Attack Speed;9;-;-;-;-;-;-
+Armor;Helm;-;Cain's Memory;-;-;-;-;-;-;-;-
+Armor;Helm;-;Aughild's Peak;-;-;-;-;-;-;-;-
+Armor;Helm;-;Guardian's Foresight;-;-;-;-;-;-;-;-
+Armor;Helm;-;Sage's Orbit;-;-;-;-;-;-;-;-
+Armor;Helm;-;Immortal King's Triumph;Reduced Dmg % from Melee;6;-;-;-;-;-;-
+Armor;Helm;-;Natalya's Sight;-;-;-;-;-;-;-;-
+Armor;Helm;-;Tal Rasha's Guise of Wisdom;-;-;-;-;-;-;-;-
+Armor;Shoulders;Barter Town Pads;-;-;-;-;-;-;-;-;-
+Armor;Shoulders;Death Watch Mantle;-;Life per Kill;569;Chance to Explode with Knives;35;-;-;-;-
+Armor;Shoulders;Seven Sins;-;-;-;-;-;-;-;-;-
+Armor;Shoulders;Vile Ward;-;-;-;-;-;-;-;-;-
+Armor;Shoulders;-;Born's Impunity;-;-;-;-;-;-;-;-
+Armor;Shoulders;-;Aughild's Reign;-;-;-;-;-;-;-;-
+Armor;Shoulders;-;Asheara's Guard;-;-;-;-;-;-;-;-
+Armor;Shoulders;-;Demon's Flight;-;-;-;-;-;-;-;-
+Armor;Chest Armor;Aquila Cuirass;-;-;-;-;-;-;-;-;-
+Armor;Chest Armor;Heart of Iron;-;Life per Hit;13;-;-;-;-;-;-
+Armor;Chest Armor;Chaingmail;-;-;-;-;-;-;-;-;-
+Armor;Chest Armor;Goldskin;-;Gold Find;100;Chance for Gold Drop on Hit;1;-;-;-;-
+Armor;Chest Armor;Cindercoat;-;-;-;-;-;-;-;-;-
+Armor;Chest Armor;Robes of the Rydraelm;-;-;-;-;-;-;-;-;-
+Armor;Chest Armor;Tyrael's Might;-;Damage Vs. Demons;15;Damage Vs. Elites;4;Movement Speed;12;-;-
+Armor;Chest Armor;-;Born's Heart of Steel;-;-;-;-;-;-;-;-
+Armor;Chest Armor;-;Aughild's Dominion;-;-;-;-;-;-;-;-
+Armor;Chest Armor;-;Demon's Heart;-;-;-;-;-;-;-;-
+Armor;Chest Armor;-;Blackthorne's Surcoat;-;-;-;-;-;-;-;-
+Armor;Chest Armor;-;Immortal King's Eternal Reign;-;-;-;-;-;-;-;-
+Armor;Chest Armor;-;Inna's Vast Expanse;-;-;-;-;-;-;-;-
+Armor;Chest Armor;-;Tal Rasha's Relentless Pursuit;Attack Speed;9;-;-;-;-;-;-
+Armor;Chest Armor;-;Zunimassa's Marrow;-;-;-;-;-;-;-;-
+Armor;Bracers;Steady Strikers;-;Attack Speed;3;Life per Hit;2;-;-;-;-
+Armor;Bracers;Gungdo Gear;-;Additional Life %;4;Reduce Impairing Effects;4;-;-;-;-
+Armor;Bracers;Slave Bonds;-;Life per Kill;106;Movement Speed;11;-;-;-;-
+Armor;Bracers;Promise of Glory;-;-;-;-;-;-;-;-;-
+Armor;Bracers;Wondrous Deflectors;-;-;-;-;-;-;-;-;-
+Armor;Bracers;Strongarm Bracers;-;Life Percentage;9;-;-;-;-;-;-
+Armor;Bracers;Lacuni Prowlers;-;Attack Speed;9;Movement Speed;12;-;-;-;-
+Armor;Bracers;-;Aughild's Ultimatum;-;-;-;-;-;-;-;-
+Armor;Bracers;-;Guardian's Deflector;-;-;-;-;-;-;-;-
+Armor;Bracers;-;Demon's Revenge;-;-;-;-;-;-;-;-
+Armor;Gloves;Magefist;-;Adds % to Fire Dmg;3;Increased Fire Skill Dmg.;20;-;-;-;-
+Armor;Gloves;Pendergrasps;-;Reduce Impairing Effects;6;-;-;-;-;-;-
+Armor;Gloves;Stone Gauntlets;-;-;-;-;-;-;-;-;-
+Armor;Gloves;Gladiator Gauntlets;-;Life per Hit;224;Life Percentage;7;Reduce Impairing Effects;12;-;-
+Armor;Gloves;Frostburn Gauntlets;-;Adds % to Cold Dmg;6;Increased Cold Skill Dmg.;30;-;-;-;-
+Armor;Gloves;Tasker and Theo;-;Socket;1;-;-;-;-;-;-
+Armor;Gloves;-;Cain's Scribe;Life per Kill;50;-;-;-;-;-;-
+Armor;Gloves;-;Asheara's Iron Fist;-;-;-;-;-;-;-;-
+Armor;Gloves;-;Sage's Gesture;-;-;-;-;-;-;-;-
+Armor;Gloves;-;Immortal King's Irons;Reduced Damage from Melee;6;-;-;-;-;-;-
+Armor;Belt;Vigilante Belt;-;Life per Hit;1;-;-;-;-;-;-
+Armor;Belt;Quick Draw Belt;-;Attack Speed;4;-;-;-;-;-;-
+Armor;Belt;Goldwrap;-;Attack Speed;5;-;-;-;-;-;-
+Armor;Belt;Saffron Wrap;-;Reduce Impairing Effects;6;-;-;-;-;-;-
+Armor;Belt;String of Ears;-;Life per Hit;94;Reduced Damage from Melee;20;-;-;-;-
+Armor;Belt;Angel Hair Braid;-;-;-;-;-;-;-;-;-
+Armor;Belt;Hellcat Waistguard;-;Damage Vs. Elites;4;-;-;-;-;-;-
+Armor;Belt;The Witching Hour;-;Attack Speed;9;Critical Hit Damage %;50;-;-;-;-
+Armor;Belt;-;Captain Crimson's Satin Sash;-;-;-;-;-;-;-;-
+Armor;Belt;-;Guardian's Sheath;-;-;-;-;-;-;-;-
+Armor;Belt;-;Demon's Lock;-;-;-;-;-;-;-;-
+Armor;Belt;-;Blackthorne's Notched Belt;-;-;-;-;-;-;-;-
+Armor;Belt;-;Inna's Favor;Reduce Impairing Effects;14;Adds % to Holy Dmg;8;Critical Hit Chance %;1;-;-
+Armor;Belt;-;Tal Rasha's Brace;Damage Vs. Elites;4;Critical Hit Chance %;1;-;-;-;-
+Armor;Pants;Pox Faulds;-;Occasionally to Stink;1;-;-;-;-;-;-
+Armor;Pants;Hammer Jammers;-;Movement Speed;11;-;-;-;-;-;-
+Armor;Pants;Swamp Land Waders;-;Reduce Impairing Effects;8;Reduced Dmg % from Melee;4;-;-;-;-
+Armor;Pants;Gehennas;-;-;-;-;-;-;-;-;-
+Armor;Pants;Depth Diggers;-;-;-;-;-;-;-;-;-
+Armor;Pants;-;Cain's Robes;-;-;-;-;-;-;-;-
+Armor;Pants;-;Captain Crimson's Bowsprit;Attack Speed;5;Chance to Block %;4;-;-;-;-
+Armor;Pants;-;Asheara's Gait;-;-;-;-;-;-;-;-
+Armor;Pants;-;Demon's Scale;-;-;-;-;-;-;-;-
+Armor;Pants;-;Blackthorne's Jousting Mail;Life per Hit;479;Life Percentage;12;-;-;-;-
+Armor;Pants;-;Inna's Temperance;Attack Speed;9;Movement Speed;12;Critical Hit Chance %;1;-;-
+Armor;Boots;The Crudest Boots;-;-;-;-;-;-;-;-;-
+Armor;Boots;Lut Socks;-;-;-;-;-;-;-;-;-
+Armor;Boots;Boj Anglers;-;Attack Speed;6;Reduce Impairing Effects;6;-;-;-;-
+Armor;Boots;Lost Boys;-;-;-;-;-;-;-;-;-
+Armor;Boots;Fire Walkers;-;Reduces Damage % from melee;4;Burns the ground;6;-;-;-;-
+Armor;Boots;Ice Climbers;-;Life Percentage;12;Reduced Damage from Cold %;10;Socket;1;-;-
+Armor;Boots;-;Cain's Sandals;-;-;-;-;-;-;-;-
+Armor;Boots;-;Captain Crimson's Whalers;-;-;-;-;-;-;-;-
+Armor;Boots;-;Asheara's Tracks;Attack Speed;7;-;-;-;-;-;-
+Armor;Boots;-;Sage's Journey;-;-;-;-;-;-;-;-
+Armor;Boots;-;Blackthorne's Spurs;Reduce Damage from Elites %;7;-;-;-;-;-;-
+Armor;Boots;-;Immortal King's Stride;Reduce Impairing Effects %;14;-;-;-;-;-;-
+Armor;Boots;-;Natalya's Bloody Footprints;Reduce Damage from Melee %;6;-;-;-;-;-;-
+Armor;Boots;-;Zunimassa's Trail;Adds % to Poison Dmg;8;-;-;-;-;-;-
+Armor;Cloak;Beckon Sail;-;Attack Speed;7;Critical Hit Chance %;1;-;-;-;-
+Armor;Cloak;The Inquisitor;-;Movement Speed;12;-;-;-;-;-;-
+Armor;Cloak;-;Natalya's Embrace;-;-;-;-;-;-;-;-
+Armor;Mighty Belt;Girdle of Giants;-;Attack Speed;4;-;-;-;-;-;-
+Armor;Mighty Belt;The Undisputed Champion;-;Life per Fury Spent;8;-;-;-;-;-;-
+Armor;Mighty Belt;Kotuur's Brace;-;Chance to Immobilize;2;Chance to Block %;5;-;-;-;-
+Armor;Mighty Belt;Pride of Cassius;-;Attack Speed;6;Increased Movement Speed;11;Critical Hit Damage %;19;Critical Hit Chance %;1
+Armor;Mighty Belt;Dread Iron;-;-;-;-;-;-;-;-;-
+Armor;Mighty Belt;Thunder God's Vigor;-;Reduce Damage from Melee %;20;Reduced Damage from Lightning %;7;Chance for Shock Pulse;50;-;-
+Armor;Mighty Belt;Ageless Might;-;-;-;-;-;-;-;-;-
+Armor;Mighty Belt;Lamentation;-;Damage Converted to Life;3;Critical Hit Chance %;1;-;-;-;-
+Armor;Mighty Belt;-;Immortal King's Tribal Binding;Damage Converted to Life;3;-;-;-;-;-;-
+Armor;Spirit Stone;See No Evil;-;-;-;-;-;-;-;-;-
+Armor;Spirit Stone;Gyana Na Kashu;-;-;-;-;-;-;-;-;-
+Armor;Spirit Stone;The Mind's Eye;-;Attack Speed;5;-;-;-;-;-;-
+Armor;Spirit Stone;Erlang Shen;-;-;-;-;-;-;-;-;-
+Armor;Spirit Stone;Bezoar Stone;-;-;-;-;-;-;-;-;-
+Armor;Spirit Stone;The Eye of the Storm;-;Adds % to Lightning Dmg;4;-;-;-;-;-;-
+Armor;Spirit Stone;Tzo Krin's Gaze;-;Attack Speed;7;-;-;-;-;-;-
+Armor;Spirit Stone;Madstone;-;-;-;-;-;-;-;-;-
+Armor;Spirit Stone;-;Inna's Radiance;-;-;-;-;-;-;-;-
+Armor;Voodoo Mask;Split Tusk;-;-;-;-;-;-;-;-;-
+Armor;Voodoo Mask;Quetzalcoatl;-;Attack Speed;4;-;-;-;-;-;-
+Armor;Voodoo Mask;The Grin Reaper;-;Life per Kill;569;Chance to Summon Mimics;1;-;-;-;-
+Armor;Voodoo Mask;Tiklandian Visage;-;-;-;-;-;-;-;-;-
+Armor;Voodoo Mask;Visage of Giyua;-;-;-;-;-;-;-;-;-
+Armor;Voodoo Mask;-;Zunimassa's Vision;-;-;-;-;-;-;-;-
+Armor;Wizard Hat;The Swami;-;-;-;-;-;-;-;-;-
+Armor;Wizard Hat;Dark Mage's Shade;-;-;-;-;-;-;-;-;-
+Armor;Wizard Hat;Storm Crow;-;Adds % to Lightning Dmg;8;Life per Hit;479;Chance of Fiery ball;40;Damage Vs. Elites;4
+Jewelry;Amulet;Moonlight Ward;-;Chance for Arcane Power Balls;50;-;-;-;-;-;-
+Jewelry;Amulet;Squirt's Necklace;-;-;-;-;-;-;-;-;-
+Jewelry;Amulet;Eye of Etlich;-;Adds % to Cold Dmg;3;Reduce Damage from Ranged %;4;-;-;-;-
+Jewelry;Amulet;Rondal's Locket;-;-;-;-;-;-;-;-;-
+Jewelry;Amulet;Talisman of Aranoch;-;Adds % to Fire Dmg;3;Movement Speed;11;-;-;-;-
+Jewelry;Amulet;Holy Beacon;-;Increases Spirit Regeneration;2;Adds % to Holy Dmg;4;-;-;-;-
+Jewelry;Amulet;The Flavor of Time;-;Reduce Impairing Effects %;10;Movement Speed;12;-;-;-;-
+Jewelry;Amulet;Kymbo's Gold;-;Chance to Knockback;4.5;-;-;-;-;-;-
+Jewelry;Amulet;Ouroboros;-;-;-;-;-;-;-;-;-
+Jewelry;Amulet;The Star of Azkaranth;-;Damage Vs. Elites;4;Chance for Attack Modifier (varies);5.1;Bleed Chance %;35;Bleed Minimum Damage;170
+Jewelry;Amulet;Mara's Kaleidoscope;-;Relative Value;2;-;-;-;-;-;-
+Jewelry;Amulet;Xephirian Amulet;-;Resource Bonus Relative Value;2;-;-;-;-;-;-
+Jewelry;Amulet;-;Blackthorne's Duncraig Cross;-;-;-;-;-;-;-;-
+Jewelry;Amulet;-;Tal Rasha's Allegiance;Adds % to (Element Varies) Dmg;6;-;-;-;-;-;-
+Jewelry;Amulet;-;The Traveler's Pledge;-;-;-;-;-;-;-;-
+Jewelry;Ring;Leoric's Signet;-;Increased Experience %;30;-;-;-;-;-;-
+Jewelry;Ring;Manald Heal;-;Resource Bonus Relative Value;2;-;-;-;-;-;-
+Jewelry;Ring;Stolen Ring;-;-;-;-;-;-;-;-;-
+Jewelry;Ring;Nagelring;-;Magic Find;30;-;-;-;-;-;-
+Jewelry;Ring;Band of Untold Secrets;-;Movement Speed;11;-;-;-;-;-;-
+Jewelry;Ring;Broken Promises;-;Chance to Fear;2.5;-;-;-;-;-;-
+Jewelry;Ring;Puzzle Ring;-;Pickup Radius (Yards);6;sometimes calls forth a Treasure Goblin;1;-;-;-;-
+Jewelry;Ring;Justice Lantern;-;Chance to Block %;11;-;-;-;-;-;-
+Jewelry;Ring;Obsidian Ring of the Zodiac;-;All Resist;90;-;-;-;-;-;-
+Jewelry;Ring;Bul-Kathos's Wedding Band;-;Drain Life from Enemies;1;-;-;-;-;-;-
+Jewelry;Ring;Eternal Union;-;-;-;-;-;-;-;-;-
+Jewelry;Ring;Band of Hollow Whispers;-;Occasionally Haunts Enemies;6;-;-;-;-;-;-
+Jewelry;Ring;Hierophant's Seal;-;Damage Vs. Demons;12;-;-;-;-;-;-
+Jewelry;Ring;Skull Grasp;-;Skill Bonus Relative Value;2;-;-;-;-;-;-
+Jewelry;Ring;Oculus Ring;-;-;-;-;-;-;-;-;-
+Jewelry;Ring;Stone of Jordan;-;Adds % to (Element Varies) Dmg;6;Damage Vs. Elites;30;Resource Bonus Relative Value;2;Skill Bonus Relative Value;2
+Jewelry;Ring;Unity;-;Damage Vs. Elites;4;-;-;-;-;-;-
+Jewelry;Ring;Hellfire Ring;-;Increases Experience %;35;Chance for Ball of Hellfire;1;-;-;-;-
+Jewelry;Ring;-;Litany of the Undaunted;Reduce Damage from Elites %;7;-;-;-;-;-;-
+Jewelry;Ring;-;Natalya's Reflection;-;-;-;-;-;-;-;-
+Jewelry;Ring;-;The Compass Rose;Movement Speed;12;-;-;-;-;-;-
+Jewelry;Ring;-;The Wailing Host;Reduce Damage from Elites %;4;-;-;-;-;-;-
+Jewelry;Ring;-;Zunimassa's Pox;-;-;-;-;-;-;-;-

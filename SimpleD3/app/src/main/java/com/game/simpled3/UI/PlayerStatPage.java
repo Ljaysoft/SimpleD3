@@ -17,6 +17,9 @@ import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Player Sheet Fragment
  */
@@ -24,19 +27,19 @@ public class PlayerStatPage extends Fragment {
 
     private OnPlayerSheetInteractionListener mListener;
 
-    private static ProgressBar mProgressBar;
     private static byte mProgressValue = 0;
 
-    // values
-    private static TextView mPlayerLevelValueTextView;
-    private static TextView mXpToLevelValueTextView;
-    private static TextView mPlayerDPSValueTextView;
-    private static TextView mPlayerDEFValueTextView;
-    private static TextView mPlayerShardsValueTextView;
-    private static TextView mPlayerGoldValueTextView;
-    private static TextView mDungeonLevelValueTextView;
-    private static Button mKillButton;
-    private static Button mStartDungeonButton;
+    @InjectView(R.id.lvlValueTextView) TextView mPlayerLevelValueTextView;
+    @InjectView(R.id.xpToLvlValueTextView) TextView mXpToLevelValueTextView;
+    @InjectView(R.id.dpsValueTextView) TextView mPlayerDPSValueTextView;
+    @InjectView(R.id.defValueTextView) TextView mPlayerDEFValueTextView;
+    @InjectView(R.id.shardValueTextView) TextView mPlayerShardsValueTextView;
+    @InjectView(R.id.goldValueTextView) TextView mPlayerGoldValueTextView;
+    @InjectView(R.id.dungeonLvlValueTextView) TextView mDungeonLevelValueTextView;
+    @InjectView(R.id.killButton) Button mKillButton;
+    @InjectView(R.id.startDungeonButton) Button mStartDungeonButton;
+    @InjectView(R.id.progress_bar) ProgressBar mProgressBar;
+
     public PlayerStatPage() {
     }
 
@@ -50,18 +53,9 @@ public class PlayerStatPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_player_stat_page, container, false);
-        mProgressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
 
-        // value textview fonts
-        mPlayerLevelValueTextView = (TextView) rootView.findViewById(R.id.lvlValueTextView);
-        mXpToLevelValueTextView = (TextView) rootView.findViewById(R.id.xpToLvlValueTextView);
-        mPlayerDPSValueTextView = (TextView) rootView.findViewById(R.id.dpsValueTextView);
-        mPlayerDEFValueTextView = (TextView) rootView.findViewById(R.id.defValueTextView);
-        mPlayerShardsValueTextView = (TextView) rootView.findViewById(R.id.shardValueTextView);
-        mPlayerGoldValueTextView = (TextView) rootView.findViewById(R.id.goldValueTextView);
-        mDungeonLevelValueTextView = (TextView) rootView.findViewById(R.id.dungeonLvlValueTextView);
+        ButterKnife.inject(this, rootView);
 
-        mKillButton = (Button) rootView.findViewById(R.id.killButton);
         mKillButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -71,7 +65,6 @@ public class PlayerStatPage extends Fragment {
                     }
                 }
         );
-        mStartDungeonButton = (Button) rootView.findViewById(R.id.startDungeonButton);
         mStartDungeonButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

@@ -2,7 +2,7 @@
 <resources>
     <integer name="number_of_dungeon_levels">100</integer>
     <integer name="number_of_player_levels">100</integer>
-    <integer name="number_of_item_colors">5</integer>
+    <integer name="number_of_item_colors">6</integer>
     <integer name="number_of_item_slots">13</integer>
     <integer name="base_monster_xp">10000</integer>
     <integer name="base_monster_HP">1</integer>

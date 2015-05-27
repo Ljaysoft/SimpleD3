@@ -82,7 +82,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You found this item thru a lot of pain and spilled a lot of blood to obtain it. You will replace it sooner or later."
+        android:text="@string/item_view_flavor"
         android:id="@+id/flavorText"
         android:layout_above="@+id/itemILvlTextView"
         android:layout_alignParentLeft="true"

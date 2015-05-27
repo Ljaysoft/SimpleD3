@@ -19,7 +19,7 @@ import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.ItemFactory;
 import com.game.simpled3.engine.gear.Loot;
 
-public class MainActivity extends AppCompatActivity
+public final class MainActivity extends AppCompatActivity
         implements PlayerStatPage.OnPlayerSheetInteractionListener,
         EquipmentPage.OnEquipmentPageInteractionListener,
         DeathPage.OnDeathPageInteractionListener,

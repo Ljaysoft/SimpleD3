@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by JFCaron on 2015-04-27.
  */
-public class Player {
+public final class Player {
     private static final Player sInstance = new Player();
     private boolean sIsInit = false;
 

@@ -2,7 +2,7 @@ package com.game.simpled3.engine.gear;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-
+import android.util.Log;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.gear.slots.Belt;
 import com.game.simpled3.engine.gear.slots.Boots;
@@ -15,9 +15,18 @@ import com.game.simpled3.engine.gear.slots.Pants;
 import com.game.simpled3.engine.gear.slots.Ring;
 import com.game.simpled3.engine.gear.slots.Shoulders;
 import com.game.simpled3.engine.gear.slots.Weapon;
+import com.game.simpled3.engine.webservice.BlizzardService;
+import com.game.simpled3.engine.webservice.D3ArmoryReader;
+import com.game.simpled3.engine.webservice.models.FullItem;
 import com.game.simpled3.utils.StdRandom;
 
 import java.util.ArrayList;
+
+import butterknife.ButterKnife;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GRAY;
@@ -42,8 +51,12 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
  * Created by JFCaron on 2015-05-05.
  */
 public class ItemFactory {
+    private static final String TAG = ItemFactory.class.getSimpleName();
     private static boolean sIsInit = false;
     private static final ItemFactory sInstance = new ItemFactory();
+
+    private static Item newItem;
+    private static boolean newItemReady = false;
 
     private int mLvl = 0;
 
@@ -90,7 +103,6 @@ public class ItemFactory {
             lvl++;
         }
         resourceTypedArr.recycle();
-
         sInstance.mGearNamesForGearType = res.getStringArray(R.array.string_array_gear_name_for_type);
         sInstance.mGearPrefixForGearColor = res.getStringArray(R.array.string_array_gear_prefix_for_color);
         sInstance.mGearSuffixes = res.getStringArray(R.array.string_array_gear_suffixes);
@@ -98,7 +110,38 @@ public class ItemFactory {
         sIsInit = true;
     }
 
-    public static Item BuildNewItem(int lvl) {
+    public static void buildItemFromName(String name) {
+        newItemReady = false;
+        BlizzardService service = D3ArmoryReader.getRestAdapter().create(BlizzardService.class);
+        service.getItem(name, new Callback<FullItem>() {
+            @Override
+            public void success(FullItem fullItem, Response response) {
+                ItemFactory.setNewItem(fullItem.getItem());
+
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                Log.e(TAG, retrofitError.toString());
+                Log.e(TAG, retrofitError.getUrl());
+
+            }
+        });
+    }
+
+    public static void setNewItem(Item item) {
+        newItem = item;
+        newItemReady = true;
+    }
+
+    public static Item getNewItem() {
+        if (newItemReady)
+            return newItem;
+        else
+            return null;
+    }
+
+    public static Item buildNewItem(int lvl) {
         sInstance.mLvl = lvl;
         Item rItem = createItem();
         int color = buildItemColor();
@@ -112,11 +155,11 @@ public class ItemFactory {
         return rItem;
     }
 
-    public static ArrayList<Item> BuildNewItems(int lvl, int nbOfItems) {
+    public static ArrayList<Item> buildNewItems(int lvl, int nbOfItems) {
         ArrayList<Item> items = new ArrayList<>(nbOfItems);
         Item item;
         for (int i = 0; i < nbOfItems; i++) {
-            item = BuildNewItem(lvl);
+            item = buildNewItem(lvl);
             items.add(item);
         }
         return items;
