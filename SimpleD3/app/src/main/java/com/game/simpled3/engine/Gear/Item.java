@@ -22,7 +22,8 @@ public class Item {
 
     private boolean mIsDiscovered = false;
 
-    private String mImageURL = "";
+    private String mImageID = "";
+    protected boolean mIsIconSquare = false;
 
     protected Item(int lvl) {
         mILvl = lvl;
@@ -72,12 +73,16 @@ public class Item {
         return mIsDiscovered;
     }
 
-    public void setImageURL(String imageURL) {
-        mImageURL = imageURL;
+    public void setImageID(String imageID) {
+        mImageID = imageID;
     }
 
-    public String getImageURL() {
-        return mImageURL;
+    public String getImageID() {
+        return mImageID;
+    }
+
+    public boolean isIconSquare() {
+        return mIsIconSquare;
     }
 
     public void setStats(double dps, double def) {

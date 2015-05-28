@@ -12,5 +12,6 @@ public class Jewel extends Item {
     public Jewel(int lvl) {
         super(lvl);
         mSlot = ITEM_SLOT_NECK;
+        mIsIconSquare = true;
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="string_array_gear_prefix_for_color">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="string_array_gear_suffixes">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="string_array_gear_names">
+        <item>Ocord-of-the-sherma</item>
+        <item>Ogoldskin</item>
+        <item>Wheaven-strand</item>
+        <item>SUnique_Sword_1H_018_x1</item>
+        <item>SUnique_Bracer_010_x1</item>
+        <item>SUnique_Chest_025_x1</item>
+        <item>YAmulet15</item>
+        <item>YShoulders_002</item>
+        <item>Gzunimassas-finger-wraps</item>
+        <item>Bring-1fCyBl</item>
+        <item>BAxe_1H_002</item>
+    </string-array>
+</resources>

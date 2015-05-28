@@ -232,16 +232,14 @@ public class FullItem implements Serializable{
             item.setName(name);
             item.setColor(getColorCode(displayColor));
             item.setFlavorText(flavorText);
+            item.setImageID(icon);
         }
         return item;
     }
 
     private int getColorCode(String colorStr) {
-        int color = -1;
+        int color;
         switch (colorStr) {
-            case "gray":
-                color = ITEM_COLOR_GRAY;
-                break;
             case "blue":
                 color = ITEM_COLOR_BLUE;
                 break;
@@ -256,6 +254,10 @@ public class FullItem implements Serializable{
                 break;
             case "green":
                 color = ITEM_COLOR_GREEN;
+                break;
+            case "gray":
+            default:
+                color = ITEM_COLOR_GRAY;
                 break;
         }
         return color;

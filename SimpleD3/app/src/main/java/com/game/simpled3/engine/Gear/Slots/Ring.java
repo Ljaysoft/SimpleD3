@@ -16,6 +16,6 @@ public class Ring extends Item {
             mSlot = ITEM_SLOT_RING2;
         else
             mSlot = ITEM_SLOT_RING1;
-
+        mIsIconSquare = true;
     }
 }

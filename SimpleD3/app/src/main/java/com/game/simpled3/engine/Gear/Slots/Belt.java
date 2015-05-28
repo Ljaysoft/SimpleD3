@@ -12,5 +12,6 @@ public class Belt extends Item {
     public Belt(int lvl) {
         super(lvl);
         mSlot = ITEM_SLOT_BELT;
+        mIsIconSquare = true;
     }
 }

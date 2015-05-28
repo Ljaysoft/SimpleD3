@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.utils.AutoResizeTextView;
 import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
+import com.squareup.picasso.Picasso;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -57,8 +59,11 @@ public class ItemViewPage extends PopupWindow {
     @InjectView(R.id.itemDpsTextView) TextView mDPS;
     @InjectView(R.id.itemDefTextView) TextView mDEF;
     @InjectView(R.id.flavorText) TextView mFlavor;
+    @InjectView(R.id.itemIconView) ImageView mImageIcon;
     private Bitmap mTooltipBorders;
     private int tooltipTitleHeight;
+
+    private String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
 
     public ItemViewPage(Context ctx) {
         super(ctx);
@@ -192,6 +197,13 @@ public class ItemViewPage extends PopupWindow {
         }
         mDPS.setText(StringManipulation.formatBigNumbers(mCurrentItem.getDPS()));
         mDEF.setText(StringManipulation.formatBigNumbers(mCurrentItem.getDEF()));
+        boolean isSquare = mCurrentItem.isIconSquare();
+        if (isSquare) {
+            Picasso.with(context).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width,R.dimen.item_icon_width).into(mImageIcon);
+        }
+        else {
+            Picasso.with(context).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_big_icon_height).into(mImageIcon);
+        }
     }
 
 }
