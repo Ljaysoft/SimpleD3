@@ -234,6 +234,7 @@ public class ItemFactory {
         double p = StdRandom.exp(lambda);
         int color = (int) (p * ((double) sInstance.mNbItemColors - 1));
         switch (color) {
+            case ITEM_COLOR_GRAY:
             case ITEM_COLOR_WHITE:
                 return ITEM_COLOR_WHITE;
             case ITEM_COLOR_BLUE:
@@ -245,9 +246,8 @@ public class ItemFactory {
             case ITEM_COLOR_GREEN:
                 return ITEM_COLOR_GREEN;
             default:
-                break;
+                return ITEM_COLOR_WHITE;
         }
-        return ITEM_COLOR_GRAY;
     }
 
     // TODO build full name
