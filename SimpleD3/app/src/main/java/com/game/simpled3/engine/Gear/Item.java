@@ -15,12 +15,14 @@ public class Item {
     private String mName = "no_name";
     @ItemColor
     private int mColor = ITEM_COLOR_GRAY;
+
+    private String mFlavorText = "";
     private double mDPS = 0.0;
     private double mDEF = 0.0;
 
     private boolean mIsDiscovered = false;
 
-    //private bitmap mImage = null;
+    private String mImageURL = "";
 
     protected Item(int lvl) {
         mILvl = lvl;
@@ -50,6 +52,14 @@ public class Item {
         return mSlot;
     }
 
+    public String getFlavorText() {
+        return mFlavorText;
+    }
+
+    public void setFlavorText(String flavorText) {
+        this.mFlavorText = flavorText;
+    }
+
     public double getDPS() {
         return mDPS;
     }
@@ -58,15 +68,32 @@ public class Item {
         return mDEF;
     }
 
-    public void setStats(String name, double dps, double def, int color) {
+    public boolean isDiscovered() {
+        return mIsDiscovered;
+    }
+
+    public void setImageURL(String imageURL) {
+        mImageURL = imageURL;
+    }
+
+    public String getImageURL() {
+        return mImageURL;
+    }
+
+    public void setStats(double dps, double def) {
         if (mIsDiscovered)
             return;
-
-        mName = name;
         mDPS = dps;
         mDEF = def;
-        mColor = color;
 
         mIsDiscovered = true;
+    }
+
+    public void setName(String name) {
+        mName = name;
+    }
+
+    public void setColor(int color) {
+        mColor = color;
     }
 }

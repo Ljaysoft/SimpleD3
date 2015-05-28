@@ -134,7 +134,8 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setText("Weapon");
                 break;
         }
-        miLvl.setText("FullItem Level: " + String.valueOf(mCurrentItem.getILvl() + 1));
+        miLvl.setText("Item Level: " + String.valueOf(mCurrentItem.getILvl() + 1));
+        mFlavor.setText(mCurrentItem.getFlavorText());
         Bitmap title;
         switch (mCurrentItem.getColor()) {
             case ITEM_COLOR_GRAY:

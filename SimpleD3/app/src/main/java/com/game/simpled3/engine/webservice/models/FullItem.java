@@ -12,7 +12,6 @@ import com.game.simpled3.engine.gear.slots.Pants;
 import com.game.simpled3.engine.gear.slots.Ring;
 import com.game.simpled3.engine.gear.slots.Shoulders;
 import com.game.simpled3.engine.gear.slots.Weapon;
-import com.game.simpled3.utils.StdRandom;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GRAY;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GREEN;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_ORANGE;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_WHITE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_YELLOW;
 
 /**
@@ -36,6 +36,8 @@ public class FullItem implements Serializable{
     private int requiredLevel;
     private int itemLevel;
     private int bonusAffixes;
+
+    private String flavorText;
     private String typeName;
     private Type type;
     private ArrayList<String> slots;
@@ -94,6 +96,14 @@ public class FullItem implements Serializable{
 
     public void setRequiredLevel(int requiredLevel) {
         this.requiredLevel = requiredLevel;
+    }
+
+    public String getFlavorText() {
+        return flavorText;
+    }
+
+    public void setFlavorText(String flavorText) {
+        this.flavorText = flavorText;
     }
 
     public String getTypeName() {
@@ -219,26 +229,35 @@ public class FullItem implements Serializable{
                     item = new Weapon(itemLevel, false);
                     break;
             }
-        }
-        if (item != null) {
-            item.setStats(name, 0, 0, getColorCode(displayColor));
+            item.setName(name);
+            item.setColor(getColorCode(displayColor));
+            item.setFlavorText(flavorText);
         }
         return item;
     }
 
     private int getColorCode(String colorStr) {
+        int color = -1;
         switch (colorStr) {
             case "gray":
-                return ITEM_COLOR_GRAY;
+                color = ITEM_COLOR_GRAY;
+                break;
             case "blue":
-                return ITEM_COLOR_BLUE;
+                color = ITEM_COLOR_BLUE;
+                break;
+            case "white":
+                color = ITEM_COLOR_WHITE;
+                break;
             case "yellow":
-                return ITEM_COLOR_YELLOW;
+                color = ITEM_COLOR_YELLOW;
+                break;
             case "orange":
-                return ITEM_COLOR_ORANGE;
+                color = ITEM_COLOR_ORANGE;
+                break;
             case "green":
-                return ITEM_COLOR_GREEN;
+                color = ITEM_COLOR_GREEN;
+                break;
         }
-        return -1;
+        return color;
     }
 }

@@ -130,21 +130,18 @@ public final class Game {
 
         if (!currentDungeon.isDone()) {
             player.giveGold(monstersKilled * mBaseGoldPerMonster * mGoldCoefPerLvl[mCurrentDungeonLvl]);
-            player.giveXP(monstersKilled * mBaseMonsterXP,
-                    mXpToLvl);
-
+            player.giveXP(monstersKilled * mBaseMonsterXP, mXpToLvl);
             return null;
         }
         else {
             player.giveXP(mXpForDungeonLvl[mCurrentDungeonLvl], mXpToLvl);
-            return generateLoot(player, currentDungeon);
+            return giveLoot(currentDungeon);
         }
     }
 
-    public Loot generateLoot(Player player, Dungeon dungeon) {
+    public Loot giveLoot(Dungeon dungeon) {
         if (mCurrentDungeonLvl == -1)
             return null;
-        //ArrayList<Item> items = ItemFactory.buildNewItems(player.getLevel(), mBaseNumberOfItemPerDungeon);
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
                 dungeon.getShards(), ItemFactory.getNewItems());
     }
@@ -167,8 +164,6 @@ public final class Game {
 
     public void nextDungeon() {
         mCurrentDungeonLvl++;
-        ItemFactory.buildItemFromName("leorics-crown");
-        ItemFactory.buildItemFromName("chaingmail");
-        ItemFactory.buildItemFromName("irontoe-mudsputters");
+        ItemFactory.buildDungeonItems(mBaseNumberOfItemPerDungeon);
     }
 }
