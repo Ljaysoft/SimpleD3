@@ -33,8 +33,6 @@ public final class FontHelper {
 
             View view = parentView.getChildAt(i);
 
-//You can add any view element here on which you want to applyToAllChildren font
-
             if (view instanceof EditText) {
 
                 ((EditText) view).setTypeface(font.DIABLO_H);

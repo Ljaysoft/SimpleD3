@@ -10,6 +10,11 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_RIGHT_WEAPON;
  */
 public class Weapon extends Item {
 
+    /**
+    *
+    * @param lvl item level
+    * @param isRight true if the weapon is held in the right hand
+    */
     public Weapon(int lvl, boolean isRight) {
         super(lvl);
         if (isRight)

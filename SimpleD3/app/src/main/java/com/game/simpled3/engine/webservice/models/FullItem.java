@@ -1,6 +1,18 @@
 package com.game.simpled3.engine.webservice.models;
 
 import com.game.simpled3.engine.gear.Item;
+import com.game.simpled3.engine.gear.slots.Belt;
+import com.game.simpled3.engine.gear.slots.Boots;
+import com.game.simpled3.engine.gear.slots.Bracers;
+import com.game.simpled3.engine.gear.slots.Chestpiece;
+import com.game.simpled3.engine.gear.slots.Gloves;
+import com.game.simpled3.engine.gear.slots.Helmet;
+import com.game.simpled3.engine.gear.slots.Jewel;
+import com.game.simpled3.engine.gear.slots.Pants;
+import com.game.simpled3.engine.gear.slots.Ring;
+import com.game.simpled3.engine.gear.slots.Shoulders;
+import com.game.simpled3.engine.gear.slots.Weapon;
+import com.game.simpled3.utils.StdRandom;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,6 +38,7 @@ public class FullItem implements Serializable{
     private int bonusAffixes;
     private String typeName;
     private Type type;
+    private ArrayList<String> slots;
 
     private MinMaxDouble dps;
     private MinMaxDouble attackPerSecond;
@@ -99,6 +112,14 @@ public class FullItem implements Serializable{
         this.type = type;
     }
 
+    public ArrayList<String> getSlots() {
+        return slots;
+    }
+
+    public void setSlots(ArrayList<String> slots) {
+        this.slots = slots;
+    }
+
     public MinMaxDouble getDps() {
         return dps;
     }
@@ -156,22 +177,68 @@ public class FullItem implements Serializable{
     }
 
     public Item getItem(){
-        Item item = Item.createItem(itemLevel);
-        item.setStats(name,0,0,getColorCode(displayColor));
+        Item item = null;
+        if (slots.size() > 1 && slots.get(1) == "right-hand")
+            item = new Weapon(itemLevel, true);
+        else {
+            switch (slots.get(0)) {
+                case "waist":
+                    item = new Belt(itemLevel);
+                    break;
+                case "shoulder":
+                    item = new Shoulders(itemLevel);
+                    break;
+                case "head":
+                    item = new Helmet(itemLevel);
+                    break;
+                case "chest":
+                    item = new Chestpiece(itemLevel);
+                    break;
+                case "neck":
+                    item = new Jewel(itemLevel);
+                    break;
+                case "hands":
+                    item = new Gloves(itemLevel);
+                    break;
+                case "wrist":
+                    item = new Bracers(itemLevel);
+                    break;
+                case "legs":
+                    item = new Pants(itemLevel);
+                    break;
+                case "feet":
+                    item = new Boots(itemLevel);
+                    break;
+                case "left-finger":
+                    item = new Ring(itemLevel, false);
+                    break;
+                case "right-finger":
+                    item = new Ring(itemLevel, true);
+                    break;
+                case "left-hand":
+                    item = new Weapon(itemLevel, false);
+                    break;
+            }
+        }
+        if (item != null) {
+            item.setStats(name, 0, 0, getColorCode(displayColor));
+        }
         return item;
     }
 
     private int getColorCode(String colorStr) {
-        if (colorStr == "gray")
-            return ITEM_COLOR_GRAY;
-        else if (colorStr == "blue")
-            return ITEM_COLOR_BLUE;
-        else if (colorStr == "yellow")
-            return ITEM_COLOR_YELLOW;
-        else if (colorStr == "orange")
-            return ITEM_COLOR_ORANGE;
-        else if (colorStr == "green")
-            return ITEM_COLOR_GREEN;
+        switch (colorStr) {
+            case "gray":
+                return ITEM_COLOR_GRAY;
+            case "blue":
+                return ITEM_COLOR_BLUE;
+            case "yellow":
+                return ITEM_COLOR_YELLOW;
+            case "orange":
+                return ITEM_COLOR_ORANGE;
+            case "green":
+                return ITEM_COLOR_GREEN;
+        }
         return -1;
     }
 }

@@ -43,6 +43,7 @@ public class RewardPage extends DialogFragment {
         okButton.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
+                                            onOkButtonClicked();
                                             mListener.onRewardPageClose();
                                         }
                                     }
@@ -68,12 +69,18 @@ public class RewardPage extends DialogFragment {
         mListener = null;
     }
 
+    private void onOkButtonClicked() {
+
+    }
+
     public void setLoot(Loot loot) {
         mLoot = loot;
-        Player player = Player.getInstance();
-        player.giveShards(loot.getShards());
-        player.giveGold(loot.getGold());
-        for (Item item : loot.getItems()) {
+    }
+
+    public void giveLoot(Player player) {
+        player.giveShards(mLoot.getShards());
+        player.giveGold(mLoot.getGold());
+        for (Item item : mLoot.getItems()) {
             player.giveItem(item);
         }
     }

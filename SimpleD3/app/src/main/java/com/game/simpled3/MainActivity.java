@@ -1,7 +1,6 @@
 package com.game.simpled3;
 
 import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,14 +24,14 @@ public final class MainActivity extends AppCompatActivity
         DeathPage.OnDeathPageInteractionListener,
         RewardPage.OnRewardPageInteractionListener {
 
+    final Game game = Game.getInstance();
+    final Player player = Player.getInstance();
+    final ItemFactory itemFactory = ItemFactory.getInstance();
     DialogFragment gearPage = null;
     ItemViewPage itemView = null;
     DeathPage deathPage = null;
     RewardPage rewardPage = null;
     PlayerStatPage playerStatPage = null;
-    final Game game = Game.getInstance();
-    final Player player = Player.getInstance();
-    final ItemFactory itemFactory = ItemFactory.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public final class MainActivity extends AppCompatActivity
         deathPage = new DeathPage();
         rewardPage = new RewardPage();
         playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
-        playerStatPage.updateUI(game,player);
+        playerStatPage.updateUI(game, player);
     }
 
     @Override
@@ -67,10 +66,10 @@ public final class MainActivity extends AppCompatActivity
                 playerStatPage.updateUI(game, player);
                 break;
             case R.id.killButton:
-                if(player.isDead()) {
+                if (player.isDead()) {
                     deathPage.show(getFragmentManager(), "death_page");
                 }
-                playerStatPage.updateUI(game,player);
+                playerStatPage.updateUI(game, player);
                 break;
         }
     }
@@ -100,13 +99,14 @@ public final class MainActivity extends AppCompatActivity
             case R.id.okDeathButton:
                 player.revive();
                 deathPage.dismiss();
-                playerStatPage.updateUI(game,player);
+                playerStatPage.updateUI(game, player);
         }
     }
 
     @Override
     public void onRewardPageClose() {
+        rewardPage.giveLoot(player);
         rewardPage.dismiss();
-        playerStatPage.updateUI(game,player);
+        playerStatPage.updateUI(game, player);
     }
 }

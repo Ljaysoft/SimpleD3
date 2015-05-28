@@ -3,6 +3,7 @@ package com.game.simpled3.engine.gear;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.Log;
+
 import com.game.simpled3.R;
 import com.game.simpled3.engine.gear.slots.Belt;
 import com.game.simpled3.engine.gear.slots.Boots;
@@ -10,7 +11,7 @@ import com.game.simpled3.engine.gear.slots.Bracers;
 import com.game.simpled3.engine.gear.slots.Chestpiece;
 import com.game.simpled3.engine.gear.slots.Gloves;
 import com.game.simpled3.engine.gear.slots.Helmet;
-import com.game.simpled3.engine.gear.slots.Neck;
+import com.game.simpled3.engine.gear.slots.Jewel;
 import com.game.simpled3.engine.gear.slots.Pants;
 import com.game.simpled3.engine.gear.slots.Ring;
 import com.game.simpled3.engine.gear.slots.Shoulders;
@@ -22,9 +23,7 @@ import com.game.simpled3.utils.StdRandom;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
 import retrofit.Callback;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -55,8 +54,8 @@ public class ItemFactory {
     private static boolean sIsInit = false;
     private static final ItemFactory sInstance = new ItemFactory();
 
-    private static Item newItem;
-    private static boolean newItemReady = false;
+    private static ArrayList<Item> newItems;
+    private static boolean newItemsReady = false;
 
     private int mLvl = 0;
 
@@ -83,7 +82,7 @@ public class ItemFactory {
 
         sInstance.mNbItemTypes = res.getInteger(R.integer.number_of_item_slots);
         sInstance.mNbItemColors = res.getInteger(R.integer.number_of_item_colors);
-
+        sInstance.newItems = new ArrayList<>(res.getInteger(R.integer.base_number_of_item_per_dungeon));
         sInstance.mItemPowerPerLvl = res.getIntArray(R.array.int_array_ipower_for_lvl);
 
         TypedArray resourceTypedArr = res.obtainTypedArray(R.array.float_array_ipower_for_type);
@@ -111,34 +110,34 @@ public class ItemFactory {
     }
 
     public static void buildItemFromName(String name) {
-        newItemReady = false;
+        newItemsReady = false;
         BlizzardService service = D3ArmoryReader.getRestAdapter().create(BlizzardService.class);
         service.getItem(name, new Callback<FullItem>() {
             @Override
             public void success(FullItem fullItem, Response response) {
-                ItemFactory.setNewItem(fullItem.getItem());
-
+                ItemFactory.addNewItem(fullItem.getItem());
             }
 
             @Override
             public void failure(RetrofitError retrofitError) {
                 Log.e(TAG, retrofitError.toString());
                 Log.e(TAG, retrofitError.getUrl());
-
             }
         });
     }
 
-    public static void setNewItem(Item item) {
-        newItem = item;
-        newItemReady = true;
+    private static void addNewItem(Item item) {
+        if (!newItemsReady) {
+            newItemsReady = true;
+        }
+        newItems.add(item);
     }
 
-    public static Item getNewItem() {
-        if (newItemReady)
-            return newItem;
-        else
-            return null;
+    public static ArrayList<Item> getNewItems() {
+        ArrayList<Item> returnArray = (ArrayList<Item>) newItems.clone();
+        newItems.clear();
+        newItemsReady = false;
+        return returnArray;
     }
 
     public static Item buildNewItem(int lvl) {
@@ -176,7 +175,7 @@ public class ItemFactory {
             case ITEM_SLOT_CHEST:
                 return new Chestpiece(sInstance.mLvl);
             case ITEM_SLOT_NECK:
-                return new Neck(sInstance.mLvl);
+                return new Jewel(sInstance.mLvl);
             case ITEM_SLOT_GLOVE:
                 return new Gloves(sInstance.mLvl);
             case ITEM_SLOT_BRACER:
@@ -230,7 +229,7 @@ public class ItemFactory {
 
     private static double buildItemDPS(Item item) {
 
-        return (double)sInstance.mItemPowerPerLvl[item.getILvl()]
+        return (double) sInstance.mItemPowerPerLvl[item.getILvl()]
                 * sInstance.mPowerCoefForColor[item.getColor()]
                 * sInstance.mItemPowerForItemType[item.getSlot()];
 

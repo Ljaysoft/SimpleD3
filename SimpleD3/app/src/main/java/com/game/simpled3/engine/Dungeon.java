@@ -10,7 +10,6 @@ public class Dungeon {
     private double mMonsterHP = 1;
     private double mMonsterDMG = 1;
     private double mShards = 1;
-    private boolean mIsDone = false;
 
     public Dungeon(int lvl, int monsters, int monsterHP, double shards) {
         mDungeonLvl = lvl;

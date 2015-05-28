@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 
 import com.game.simpled3.R;
-import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.ItemFactory;
 import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.StdRandom;
@@ -145,18 +144,9 @@ public final class Game {
     public Loot generateLoot(Player player, Dungeon dungeon) {
         if (mCurrentDungeonLvl == -1)
             return null;
-        ArrayList<Item> items = ItemFactory.buildNewItems(player.getLevel(), mBaseNumberOfItemPerDungeon);
-        //ArrayList<Item> items = new ArrayList<>();
-        ItemFactory.buildItemFromName("leorics-crown");
-        /*while (ItemFactory.getNewItem() == null)
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
-        //items.add(ItemFactory.getNewItem());
+        //ArrayList<Item> items = ItemFactory.buildNewItems(player.getLevel(), mBaseNumberOfItemPerDungeon);
         return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
-                dungeon.getShards(), items);
+                dungeon.getShards(), ItemFactory.getNewItems());
     }
 
     public int getDungeonLevelForDisplay() {
@@ -177,5 +167,8 @@ public final class Game {
 
     public void nextDungeon() {
         mCurrentDungeonLvl++;
+        ItemFactory.buildItemFromName("leorics-crown");
+        ItemFactory.buildItemFromName("chaingmail");
+        ItemFactory.buildItemFromName("irontoe-mudsputters");
     }
 }
