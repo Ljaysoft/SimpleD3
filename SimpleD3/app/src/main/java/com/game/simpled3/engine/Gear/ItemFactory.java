@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.util.Log;
 
 import com.game.simpled3.R;
+import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.gear.slots.Belt;
 import com.game.simpled3.engine.gear.slots.Boots;
 import com.game.simpled3.engine.gear.slots.Bracers;
@@ -50,13 +51,14 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
 /**
  * Created by JFCaron on 2015-05-05.
  */
-public class ItemFactory {
+public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     private static final String TAG = ItemFactory.class.getSimpleName();
-    private static boolean sIsInit = false;
     private static final ItemFactory sInstance = new ItemFactory();
+    private static boolean sIsInit = false;
+    private ItemFactoryCallback mListener = Game.getInstance();
 
-    private ArrayList<Item> newItems;
-    private static boolean newItemsReady = false;
+    private ArrayList<Item> mNewItems;
+    private int mNbNewItemsToBuild = 0;
 
     private int mLvl = 0;
 
@@ -67,12 +69,13 @@ public class ItemFactory {
     private float[] mPowerCoefForColor = null;
 
     private ArrayList<ItemName> mGearNamesForColor = null;
+    private ArrayList<ItemSlotNameList> mGearNamesForSlot = null;
     private String[] mGearPrefixForGearColor = null;
     private String[] mGearSuffixes = null;
 
-    private ArrayList<NumberColorPair> mNumbersOfItemsPerColor = null;
+    private ArrayList<NumberColorPair> mNumberOfItemsPerColor = null;
 
-    protected ItemFactory() {
+    private ItemFactory() {
     }
 
     public static ItemFactory getInstance() {
@@ -86,13 +89,13 @@ public class ItemFactory {
         sInstance.mNbItemTypes = res.getInteger(R.integer.number_of_item_slots);
         int nbOfColors = res.getInteger(R.integer.number_of_item_colors);
         sInstance.mNbItemColors = nbOfColors;
-        sInstance.mNumbersOfItemsPerColor = new ArrayList<>(nbOfColors);
+        sInstance.mNumberOfItemsPerColor = new ArrayList<>(nbOfColors);
         int color = 0;
         while (color < nbOfColors) {
-            sInstance.mNumbersOfItemsPerColor.add(NumberColorPair.getNewPair(color, 0));
+            sInstance.mNumberOfItemsPerColor.add(NumberColorPair.getNewPair(color, 0));
             color++;
         }
-        sInstance.newItems = new ArrayList<>(res.getInteger(R.integer.base_number_of_item_per_dungeon));
+        sInstance.mNewItems = new ArrayList<>(res.getInteger(R.integer.base_number_of_item_per_dungeon));
         sInstance.mItemPowerPerLvl = res.getIntArray(R.array.int_array_ipower_for_lvl);
 
         TypedArray resourceTypedArr = res.obtainTypedArray(R.array.float_array_ipower_for_type);
@@ -112,35 +115,13 @@ public class ItemFactory {
             lvl++;
         }
         resourceTypedArr.recycle();
-        builNameArray(res.getStringArray(R.array.string_array_gear_names));
+        sInstance.buildNamesPerColorArray(res.getStringArray(R.array.string_array_gear_names));
+        sInstance.buildNamesPerSlots(res.getStringArray(R.array.string_array_gear_types_d3));
+
         sInstance.mGearPrefixForGearColor = res.getStringArray(R.array.string_array_gear_prefix_for_color);
         sInstance.mGearSuffixes = res.getStringArray(R.array.string_array_gear_suffixes);
 
         sIsInit = true;
-    }
-
-    private static void builNameArray(String[] namesFromRessources) {
-        sInstance.mGearNamesForColor = new ArrayList<>(namesFromRessources.length);
-        for (String name : namesFromRessources) {
-            ItemName itemname = new ItemName(name);
-            sInstance.mNumbersOfItemsPerColor.get(itemname.color).numberOf++;
-            sInstance.mGearNamesForColor.add(itemname);
-        }
-    }
-
-    public static ArrayList<Item> getNewItems() {
-        ArrayList<Item> returnArray = (ArrayList<Item>) sInstance.newItems.clone();
-        sInstance.newItems.clear();
-        newItemsReady = false;
-        return returnArray;
-    }
-
-    public static void buildDungeonItems(int nbOfItems) {
-        for (int i = 0; i < nbOfItems; i++) {
-            //
-            String itemName = getNewItemName(buildItemColor());
-            buildItemFromName(itemName);
-        }
     }
 
     private static String getNewItemName(int color) {
@@ -157,8 +138,37 @@ public class ItemFactory {
         return name;
     }
 
+    private static String getNewRandomItemName() {
+        boolean nameFound = false;
+        String name = "";
+        if (sInstance.mGearNamesForSlot == null || sInstance.mGearNamesForSlot.isEmpty())
+            return name;
+        synchronized (sInstance.mGearNamesForSlot) {
+            while (!nameFound) {
+                ArrayList<String> nameList = sInstance.mGearNamesForSlot.get(
+                        StdRandom.uniform(sInstance.mGearNamesForSlot.size()))
+                        .getAllNames();
+                if (!nameList.isEmpty()) {
+                    name = nameList.get(StdRandom.uniform(nameList.size()));
+                }
+                nameFound = true;
+            }
+        }
+        return name;
+    }
+
+    private static Item buildNewItem(FullItem fullItem) {
+        if (fullItem == null)
+            return null;
+        Item rItem = fullItem.getItem();
+        double dps = buildItemDPS(rItem);
+        double def = buildItemDEF(rItem);
+        rItem.setStats(dps, def);
+
+        return rItem;
+    }
+
     private static void buildItemFromName(String name) {
-        newItemsReady = false;
         BlizzardService service = D3ArmoryReader.getRestAdapter().create(BlizzardService.class);
         service.getItem(name, new Callback<FullItem>() {
             @Override
@@ -175,23 +185,30 @@ public class ItemFactory {
         });
     }
 
-    private static Item buildNewItem(FullItem fullItem) {
-        if (fullItem == null)
-            return null;
-        Item rItem = fullItem.getItem();
-        double dps = buildItemDPS(rItem);
-        double def = buildItemDEF(rItem);
-        rItem.setStats(dps, def);
+    public static void buildDungeonItems(int nbOfItems) {
+        sInstance.mNbNewItemsToBuild = nbOfItems;
+        for (int i = 0; i < nbOfItems; i++) {
+            String itemName = getNewRandomItemName();
+            buildItemFromName(itemName);
+        }
+    }
 
-        return rItem;
+    private static ArrayList<Item> getNewItems() {
+        synchronized (sInstance.mNewItems) {
+            ArrayList<Item> returnArray = (ArrayList<Item>) sInstance.mNewItems.clone();
+            sInstance.mNewItems.clear();
+            sInstance.mNbNewItemsToBuild = 0;
+            return returnArray;
+        }
     }
 
     private static void addNewItem(Item item) {
-        if (!newItemsReady) {
-            newItemsReady = true;
+        synchronized (sInstance.mNewItems) {
+            sInstance.mNewItems.add(item);
         }
-
-        sInstance.newItems.add(item);
+        if (sInstance.areItemsBuilt()) {
+            sInstance.mListener.onItemCreationDone(getNewItems());
+        }
     }
 
     @Deprecated
@@ -272,6 +289,34 @@ public class ItemFactory {
                 * sInstance.mItemPowerForItemType[item.getSlot()];
     }
 
+    public static boolean areItemsBuilt() {
+        return sInstance.mNewItems.size() == sInstance.mNbNewItemsToBuild;
+    }
+
+    private void buildNamesPerColorArray(String[] namesFromRessources) {
+        sInstance.mGearNamesForColor = new ArrayList<>(namesFromRessources.length);
+        for (String name : namesFromRessources) {
+            ItemName itemname = ItemName.getNewItemName(name);
+            sInstance.mNumberOfItemsPerColor.get(itemname.color).numberOf++;
+            sInstance.mGearNamesForColor.add(itemname);
+        }
+    }
+
+    private void buildNamesPerSlots(String[] namesFromRessources) {
+        sInstance.mGearNamesForSlot = new ArrayList<>(namesFromRessources.length);
+        for (String name : namesFromRessources) {
+            ItemSlotNameList itemSlotNameList = new ItemSlotNameList(name);
+            D3ArmoryReader.requestItemsFromItemType(itemSlotNameList, sInstance);
+        }
+    }
+
+    @Override
+    public void onFetchNamesForSlotsDone(ArrayList<ItemSlotNameList> slotNames) {
+        synchronized (sInstance.mGearNamesForSlot) {
+            sInstance.mGearNamesForSlot.addAll(slotNames);
+        }
+    }
+
     /**
      * Internal classes to manage names and color
      */
@@ -279,30 +324,34 @@ public class ItemFactory {
         public int color = ITEM_COLOR_GRAY;
         public String name = "";
 
-        public ItemName(String name) {
+        private ItemName(String name) {
             parseName(name);
             parseColor(name);
+        }
+
+        public static ItemName getNewItemName(String name) {
+            return new ItemName(name);
         }
 
         private void parseName(String name) {
             switch (name.charAt(0)) {
                 case 'G':
-                    color = ITEM_COLOR_GRAY;
+                    this.color = ITEM_COLOR_GRAY;
                     return;
                 case 'W':
-                    color = ITEM_COLOR_WHITE;
+                    this.color = ITEM_COLOR_WHITE;
                     return;
                 case 'B':
-                    color = ITEM_COLOR_BLUE;
+                    this.color = ITEM_COLOR_BLUE;
                     return;
                 case 'Y':
-                    color = ITEM_COLOR_YELLOW;
+                    this.color = ITEM_COLOR_YELLOW;
                     return;
                 case 'O':
-                    color = ITEM_COLOR_ORANGE;
+                    this.color = ITEM_COLOR_ORANGE;
                     return;
                 case 'S':
-                    color = ITEM_COLOR_GREEN;
+                    this.color = ITEM_COLOR_GREEN;
                     return;
                 default:
             }
@@ -340,5 +389,9 @@ public class ItemFactory {
             }
             return result;
         }
+    }
+
+    public interface ItemFactoryCallback {
+        void onItemCreationDone(ArrayList<Item> items);
     }
 }

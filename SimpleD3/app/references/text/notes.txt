@@ -2,3 +2,6 @@ regex:
 
 remove whitespaces between numbers
 (?<=\d)\s+(?=\d)
+
+get item name
+(?<=\/d3\/en\/item\/)(\w+(?:\-\w+)*)(?=\" rel\=\"np\">$)

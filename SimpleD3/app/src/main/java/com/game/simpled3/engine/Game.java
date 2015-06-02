@@ -3,8 +3,11 @@ package com.game.simpled3.engine;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 
+import com.game.simpled3.MainActivity;
 import com.game.simpled3.R;
+import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.ItemFactory;
+import com.game.simpled3.engine.gear.ItemFactory.ItemFactoryCallback;
 import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.StdRandom;
 
@@ -13,8 +16,9 @@ import java.util.ArrayList;
 /**
  * Created by JFCaron on 2015-04-27.
  */
-public final class Game {
+public final class Game implements ItemFactoryCallback{
     private static final Game sInstance = new Game();
+    private GameListener mListener;
     private boolean sIsInit = false;
 
     private Resources mRes;
@@ -36,7 +40,9 @@ public final class Game {
     private int mBaseGoldPerMonster = 0;
     private int mBaseNumberOfItemPerDungeon = 0;
 
-     private double mChanceToDie = 0.01;
+    private double mChanceToDie = 0.01;
+
+    private Loot mCurrentLoot = null;
 
     private Game() {
 
@@ -47,11 +53,12 @@ public final class Game {
     }
 
     //Acquisition des données des arrays
-    public static void initialize(Resources res) {
+    public static void initialize(Resources res, MainActivity activity) {
         if (sInstance.sIsInit)
             return;
 
         sInstance.mRes = res;
+        sInstance.mListener = activity;
 
         //Init ints
         sInstance.mNbMonsterPerDungeon = sInstance.mRes.getInteger(R.integer.base_number_monsters_per_dungeon);
@@ -95,7 +102,6 @@ public final class Game {
             lvl++;
         }
 
-
         sInstance.sIsInit = true;
     }
 
@@ -135,15 +141,8 @@ public final class Game {
         }
         else {
             player.giveXP(mXpForDungeonLvl[mCurrentDungeonLvl], mXpToLvl);
-            return giveLoot(currentDungeon);
+            return mCurrentLoot;
         }
-    }
-
-    public Loot giveLoot(Dungeon dungeon) {
-        if (mCurrentDungeonLvl == -1)
-            return null;
-        return new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
-                dungeon.getShards(), ItemFactory.getNewItems());
     }
 
     public int getDungeonLevelForDisplay() {
@@ -164,6 +163,19 @@ public final class Game {
 
     public void nextDungeon() {
         mCurrentDungeonLvl++;
+        mCurrentLoot = null;
         ItemFactory.buildDungeonItems(mBaseNumberOfItemPerDungeon);
+    }
+
+    @Override
+    public void onItemCreationDone(ArrayList<Item> items) {
+        Dungeon dungeon = mDungeons.get(mCurrentDungeonLvl);
+        mCurrentLoot = new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
+                dungeon.getShards(), items);
+        mListener.onLootReady();
+    }
+
+    public interface GameListener {
+        void onLootReady();
     }
 }

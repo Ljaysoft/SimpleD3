@@ -22,7 +22,8 @@ public final class MainActivity extends AppCompatActivity
         implements PlayerStatPage.OnPlayerSheetInteractionListener,
         EquipmentPage.OnEquipmentPageInteractionListener,
         DeathPage.OnDeathPageInteractionListener,
-        RewardPage.OnRewardPageInteractionListener {
+        RewardPage.OnRewardPageInteractionListener,
+        Game.GameListener {
 
     final Game game = Game.getInstance();
     final Player player = Player.getInstance();
@@ -44,15 +45,15 @@ public final class MainActivity extends AppCompatActivity
 
     void initializeGame() {
         Resources res = getResources();
-        game.initialize(res);
-        player.initialize(res);
-        itemFactory.initialize(res);
+        Game.initialize(res, this);
+        Player.initialize(res);
+        ItemFactory.initialize(res);
         gearPage = new EquipmentPage();
         itemView = new ItemViewPage(getApplicationContext());
         deathPage = new DeathPage();
         rewardPage = new RewardPage();
         playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
-        playerStatPage.updateUI(game, player);
+        playerStatPage.updateUI();
     }
 
     @Override
@@ -63,13 +64,13 @@ public final class MainActivity extends AppCompatActivity
                 break;
             case R.id.startDungeonButton:
                 game.nextDungeon();
-                playerStatPage.updateUI(game, player);
+                playerStatPage.updateUI();
                 break;
             case R.id.killButton:
                 if (player.isDead()) {
                     deathPage.show(getFragmentManager(), "death_page");
                 }
-                playerStatPage.updateUI(game, player);
+                playerStatPage.updateUI();
                 break;
         }
     }
@@ -99,7 +100,7 @@ public final class MainActivity extends AppCompatActivity
             case R.id.okDeathButton:
                 player.revive();
                 deathPage.dismiss();
-                playerStatPage.updateUI(game, player);
+                playerStatPage.updateUI();
         }
     }
 
@@ -107,6 +108,11 @@ public final class MainActivity extends AppCompatActivity
     public void onRewardPageClose() {
         rewardPage.giveLoot(player);
         rewardPage.dismiss();
-        playerStatPage.updateUI(game, player);
+        playerStatPage.updateUI();
+    }
+
+    @Override
+    public void onLootReady() {
+        playerStatPage.updateUI();
     }
 }

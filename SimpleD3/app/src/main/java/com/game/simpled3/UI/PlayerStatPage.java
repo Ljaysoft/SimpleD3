@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
+import com.game.simpled3.engine.gear.ItemFactory;
 import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
@@ -105,7 +106,9 @@ public class PlayerStatPage extends Fragment {
         mListener = null;
     }
 
-    public void updateUI(Game game, Player player) {
+    public void updateUI() {
+        Game game = Game.getInstance();
+        Player player = Player.getInstance();
         player.updateDPSandDEF();
         mProgressBar.setProgress(game.updateDungeonProgress());
         mPlayerLevelValueTextView.setText((String.valueOf(player.getLevel())));
@@ -115,7 +118,8 @@ public class PlayerStatPage extends Fragment {
         mPlayerShardsValueTextView.setText((String.valueOf(player.getShards())));
         mPlayerGoldValueTextView.setText(StringManipulation.formatBigNumbers(player.getGold()));
         mDungeonLevelValueTextView.setText((String.valueOf(game.getDungeonLevelForDisplay())));
-        mKillButton.setEnabled(!player.isDead() && (game.isDungeonInProgress() && !game.isDungeonDone()));
+        mKillButton.setEnabled(!player.isDead() && (game.isDungeonInProgress() && !game.isDungeonDone())
+                                && ItemFactory.areItemsBuilt());
         mStartDungeonButton.setEnabled(!player.isDead() && (!game.isDungeonInProgress() || game.isDungeonDone()));
     }
 
@@ -126,9 +130,8 @@ public class PlayerStatPage extends Fragment {
     private void onKillButtonClicked() {
         Game game = Game.getInstance();
         Player player = Player.getInstance();
-
         mListener.onGetReward(game.playerAttacks(player));
-        updateUI(game, player);
+        updateUI();
     }
 
     private void onStartDungeonButtonClicked() {

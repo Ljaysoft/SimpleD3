@@ -1,5 +1,7 @@
 package com.game.simpled3.engine.webservice.models;
 
+import android.util.Log;
+
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.slots.Belt;
 import com.game.simpled3.engine.gear.slots.Boots;
@@ -10,6 +12,7 @@ import com.game.simpled3.engine.gear.slots.Helmet;
 import com.game.simpled3.engine.gear.slots.Jewel;
 import com.game.simpled3.engine.gear.slots.Pants;
 import com.game.simpled3.engine.gear.slots.Ring;
+import com.game.simpled3.engine.gear.slots.Shield;
 import com.game.simpled3.engine.gear.slots.Shoulders;
 import com.game.simpled3.engine.gear.slots.Weapon;
 
@@ -210,7 +213,7 @@ public class FullItem implements Serializable{
                 case "hands":
                     item = new Gloves(itemLevel);
                     break;
-                case "wrist":
+                case "bracers":
                     item = new Bracers(itemLevel);
                     break;
                 case "legs":
@@ -228,17 +231,24 @@ public class FullItem implements Serializable{
                 case "left-hand":
                     item = new Weapon(itemLevel, false);
                     break;
+                case "right-hand":
+                    item = new Shield(itemLevel);
             }
-            item.setName(name);
-            item.setColor(getColorCode(displayColor));
-            item.setFlavorText(flavorText);
-            item.setImageID(icon);
+            try {
+                item.setName(name);
+                item.setColor(getColorCode(displayColor));
+                item.setFlavorText(flavorText);
+                item.setImageID(icon);
+            } catch (NullPointerException e) {
+                Log.e(FullItem.class.getSimpleName(),e.toString());
+                e.printStackTrace();
+            }
         }
         return item;
     }
 
     private int getColorCode(String colorStr) {
-        int color;
+        int color = -1;
         switch (colorStr) {
             case "blue":
                 color = ITEM_COLOR_BLUE;
@@ -253,8 +263,10 @@ public class FullItem implements Serializable{
                 color = ITEM_COLOR_ORANGE;
                 break;
             case "green":
+            case "set":
                 color = ITEM_COLOR_GREEN;
                 break;
+            case "grey":
             case "gray":
             default:
                 color = ITEM_COLOR_GRAY;
