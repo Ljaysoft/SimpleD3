@@ -25,10 +25,10 @@ import butterknife.InjectView;
 
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_BLUE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GRAY;
+import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GREEN;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_ORANGE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_WHITE;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_YELLOW;
-import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_GREEN;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BELT;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BOOTS;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_BRACER;
@@ -50,7 +50,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
  */
 public class ItemViewPage extends PopupWindow {
 
-    private Context context = null;
+    private Context mContext = null;
     private Item mCurrentItem = Item.createItem(1);
     @InjectView(R.id.itemNameTextView) AutoResizeTextView mItemName;
     @InjectView(R.id.slotTextView) TextView mSlot;
@@ -68,9 +68,9 @@ public class ItemViewPage extends PopupWindow {
     public ItemViewPage(Context ctx) {
         super(ctx);
 
-        context = ctx;
-        Resources res = context.getResources();
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_item_view, null);
+        mContext = ctx;
+        Resources res = mContext.getResources();
+        View view = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_view, null);
         setContentView(view);
         View popupView = getContentView();
         setWidth(res.getDimensionPixelSize(R.dimen.item_view_width));
@@ -88,12 +88,9 @@ public class ItemViewPage extends PopupWindow {
 
     }
 
-    public void setItemToShow(Item item) {
-        mCurrentItem = item;
+    public void show(ItemButton view) {
+        mCurrentItem = view.getItem();
         updateItemValues();
-    }
-
-    public void show(View view) {
         showAsDropDown(view);
     }
 
@@ -149,7 +146,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setTextColor(Color.GRAY);
                 mItemName.setTextColor(Color.GRAY);
                 title = Bitmap.createBitmap(mTooltipBorders, 0, 0, mTooltipBorders.getWidth(), tooltipTitleHeight);
-                mItemName.setBackgroundDrawable(new BitmapDrawable(context.getResources(), title));
+                mItemName.setBackgroundDrawable(new BitmapDrawable(mContext.getResources(), title));
                 break;
             case ITEM_COLOR_WHITE:
                 mColor.setText("Normal");
@@ -157,7 +154,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setTextColor(Color.WHITE);
                 mItemName.setTextColor(Color.WHITE);
                 title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight, mTooltipBorders.getWidth(), tooltipTitleHeight);
-                mItemName.setBackgroundDrawable(new BitmapDrawable(context.getResources(), title));
+                mItemName.setBackgroundDrawable(new BitmapDrawable(mContext.getResources(), title));
                 break;
             case ITEM_COLOR_BLUE:
                 mColor.setText("Magic");
@@ -165,7 +162,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setTextColor(Color.BLUE);
                 mItemName.setTextColor(Color.BLUE);
                 title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight * 2, mTooltipBorders.getWidth(), tooltipTitleHeight);
-                mItemName.setBackgroundDrawable(new BitmapDrawable(context.getResources(), title));
+                mItemName.setBackgroundDrawable(new BitmapDrawable(mContext.getResources(), title));
                 break;
             case ITEM_COLOR_YELLOW:
                 mColor.setText("Rare");
@@ -173,7 +170,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setTextColor(Color.YELLOW);
                 mItemName.setTextColor(Color.YELLOW);
                 title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight * 3, mTooltipBorders.getWidth(), tooltipTitleHeight);
-                mItemName.setBackgroundDrawable(new BitmapDrawable(context.getResources(), title));
+                mItemName.setBackgroundDrawable(new BitmapDrawable(mContext.getResources(), title));
                 break;
             case ITEM_COLOR_ORANGE:
                 mColor.setText("Legendary");
@@ -182,7 +179,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setTextColor(orange);
                 mItemName.setTextColor(orange);
                 title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight * 4, mTooltipBorders.getWidth(), tooltipTitleHeight);
-                mItemName.setBackgroundDrawable(new BitmapDrawable(context.getResources(), title));
+                mItemName.setBackgroundDrawable(new BitmapDrawable(mContext.getResources(), title));
                 break;
             case ITEM_COLOR_GREEN:
                 mColor.setText("Set");
@@ -191,7 +188,7 @@ public class ItemViewPage extends PopupWindow {
                 mSlot.setTextColor(green);
                 mItemName.setTextColor(green);
                 title = Bitmap.createBitmap(mTooltipBorders, 0, tooltipTitleHeight * 6, mTooltipBorders.getWidth(), tooltipTitleHeight);
-                mItemName.setBackgroundDrawable(new BitmapDrawable(context.getResources(), title));
+                mItemName.setBackgroundDrawable(new BitmapDrawable(mContext.getResources(), title));
                 break;
 
         }
@@ -199,10 +196,10 @@ public class ItemViewPage extends PopupWindow {
         mDEF.setText(StringManipulation.formatBigNumbers(mCurrentItem.getDEF()));
         boolean isSquare = mCurrentItem.isIconSquare();
         if (isSquare) {
-            Picasso.with(context).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width,R.dimen.item_icon_width).into(mImageIcon);
+            Picasso.with(mContext).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width,R.dimen.item_icon_width).into(mImageIcon);
         }
         else {
-            Picasso.with(context).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_big_icon_height).into(mImageIcon);
+            Picasso.with(mContext).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_big_icon_height).into(mImageIcon);
         }
     }
 

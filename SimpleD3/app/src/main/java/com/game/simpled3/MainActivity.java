@@ -1,20 +1,20 @@
 package com.game.simpled3;
 
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.game.simpled3.UI.DeathPage;
 import com.game.simpled3.UI.EquipmentPage;
+import com.game.simpled3.UI.ItemButton;
 import com.game.simpled3.UI.ItemViewPage;
 import com.game.simpled3.UI.PlayerStatPage;
 import com.game.simpled3.UI.RewardPage;
 import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
-import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.ItemFactory;
 import com.game.simpled3.engine.gear.Loot;
 
@@ -49,13 +49,28 @@ public final class MainActivity extends AppCompatActivity
         Player.initialize(res);
         ItemFactory.initialize(res);
         gearPage = new EquipmentPage();
-        itemView = new ItemViewPage(getApplicationContext());
+        Context context = getApplicationContext();
+        itemView = new ItemViewPage(context);
         deathPage = new DeathPage();
-        rewardPage = new RewardPage();
+        rewardPage = new RewardPage(context, player);
         playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
         playerStatPage.updateUI();
     }
 
+    private void showEquipmentPage() {
+        gearPage.show(getFragmentManager(), "gear_page");
+    }
+
+    private void showItemTooltip(ItemButton button) {
+        if (button == null || button.getItem() == null)
+            return;
+        itemView.show(button);
+    }
+
+    //
+    // Pages callbacks
+    //
+    // Main player sheet page
     @Override
     public void onPlayerSheetButtonClicked(View view) {
         switch (view.getId()) {
@@ -83,17 +98,13 @@ public final class MainActivity extends AppCompatActivity
         rewardPage.show(getFragmentManager(), "reward_page");
     }
 
-    private void showEquipmentPage() {
-        gearPage.show(getFragmentManager(), "gear_page");
-    }
-
-
+    // Equipment page
     @Override
-    public void onEquipmentPageInteraction(View view, MotionEvent event, Item item) {
-        itemView.setItemToShow(item);
-        itemView.show(view);
+    public void onEquipmentPageInteraction(ItemButton view) {
+        showItemTooltip(view);
     }
 
+    // Death page
     @Override
     public void onDeathPageInteraction(View view) {
         switch (view.getId()) {
@@ -104,13 +115,18 @@ public final class MainActivity extends AppCompatActivity
         }
     }
 
+    // Reward page
     @Override
-    public void onRewardPageClose() {
-        rewardPage.giveLoot(player);
-        rewardPage.dismiss();
+    public void onRewardPageClosed() {
         playerStatPage.updateUI();
     }
 
+    @Override
+    public void onInspectItem(ItemButton view) {
+        showItemTooltip(view);
+    }
+
+    // Game callbacks
     @Override
     public void onLootReady() {
         playerStatPage.updateUI();

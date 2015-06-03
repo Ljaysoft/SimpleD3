@@ -18,7 +18,7 @@
         android:src="@drawable/character_front"
         android:layout_centerInParent="true" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/shoulderButton"
@@ -29,9 +29,9 @@
         android:layout_marginTop="27dp"
         android:minHeight="98dp"
         android:minWidth="72dp"
-        android:alpha="0.65" />
+        android:alpha="0.65"/>
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/helmButton"
@@ -42,7 +42,7 @@
         android:layout_alignTop="@+id/charImageView"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/neckButton"
@@ -55,7 +55,7 @@
         android:layout_marginTop="47dp"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chestButton"
@@ -66,7 +66,7 @@
         android:layout_alignTop="@+id/charImageView"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/glovesButton"
@@ -80,7 +80,7 @@
         android:layout_alignTop="@+id/charImageView"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bracerButton"
@@ -92,7 +92,7 @@
         android:layout_marginRight="8dp"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/beltButton"
@@ -103,7 +103,7 @@
         android:layout_marginTop="192dp"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/leftRingButton"
@@ -115,7 +115,7 @@
         android:minWidth="48dp"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rightRingButton"
@@ -127,7 +127,7 @@
         android:layout_marginTop="226dp"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pantsButton"
@@ -138,7 +138,7 @@
         android:layout_marginTop="230dp"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bootButton"
@@ -149,7 +149,7 @@
         android:layout_alignTop="@+id/charImageView"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/leftWeaponButton"
@@ -162,7 +162,7 @@
         android:layout_marginLeft="8dp"
         android:alpha="0.65" />
 
-    <ImageButton
+    <com.game.simpled3.UI.ItemButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rightWeaponButton"
