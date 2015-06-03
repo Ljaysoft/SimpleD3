@@ -30,16 +30,12 @@ public class RewardPage extends DialogFragment {
 
     private OnRewardPageInteractionListener mListener;
     private Loot mLoot = null;
-    private Context mContext = null;
-    private Player mPlayer = null;
     @InjectView(R.id.lootViewLayout)
     LinearLayout mLootViewLayout;
 
     private String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
 
-    public RewardPage(Context ctx, Player player) {
-        mContext = ctx;
-        mPlayer = player;
+    public RewardPage() {
     }
 
     @Override
@@ -47,6 +43,7 @@ public class RewardPage extends DialogFragment {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_FRAME, 0);
         setCancelable(false);
+
     }
 
     @Override
@@ -88,7 +85,7 @@ public class RewardPage extends DialogFragment {
     }
 
     private void onOkButtonClicked() {
-        giveLoot(mPlayer);
+        giveLoot(Player.getInstance());
         mListener.onRewardPageClosed();
         dismiss();
     }
@@ -100,7 +97,7 @@ public class RewardPage extends DialogFragment {
         if (items == null || items.isEmpty())
             return;
         mLootViewLayout.removeAllViewsInLayout();
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        LayoutInflater inflater = LayoutInflater.from(getActivity().getApplicationContext());
         for (Item item : items) {
             View rewardItem = inflater.inflate(R.layout.reward_item_view, null, false);
             ItemButton itemIcon = (ItemButton) rewardItem.findViewById(R.id.rewardItemIconView);

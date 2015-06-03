@@ -52,7 +52,7 @@ public final class MainActivity extends AppCompatActivity
         Context context = getApplicationContext();
         itemView = new ItemViewPage(context);
         deathPage = new DeathPage();
-        rewardPage = new RewardPage(context, player);
+        rewardPage = new RewardPage();
         playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
         playerStatPage.updateUI();
     }

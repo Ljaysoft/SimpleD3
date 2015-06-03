@@ -2,6 +2,7 @@ package com.game.simpled3.UI;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.game.simpled3.R;
+import com.game.simpled3.engine.Player;
 import com.game.simpled3.utils.FontHelper;
 
 import butterknife.ButterKnife;
