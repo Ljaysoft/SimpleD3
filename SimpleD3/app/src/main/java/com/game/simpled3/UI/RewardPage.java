@@ -17,7 +17,6 @@ import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.FontHelper;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -117,11 +116,6 @@ public class RewardPage extends DialogFragment {
                                             }
                                         }
             );
-            if (item.isIconSquare()) {
-                Picasso.with(mContext).load(mediaSourceURL + item.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_icon_width).into(itemIcon);
-            } else {
-                Picasso.with(mContext).load(mediaSourceURL + item.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_big_icon_height).into(itemIcon);
-            }
             mLootViewLayout.addView(rewardItem);
         }
     }
