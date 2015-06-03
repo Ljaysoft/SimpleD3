@@ -235,14 +235,16 @@ public class FullItem implements Serializable{
                     item = new Shield(itemLevel);
             }
             try {
-                item.setName(name);
-                item.setColor(getColorCode(displayColor));
-                item.setFlavorText(flavorText);
-                item.setImageID(icon);
+                if (item == null)
+                    throw new NullPointerException("slot.get(0)=" + slots.get(0));
             } catch (NullPointerException e) {
                 Log.e(FullItem.class.getSimpleName(),e.toString());
                 e.printStackTrace();
             }
+                item.setName(name);
+                item.setColor(getColorCode(displayColor));
+                item.setFlavorText(flavorText);
+                item.setImageID(icon);
         }
         return item;
     }
