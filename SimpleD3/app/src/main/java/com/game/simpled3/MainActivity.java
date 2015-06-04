@@ -54,7 +54,6 @@ public final class MainActivity extends AppCompatActivity
         deathPage = new DeathPage();
         rewardPage = new RewardPage();
         playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
-        playerStatPage.updateUI();
     }
 
     private void showEquipmentPage() {
@@ -79,13 +78,11 @@ public final class MainActivity extends AppCompatActivity
                 break;
             case R.id.startDungeonButton:
                 game.nextDungeon();
-                playerStatPage.updateUI();
                 break;
             case R.id.killButton:
                 if (player.isDead()) {
                     deathPage.show(getFragmentManager(), "death_page");
                 }
-                playerStatPage.updateUI();
                 break;
         }
     }
@@ -111,14 +108,12 @@ public final class MainActivity extends AppCompatActivity
             case R.id.okDeathButton:
                 player.revive();
                 deathPage.dismiss();
-                playerStatPage.updateUI();
         }
     }
 
     // Reward page
     @Override
     public void onRewardPageClosed() {
-        playerStatPage.updateUI();
     }
 
     @Override
@@ -129,6 +124,5 @@ public final class MainActivity extends AppCompatActivity
     // Game callbacks
     @Override
     public void onLootReady() {
-        playerStatPage.updateUI();
     }
 }

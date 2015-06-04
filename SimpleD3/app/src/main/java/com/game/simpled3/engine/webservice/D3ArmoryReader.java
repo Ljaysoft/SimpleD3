@@ -3,7 +3,7 @@ package com.game.simpled3.engine.webservice;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.game.simpled3.engine.gear.ItemSlotNameList;
+import com.game.simpled3.engine.gear.ItemTypeNameList;
 import com.squareup.okhttp.OkHttpClient;
 
 import org.jsoup.Jsoup;
@@ -48,7 +48,7 @@ public final class D3ArmoryReader {
 
     //public static void set
 
-    public static void requestItemsFromItemType(ItemSlotNameList itemType, ArmoryReaderCallback listener) {
+    public static void requestItemsFromItemType(ItemTypeNameList itemType, ArmoryReaderCallback listener) {
         RequestItemNamesOfTypeAsyncTask reader = new RequestItemNamesOfTypeAsyncTask(listener);
         reader.execute(itemType);
     }
@@ -71,7 +71,7 @@ public final class D3ArmoryReader {
         }
     }
 
-    private static class RequestItemNamesOfTypeAsyncTask extends AsyncTask<ItemSlotNameList, Void, ArrayList<ItemSlotNameList>> {
+    private static class RequestItemNamesOfTypeAsyncTask extends AsyncTask<ItemTypeNameList, Void, ArrayList<ItemTypeNameList>> {
         private ArmoryReaderCallback mListener;
 
         public RequestItemNamesOfTypeAsyncTask(ArmoryReaderCallback listener) {
@@ -79,9 +79,9 @@ public final class D3ArmoryReader {
         }
 
         @Override
-        protected ArrayList<ItemSlotNameList> doInBackground(ItemSlotNameList... itemTypes) {
-            ArrayList<ItemSlotNameList> namesForSlots = new ArrayList<>(itemTypes.length);
-            for (ItemSlotNameList itemType : itemTypes) {
+        protected ArrayList<ItemTypeNameList> doInBackground(ItemTypeNameList... itemTypes) {
+            ArrayList<ItemTypeNameList> namesForSlots = new ArrayList<>(itemTypes.length);
+            for (ItemTypeNameList itemType : itemTypes) {
                 itemType.getAllNames().addAll(getNamesFromHtmlBody(requestHtmlBodyForItemType(itemType.getSlotName())));
                 namesForSlots.add(itemType);
             }
@@ -114,13 +114,13 @@ public final class D3ArmoryReader {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<ItemSlotNameList> itemNamesForSlot) {
+        protected void onPostExecute(ArrayList<ItemTypeNameList> itemNamesForSlot) {
             mListener.onFetchNamesForSlotsDone(itemNamesForSlot);
         }
     }
 
     public interface ArmoryReaderCallback {
-        void onFetchNamesForSlotsDone(ArrayList<ItemSlotNameList> slotsNames);
+        void onFetchNamesForSlotsDone(ArrayList<ItemTypeNameList> slotsNames);
     }
 }
 

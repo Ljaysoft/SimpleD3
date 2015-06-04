@@ -2,7 +2,9 @@ package com.game.simpled3.UI;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,9 @@ import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -28,18 +33,30 @@ public class PlayerStatPage extends Fragment {
 
     private OnPlayerSheetInteractionListener mListener;
 
+    private static final int UPDATE_TIME_MS = 200;
+
     private static byte mProgressValue = 0;
 
-    @InjectView(R.id.lvlValueTextView) TextView mPlayerLevelValueTextView;
-    @InjectView(R.id.xpToLvlValueTextView) TextView mXpToLevelValueTextView;
-    @InjectView(R.id.dpsValueTextView) TextView mPlayerDPSValueTextView;
-    @InjectView(R.id.defValueTextView) TextView mPlayerDEFValueTextView;
-    @InjectView(R.id.shardValueTextView) TextView mPlayerShardsValueTextView;
-    @InjectView(R.id.goldValueTextView) TextView mPlayerGoldValueTextView;
-    @InjectView(R.id.dungeonLvlValueTextView) TextView mDungeonLevelValueTextView;
-    @InjectView(R.id.killButton) Button mKillButton;
-    @InjectView(R.id.startDungeonButton) Button mStartDungeonButton;
-    @InjectView(R.id.progress_bar) ProgressBar mProgressBar;
+    @InjectView(R.id.lvlValueTextView)
+    TextView mPlayerLevelValueTextView;
+    @InjectView(R.id.xpToLvlValueTextView)
+    TextView mXpToLevelValueTextView;
+    @InjectView(R.id.dpsValueTextView)
+    TextView mPlayerDPSValueTextView;
+    @InjectView(R.id.defValueTextView)
+    TextView mPlayerDEFValueTextView;
+    @InjectView(R.id.shardValueTextView)
+    TextView mPlayerShardsValueTextView;
+    @InjectView(R.id.goldValueTextView)
+    TextView mPlayerGoldValueTextView;
+    @InjectView(R.id.dungeonLvlValueTextView)
+    TextView mDungeonLevelValueTextView;
+    @InjectView(R.id.killButton)
+    Button mKillButton;
+    @InjectView(R.id.startDungeonButton)
+    Button mStartDungeonButton;
+    @InjectView(R.id.progress_bar)
+    ProgressBar mProgressBar;
 
     public PlayerStatPage() {
     }
@@ -47,7 +64,17 @@ public class PlayerStatPage extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnPlayerSheetInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnPlayerSheetInteractionListener");
+        }
     }
 
     @Override
@@ -90,20 +117,29 @@ public class PlayerStatPage extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnPlayerSheetInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnPlayerSheetInteractionListener");
-        }
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        PlayerStatPage playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
+                        playerStatPage.updateUI();
+                    }
+                });
+            }
+        };
+        timer.schedule(task,0,UPDATE_TIME_MS);
     }
 
     public void updateUI() {
@@ -118,9 +154,8 @@ public class PlayerStatPage extends Fragment {
         mPlayerShardsValueTextView.setText((String.valueOf(player.getShards())));
         mPlayerGoldValueTextView.setText(StringManipulation.formatBigNumbers(player.getGold()));
         mDungeonLevelValueTextView.setText((String.valueOf(game.getDungeonLevelForDisplay())));
-        mKillButton.setEnabled(!player.isDead() && (game.isDungeonInProgress() && !game.isDungeonDone())
-                                && ItemFactory.areItemsBuilt());
-        mStartDungeonButton.setEnabled(!player.isDead() && (!game.isDungeonInProgress() || game.isDungeonDone()));
+        mStartDungeonButton.setEnabled(!player.isDead() && !game.isDungeonStarted() && ItemFactory.isFactoryReady());
+        mKillButton.setEnabled(!player.isDead() && game.isDungeonStarted() && ItemFactory.areItemsBuilt());
     }
 
     private void onOpenGearPageButtonClicked() {
@@ -131,15 +166,25 @@ public class PlayerStatPage extends Fragment {
         Game game = Game.getInstance();
         Player player = Player.getInstance();
         mListener.onGetReward(game.playerAttacks(player));
-        updateUI();
     }
 
     private void onStartDungeonButtonClicked() {
         mStartDungeonButton.setEnabled(false);
     }
 
+    private class UpdateUITask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            PlayerStatPage playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
+            playerStatPage.updateUI();
+            return null;
+        }
+    }
+
     public interface OnPlayerSheetInteractionListener {
         void onPlayerSheetButtonClicked(View view);
+
         void onGetReward(Loot loot);
     }
 }

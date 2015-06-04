@@ -63,13 +63,14 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     private int mLvl = 0;
 
     private int[] mItemPowerPerLvl = null;
-    private int mNbItemTypes = 0;
+    private int mNbItemSlots = 0;
     private int mNbItemColors = 0;
     private float[] mItemPowerForItemType = null;
     private float[] mPowerCoefForColor = null;
 
     private ArrayList<ItemName> mGearNamesForColor = null;
-    private ArrayList<ItemSlotNameList> mGearNamesForSlot = null;
+    private ArrayList<ItemTypeNameList> mGearNamesForType = null;
+    private int mNbItemTypes = 0;
     private String[] mGearPrefixForGearColor = null;
     private String[] mGearSuffixes = null;
 
@@ -86,7 +87,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         if (sInstance == null || sIsInit)
             return;
 
-        sInstance.mNbItemTypes = res.getInteger(R.integer.number_of_item_slots);
+        sInstance.mNbItemSlots = res.getInteger(R.integer.number_of_item_slots);
         int nbOfColors = res.getInteger(R.integer.number_of_item_colors);
         sInstance.mNbItemColors = nbOfColors;
         sInstance.mNumberOfItemsPerColor = new ArrayList<>(nbOfColors);
@@ -99,9 +100,9 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         sInstance.mItemPowerPerLvl = res.getIntArray(R.array.int_array_ipower_for_lvl);
 
         TypedArray resourceTypedArr = res.obtainTypedArray(R.array.float_array_ipower_for_type);
-        sInstance.mItemPowerForItemType = new float[sInstance.mNbItemTypes];
+        sInstance.mItemPowerForItemType = new float[sInstance.mNbItemSlots];
         int lvl = 0;
-        while (lvl < sInstance.mNbItemTypes) {
+        while (lvl < sInstance.mNbItemSlots) {
             sInstance.mItemPowerForItemType[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
@@ -141,12 +142,12 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     private static String getNewRandomItemName() {
         boolean nameFound = false;
         String name = "";
-        if (sInstance.mGearNamesForSlot == null || sInstance.mGearNamesForSlot.isEmpty())
+        if (sInstance.mGearNamesForType == null || sInstance.mGearNamesForType.isEmpty())
             return name;
-        synchronized (sInstance.mGearNamesForSlot) {
+        synchronized (sInstance.mGearNamesForType) {
             while (!nameFound) {
-                ArrayList<String> nameList = sInstance.mGearNamesForSlot.get(
-                        StdRandom.uniform(sInstance.mGearNamesForSlot.size()))
+                ArrayList<String> nameList = sInstance.mGearNamesForType.get(
+                        StdRandom.uniform(sInstance.mGearNamesForType.size()))
                         .getAllNames();
                 if (!nameList.isEmpty()) {
                     name = nameList.get(StdRandom.uniform(nameList.size()));
@@ -214,7 +215,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     @Deprecated
     private static Item getNewItem() {
         double p = StdRandom.uniform();
-        int slot = (int) (p * ((double) sInstance.mNbItemTypes));
+        int slot = (int) (p * ((double) sInstance.mNbItemSlots));
         switch (slot) {
             case ITEM_SLOT_HELM:
                 return new Helmet(sInstance.mLvl);
@@ -293,6 +294,10 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         return sInstance.mNewItems.size() == sInstance.mNbNewItemsToBuild;
     }
 
+    public static boolean isFactoryReady() {
+        return sInstance.mNbItemTypes <= sInstance.mGearNamesForType.size()*4;
+    }
+
     private void buildNamesPerColorArray(String[] namesFromRessources) {
         sInstance.mGearNamesForColor = new ArrayList<>(namesFromRessources.length);
         for (String name : namesFromRessources) {
@@ -303,17 +308,18 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     }
 
     private void buildNamesPerSlots(String[] namesFromRessources) {
-        sInstance.mGearNamesForSlot = new ArrayList<>(namesFromRessources.length);
+        sInstance.mGearNamesForType = new ArrayList<>(namesFromRessources.length);
         for (String name : namesFromRessources) {
-            ItemSlotNameList itemSlotNameList = new ItemSlotNameList(name);
-            D3ArmoryReader.requestItemsFromItemType(itemSlotNameList, sInstance);
+            ItemTypeNameList itemTypeNameList = new ItemTypeNameList(name);
+            sInstance.mNbItemTypes++;
+            D3ArmoryReader.requestItemsFromItemType(itemTypeNameList, sInstance);
         }
     }
 
     @Override
-    public void onFetchNamesForSlotsDone(ArrayList<ItemSlotNameList> slotNames) {
-        synchronized (sInstance.mGearNamesForSlot) {
-            sInstance.mGearNamesForSlot.addAll(slotNames);
+    public void onFetchNamesForSlotsDone(ArrayList<ItemTypeNameList> slotNames) {
+        synchronized (sInstance.mGearNamesForType) {
+            sInstance.mGearNamesForType.addAll(slotNames);
         }
     }
 

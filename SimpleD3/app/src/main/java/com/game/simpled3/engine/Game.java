@@ -161,6 +161,12 @@ public final class Game implements ItemFactoryCallback{
         return mDungeons.get(mCurrentDungeonLvl).getProgress() >= 100;
     }
 
+    public boolean isDungeonStarted() {
+        if (mCurrentDungeonLvl == -1)
+            return false;
+        return mDungeons.get(mCurrentDungeonLvl).getProgress() >= 0 && !isDungeonDone();
+    }
+
     public void nextDungeon() {
         mCurrentDungeonLvl++;
         mCurrentLoot = null;
