@@ -23,4 +23,9 @@ public class Weapon extends Item {
             mSlot = ITEM_SLOT_LEFT_WEAPON;
 
     }
+
+    @Override
+    public void setStats(double dps, double def) {
+        super.setStats(dps,0);
+    }
 }

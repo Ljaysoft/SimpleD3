@@ -2,13 +2,15 @@ package com.game.simpled3.UI;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
@@ -17,6 +19,7 @@ import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.Loot;
 import com.game.simpled3.utils.FontHelper;
+import com.game.simpled3.utils.UIHelper;
 
 import java.util.ArrayList;
 
@@ -62,8 +65,8 @@ public class RewardPage extends DialogFragment {
                                         }
                                     }
         );
-        FontHelper.applyFont(rootView, false, true);
         showLoot();
+        FontHelper.applyFont(rootView, false, true);
         return rootView;
     }
 
@@ -100,19 +103,36 @@ public class RewardPage extends DialogFragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity().getApplicationContext());
         for (Item item : items) {
             View rewardItem = inflater.inflate(R.layout.reward_item_view, null, false);
+            final ToggleButton replaceToggleButton = (ToggleButton) rewardItem.findViewById(R.id.replaceToggleButton);
+            final ImageView destroyXImage = (ImageView) rewardItem.findViewById(R.id.destroyXView);
+            replaceToggleButton.setOnCheckedChangeListener(new ToggleButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        destroyXImage.setVisibility(View.GONE);
+                    } else {
+                        destroyXImage.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+            replaceToggleButton.setChecked(true);
             ItemButton itemIcon = (ItemButton) rewardItem.findViewById(R.id.rewardItemIconView);
             itemIcon.setItem(item);
             itemIcon.setOnTouchListener(new View.OnTouchListener() {
-                                            @Override
-                                            public boolean onTouch(View view, MotionEvent event) {
-                                                if (event.getAction() != MotionEvent.ACTION_UP) {
-                                                    return false;
-                                                }
-                                                mListener.onInspectItem((ItemButton) view);
-                                                return true;
-                                            }
-                                        }
-            );
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        Point point = UIHelper.getRelativePosition(view, event);
+                        if (point.x >= view.getMeasuredWidth() / 2
+                                && point.y <= view.getMeasuredHeight() / 4) {
+                            mListener.onInspectItem((ItemButton) view);
+                            return true;
+                        }
+                        replaceToggleButton.toggle();
+                    }
+                    return false;
+                }
+            });
             mLootViewLayout.addView(rewardItem);
         }
     }
@@ -131,7 +151,7 @@ public class RewardPage extends DialogFragment {
             return;
         for (int index = 0; index < items.size(); index++) {
             LinearLayout itemLayout = (LinearLayout) mLootViewLayout.getChildAt(index);
-            ToggleButton replaceToggleButton = (ToggleButton) itemLayout.findViewById(R.id.replaceToggleButton);
+            final ToggleButton replaceToggleButton = (ToggleButton) itemLayout.findViewById(R.id.replaceToggleButton);
             if (replaceToggleButton.isChecked()) {
                 player.giveItem(items.get(index));
             }

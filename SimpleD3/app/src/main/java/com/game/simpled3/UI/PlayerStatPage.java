@@ -32,6 +32,7 @@ import butterknife.InjectView;
 public class PlayerStatPage extends Fragment {
 
     private OnPlayerSheetInteractionListener mListener;
+    final Handler mHandler = new Handler();
 
     private static final int UPDATE_TIME_MS = 200;
 
@@ -125,12 +126,12 @@ public class PlayerStatPage extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        final Handler handler = new Handler();
+        // Start updateUI task
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                handler.post(new Runnable() {
+                mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         PlayerStatPage playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
@@ -170,16 +171,6 @@ public class PlayerStatPage extends Fragment {
 
     private void onStartDungeonButtonClicked() {
         mStartDungeonButton.setEnabled(false);
-    }
-
-    private class UpdateUITask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            PlayerStatPage playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
-            playerStatPage.updateUI();
-            return null;
-        }
     }
 
     public interface OnPlayerSheetInteractionListener {

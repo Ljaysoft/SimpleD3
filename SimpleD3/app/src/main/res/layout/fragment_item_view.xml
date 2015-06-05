@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemNameTextView"
         android:padding="5dp"
-        android:layout_alignLeft="@+id/itemNameTextView" />
+        android:layout_alignLeft="@+id/itemNameTextView"
+        android:layout_above="@+id/flavorText" />
 
     <TextView
         android:id="@+id/colorTextView"
@@ -37,7 +38,7 @@
         android:text="color"
         android:layout_below="@+id/itemNameTextView"
         android:layout_toRightOf="@+id/itemIconView"
-        android:textSize="16dp" />
+        android:textSize="10dp" />
 
     <TextView
         android:id="@+id/slotTextView"
@@ -48,7 +49,7 @@
         android:layout_toRightOf="@+id/colorTextView"
         android:layout_toEndOf="@+id/colorTextView"
         android:paddingLeft="3dp"
-        android:textSize="16dp" />
+        android:textSize="10dp" />
 
     <TextView
         android:id="@+id/itemILvlTextView"
@@ -74,6 +75,17 @@
         android:textSize="40dp" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Damage Per Second"
+        android:id="@+id/dmgPerSecTextView"
+        android:textSize="12dp"
+        android:layout_below="@+id/itemDpsTextView"
+        android:layout_alignLeft="@+id/itemDpsTextView"
+        android:layout_toEndOf="@+id/itemIconView"
+        android:layout_toRightOf="@+id/itemIconView"/>
+
+    <TextView
         android:id="@+id/itemDefTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,20 +99,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Damage Per Second"
-        android:id="@+id/dmgPerSecTextView"
-        android:textSize="14dp"
-        android:layout_below="@+id/itemDpsTextView"
-        android:layout_alignLeft="@+id/itemDpsTextView"
-        android:layout_toEndOf="@+id/itemIconView"
-        android:layout_toRightOf="@+id/itemIconView"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Defense"
-        android:id="@+id/def"
-        android:textSize="14dp"
+        android:id="@+id/defTextView"
+        android:textSize="12dp"
         android:layout_below="@+id/itemDefTextView"
         android:layout_alignLeft="@+id/itemDpsTextView"
         android:layout_above="@+id/flavorText" />

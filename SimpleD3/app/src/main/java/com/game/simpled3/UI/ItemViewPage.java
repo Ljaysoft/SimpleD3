@@ -58,6 +58,8 @@ public class ItemViewPage extends PopupWindow {
     @InjectView(R.id.colorTextView) TextView mColor;
     @InjectView(R.id.itemDpsTextView) TextView mDPS;
     @InjectView(R.id.itemDefTextView) TextView mDEF;
+    @InjectView(R.id.dmgPerSecTextView) TextView mDPSText;
+    @InjectView(R.id.defTextView) TextView mDEFText;
     @InjectView(R.id.flavorText) TextView mFlavor;
     @InjectView(R.id.itemIconView) ImageView mImageIcon;
     private Bitmap mTooltipBorders;
@@ -95,7 +97,14 @@ public class ItemViewPage extends PopupWindow {
     }
 
     private void updateItemValues() {
-        mItemName.setText(mCurrentItem.getName());
+        String name = mCurrentItem.getName();
+        if (name == "no_name") {
+            mItemName.setVisibility(View.GONE);
+        } else {
+            mItemName.setVisibility(View.VISIBLE);
+            mItemName.setText(mCurrentItem.getName());
+        }
+
         switch (mCurrentItem.getSlot()) {
             case ITEM_SLOT_DUMMY:
                 mSlot.setText("Scraps");
@@ -192,9 +201,27 @@ public class ItemViewPage extends PopupWindow {
                 break;
 
         }
-        mDPS.setText(StringManipulation.formatBigNumbers(mCurrentItem.getDPS()));
-        mDEF.setText(StringManipulation.formatBigNumbers(mCurrentItem.getDEF()));
+        double dps = mCurrentItem.getDPS();
+        if (dps == 0) {
+            mDPS.setVisibility(View.GONE);
+            mDPSText.setVisibility(View.GONE);
+        } else {
+            mDPS.setText(StringManipulation.formatBigNumbers(dps));
+            mDPS.setVisibility(View.VISIBLE);
+            mDPSText.setVisibility(View.VISIBLE);
+        }
+        double def = mCurrentItem.getDEF();
+        if (def == 0) {
+            mDEF.setVisibility(View.GONE);
+            mDEFText.setVisibility(View.GONE);
+        } else {
+            mDEF.setText(StringManipulation.formatBigNumbers(def));
+            mDEF.setVisibility(View.VISIBLE);
+            mDEFText.setVisibility(View.VISIBLE);
+        }
         boolean isSquare = mCurrentItem.isIconSquare();
+
+        //TODO marche pas, à fixer
         if (isSquare) {
             Picasso.with(mContext).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width,R.dimen.item_icon_width).into(mImageIcon);
         }

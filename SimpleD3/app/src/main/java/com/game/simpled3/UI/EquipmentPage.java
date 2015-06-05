@@ -112,7 +112,6 @@ public class EquipmentPage extends DialogFragment {
         if (event.getAction() != MotionEvent.ACTION_UP) {
             return;
         }
-
         if (mListener != null) {
             mListener.onEquipmentPageInteraction(button);
         }

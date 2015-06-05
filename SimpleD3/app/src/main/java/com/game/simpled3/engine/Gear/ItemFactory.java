@@ -158,6 +158,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         return name;
     }
 
+    // TODO build balanced stats
     private static Item buildNewItem(FullItem fullItem) {
         if (fullItem == null)
             return null;

@@ -18,4 +18,9 @@ public class Shield extends Item {
         super(lvl);
             mSlot = ITEM_SLOT_RIGHT_WEAPON;
     }
+
+    @Override
+    public void setStats(double dps, double def) {
+        super.setStats(0,def);
+    }
 }
