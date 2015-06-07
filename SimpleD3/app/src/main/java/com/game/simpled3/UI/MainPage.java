@@ -2,7 +2,6 @@ package com.game.simpled3.UI;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -29,7 +28,7 @@ import butterknife.InjectView;
 /**
  * Player Sheet Fragment
  */
-public class PlayerStatPage extends Fragment {
+public class MainPage extends Fragment {
 
     private OnPlayerSheetInteractionListener mListener;
     final Handler mHandler = new Handler();
@@ -59,7 +58,7 @@ public class PlayerStatPage extends Fragment {
     @InjectView(R.id.progress_bar)
     ProgressBar mProgressBar;
 
-    public PlayerStatPage() {
+    public MainPage() {
     }
 
     @Override
@@ -81,7 +80,7 @@ public class PlayerStatPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_player_stat_page, container, false);
+        View rootView = inflater.inflate(R.layout.main_page_layout, container, false);
 
         ButterKnife.inject(this, rootView);
 
@@ -134,8 +133,8 @@ public class PlayerStatPage extends Fragment {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        PlayerStatPage playerStatPage = (PlayerStatPage) getFragmentManager().findFragmentById(R.id.playerStatPage);
-                        playerStatPage.updateUI();
+                        MainPage mainPage = (MainPage) getFragmentManager().findFragmentById(R.id.mainPage);
+                        mainPage.updateUI();
                     }
                 });
             }
@@ -155,7 +154,7 @@ public class PlayerStatPage extends Fragment {
         mPlayerShardsValueTextView.setText((String.valueOf(player.getShards())));
         mPlayerGoldValueTextView.setText(StringManipulation.formatBigNumbers(player.getGold()));
         mDungeonLevelValueTextView.setText((String.valueOf(game.getDungeonLevelForDisplay())));
-        mStartDungeonButton.setEnabled(!player.isDead() && !game.isDungeonStarted() && ItemFactory.isFactoryReady());
+        mStartDungeonButton.setEnabled(!player.isDead() && !game.isDungeonStarted() && ItemFactory.isReady());
         mKillButton.setEnabled(!player.isDead() && game.isDungeonStarted() && ItemFactory.areItemsBuilt());
     }
 

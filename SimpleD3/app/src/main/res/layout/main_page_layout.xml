@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context="com.game.simpled3.UI.PlayerStatPage"
+    tools:context="com.game.simpled3.UI.MainPage"
     tools:showIn="@layout/activity_main">
 
     <ImageView

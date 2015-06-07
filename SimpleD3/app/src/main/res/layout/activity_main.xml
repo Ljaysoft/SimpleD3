@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainActivityView"
     android:layout_width="match_parent"
@@ -9,10 +9,10 @@
     tools:ignore="MergeRootFrame">
 
     <fragment
-        android:id="@+id/playerStatPage"
-        android:name="com.game.simpled3.UI.PlayerStatPage"
+        android:id="@+id/mainPage"
+        android:name="com.game.simpled3.UI.MainPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_player_stat_page" />
+        tools:layout="@layout/main_page_layout" />
 
-</LinearLayout>
+</RelativeLayout>

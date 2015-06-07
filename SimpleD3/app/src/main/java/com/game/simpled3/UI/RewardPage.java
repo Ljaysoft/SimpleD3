@@ -53,7 +53,7 @@ public class RewardPage extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_reward_page, container, false);
+        View rootView = inflater.inflate(R.layout.reward_page_layout, container, false);
 
         ButterKnife.inject(this, rootView);
 
@@ -102,7 +102,7 @@ public class RewardPage extends DialogFragment {
         mLootViewLayout.removeAllViewsInLayout();
         LayoutInflater inflater = LayoutInflater.from(getActivity().getApplicationContext());
         for (Item item : items) {
-            View rewardItem = inflater.inflate(R.layout.reward_item_view, null, false);
+            View rewardItem = inflater.inflate(R.layout.reward_item_layout, null, false);
             final ToggleButton replaceToggleButton = (ToggleButton) rewardItem.findViewById(R.id.replaceToggleButton);
             final ImageView destroyXImage = (ImageView) rewardItem.findViewById(R.id.destroyXView);
             replaceToggleButton.setOnCheckedChangeListener(new ToggleButton.OnCheckedChangeListener() {

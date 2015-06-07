@@ -1,0 +1,144 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/item_view_width"
+    android:layout_height="wrap_content"
+    android:alpha="0.75"
+    android:background="@drawable/item_view_border"
+    android:backgroundTint="#ff000000"
+    android:backgroundTintMode="add"
+    android:clickable="false"
+    android:orientation="vertical"
+    android:padding="2dp"
+    tools:context="com.game.simpled3.UI.ItemTooltip">
+
+
+    <com.game.simpled3.utils.AutoResizeTextView
+        android:id="@+id/itemNameTextView"
+        android:layout_width="236dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="ItemName"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/itemIconView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp">
+
+                    <TextView
+                        android:id="@+id/colorTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="color"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/slotTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:text="slot"
+                        android:textSize="10dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/itemDpsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DPS"
+                    android:textColor="@android:color/white"
+                    android:textSize="40dp" />
+
+                <TextView
+                    android:id="@+id/dmgPerSecTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Damage Per Second"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/itemDefTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DEF"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/defTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Defense"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/flavorText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:text="@string/item_view_flavor"
+        android:textColor="@color/color_item_flavor_text"
+        android:textIsSelectable="false"
+        android:textSize="12dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/itemILvlTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingLeft="1dp"
+        android:text="ilvl"
+        android:textSize="16dp"
+        tools:ignore="RtlCompat" />
+
+    <LinearLayout
+        android:id="@+id/compareTooltipLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stat Changes if Equiped:"
+            android:textColor="@android:color/white" />
+
+        <LinearLayout
+            android:id="@+id/compareStats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="3dp">
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

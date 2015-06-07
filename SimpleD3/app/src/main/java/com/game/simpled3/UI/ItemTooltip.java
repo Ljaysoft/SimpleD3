@@ -7,14 +7,18 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.game.simpled3.R;
 import com.game.simpled3.engine.gear.Item;
+import com.game.simpled3.engine.gear.Stat;
 import com.game.simpled3.utils.AutoResizeTextView;
 import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
@@ -48,33 +52,50 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
 /**
  * Created by JFCaron on 2015-05-13.
  */
-public class ItemViewPage extends PopupWindow {
+public class ItemTooltip extends PopupWindow {
 
     private Context mContext = null;
     private Item mCurrentItem = Item.createItem(1);
-    @InjectView(R.id.itemNameTextView) AutoResizeTextView mItemName;
-    @InjectView(R.id.slotTextView) TextView mSlot;
-    @InjectView(R.id.itemILvlTextView) TextView miLvl;
-    @InjectView(R.id.colorTextView) TextView mColor;
-    @InjectView(R.id.itemDpsTextView) TextView mDPS;
-    @InjectView(R.id.itemDefTextView) TextView mDEF;
-    @InjectView(R.id.dmgPerSecTextView) TextView mDPSText;
-    @InjectView(R.id.defTextView) TextView mDEFText;
-    @InjectView(R.id.flavorText) TextView mFlavor;
-    @InjectView(R.id.itemIconView) ImageView mImageIcon;
+    @InjectView(R.id.itemNameTextView)
+    AutoResizeTextView mItemName;
+    @InjectView(R.id.slotTextView)
+    TextView mSlot;
+    @InjectView(R.id.itemILvlTextView)
+    TextView miLvl;
+    @InjectView(R.id.colorTextView)
+    TextView mColor;
+    @InjectView(R.id.itemDpsTextView)
+    TextView mDPS;
+    @InjectView(R.id.itemDefTextView)
+    TextView mDEF;
+    @InjectView(R.id.dmgPerSecTextView)
+    TextView mDPSText;
+    @InjectView(R.id.defTextView)
+    TextView mDEFText;
+    @InjectView(R.id.flavorText)
+    TextView mFlavor;
+    @InjectView(R.id.itemIconView)
+    ImageView mImageIcon;
+    @InjectView(R.id.compareTooltipLayout)
+    LinearLayout mCompareTooltip;
+    @InjectView(R.id.compareStats)
+    LinearLayout mCompareStats;
+
     private Bitmap mTooltipBorders;
     private int tooltipTitleHeight;
 
     private String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
 
-    public ItemViewPage(Context ctx) {
+    public ItemTooltip(Context ctx) {
         super(ctx);
 
         mContext = ctx;
         Resources res = mContext.getResources();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_view, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_tooltip_layout, null);
+        ButterKnife.inject(this, view);
         setContentView(view);
-        View popupView = getContentView();
+
+        setWindowLayoutMode(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         setWidth(res.getDimensionPixelSize(R.dimen.item_view_width));
         setHeight(res.getDimensionPixelSize(R.dimen.item_view_height));
         tooltipTitleHeight = res.getDimensionPixelSize(R.dimen.item_view_title_height);
@@ -82,18 +103,33 @@ public class ItemViewPage extends PopupWindow {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1)
             setAttachedInDecor(false);
 
-        ButterKnife.inject(this, view);
         mCurrentItem = Item.createItem(1);
         mTooltipBorders = BitmapFactory.decodeResource(res, R.drawable.tooltip_titles);
-        FontHelper.applyFont(popupView, false, true);
+        FontHelper.applyFont(view, false, true);
         FontHelper.applyFont(mFlavor, true, false);
-
     }
 
-    public void show(ItemButton view) {
+    public void show(ItemButton view, boolean compare) {
+        if (compare) {
+            mCompareStats.removeAllViewsInLayout();
+            Item item = view.getItem();
+            int slotID = item.getSlot();
+            //TODO compare all attributes
+            StatTextView dpsTextCompare = new StatTextView(mContext);
+            dpsTextCompare.setStat(new Stat("dps", item.getDPS()), slotID);
+            mCompareStats.addView(dpsTextCompare);
+            StatTextView defTextCompare = new StatTextView(mContext);
+            defTextCompare.setStat(new Stat("def", item.getDEF()), slotID);
+            mCompareStats.addView(defTextCompare);
+
+            mCompareTooltip.setVisibility(View.VISIBLE);
+
+        } else {
+            mCompareTooltip.setVisibility(View.GONE);
+        }
         mCurrentItem = view.getItem();
         updateItemValues();
-        showAsDropDown(view);
+        showAtLocation(view.getRootView(), Gravity.START, 0, 0);
     }
 
     private void updateItemValues() {
@@ -221,11 +257,10 @@ public class ItemViewPage extends PopupWindow {
         }
         boolean isSquare = mCurrentItem.isIconSquare();
 
-        //TODO marche pas, à fixer
+        //TODO marche pas, ï¿½ fixer
         if (isSquare) {
-            Picasso.with(mContext).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width,R.dimen.item_icon_width).into(mImageIcon);
-        }
-        else {
+            Picasso.with(mContext).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_icon_width).into(mImageIcon);
+        } else {
             Picasso.with(mContext).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_big_icon_height).into(mImageIcon);
         }
     }

@@ -46,7 +46,7 @@ public class EquipmentPage extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_equipment_page, container, false);
+        View rootView = inflater.inflate(R.layout.equipment_page_layout, container, false);
 
         for (View v : rootView.getTouchables()) {
             if (v instanceof ItemButton) {

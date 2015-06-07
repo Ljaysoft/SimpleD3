@@ -174,6 +174,11 @@ public final class Game implements ItemFactoryCallback{
     }
 
     @Override
+    public void onItemInitialisationStarted() {
+        mListener.onItemFactoryInitStarted();
+    }
+
+    @Override
     public void onItemCreationDone(ArrayList<Item> items) {
         Dungeon dungeon = mDungeons.get(mCurrentDungeonLvl);
         mCurrentLoot = new Loot(mBaseDungeonBonusGold * mGoldCoefPerLvl[mCurrentDungeonLvl],
@@ -182,6 +187,7 @@ public final class Game implements ItemFactoryCallback{
     }
 
     public interface GameListener {
+        void onItemFactoryInitStarted();
         void onLootReady();
     }
 }

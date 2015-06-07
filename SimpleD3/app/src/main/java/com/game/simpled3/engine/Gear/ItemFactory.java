@@ -76,6 +76,8 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
 
     private ArrayList<NumberColorPair> mNumberOfItemsPerColor = null;
 
+    private boolean skipLoading = false;
+
     private ItemFactory() {
     }
 
@@ -295,8 +297,23 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         return sInstance.mNewItems.size() == sInstance.mNbNewItemsToBuild;
     }
 
-    public static boolean isFactoryReady() {
-        return sInstance.mNbItemTypes <= sInstance.mGearNamesForType.size()*4;
+    public static void skipLoading() {
+        sInstance.skipLoading = true;
+    }
+
+    public static boolean isReady() {
+        if (sInstance != null && sInstance.mGearNamesForType != null) {
+            return sInstance.skipLoading || sInstance.mNbItemTypes == sInstance.mGearNamesForType.size();
+        }
+
+        return false;
+    }
+
+    public static int getLoadProgress() {
+        if (sInstance == null || sInstance.mGearNamesForType == null || sInstance.mNbItemTypes == 0) {
+            return 0;
+        }
+        return sInstance.mGearNamesForType.size() * 100 / sInstance.mNbItemTypes;
     }
 
     private void buildNamesPerColorArray(String[] namesFromRessources) {
@@ -315,6 +332,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
             sInstance.mNbItemTypes++;
             D3ArmoryReader.requestItemsFromItemType(itemTypeNameList, sInstance);
         }
+        mListener.onItemInitialisationStarted();
     }
 
     @Override
@@ -399,6 +417,8 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     }
 
     public interface ItemFactoryCallback {
+        void onItemInitialisationStarted();
+
         void onItemCreationDone(ArrayList<Item> items);
     }
 }

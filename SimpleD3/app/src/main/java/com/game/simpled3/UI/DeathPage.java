@@ -2,7 +2,6 @@ package com.game.simpled3.UI;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.game.simpled3.R;
-import com.game.simpled3.engine.Player;
 import com.game.simpled3.utils.FontHelper;
 
 import butterknife.ButterKnife;
@@ -44,7 +42,7 @@ public class DeathPage extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_death_page, container, false);
+        View rootView = inflater.inflate(R.layout.death_page_layout, container, false);
         ButterKnife.inject(this, rootView);
         mOkButton.setOnClickListener(
                 new View.OnClickListener() {
