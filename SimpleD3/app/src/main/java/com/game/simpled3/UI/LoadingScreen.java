@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import com.game.simpled3.BuildConfig;
 import com.game.simpled3.R;
 import com.game.simpled3.engine.gear.ItemFactory;
 import com.game.simpled3.utils.FontHelper;
@@ -50,15 +51,20 @@ public class LoadingScreen extends DialogFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.loading_screen_layout, container, false);
         ButterKnife.inject(this, rootView);
-        mSkipButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ItemFactory.skipLoading();
-                        onStopLoading();
+        if (BuildConfig.DEBUG) {
+            mSkipButton.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ItemFactory.skipLoading();
+                            onStopLoading();
+                        }
                     }
-                }
-        );
+            );
+        } else {
+            mSkipButton.setVisibility(View.GONE);
+        }
+
         FontHelper.applyFont(rootView, false, true);
         return rootView;
     }

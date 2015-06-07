@@ -101,7 +101,7 @@
         android:id="@+id/flavorText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="5"
+        android:maxLines="6"
         android:paddingLeft="2dp"
         android:paddingTop="2dp"
         android:text="@string/item_view_flavor"
