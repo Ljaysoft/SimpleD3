@@ -36,8 +36,6 @@ public class RewardPage extends DialogFragment {
     @InjectView(R.id.lootViewLayout)
     LinearLayout mLootViewLayout;
 
-    private String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
-
     public RewardPage() {
     }
 
@@ -103,19 +101,7 @@ public class RewardPage extends DialogFragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity().getApplicationContext());
         for (Item item : items) {
             View rewardItem = inflater.inflate(R.layout.reward_item_layout, null, false);
-            final ToggleButton replaceToggleButton = (ToggleButton) rewardItem.findViewById(R.id.replaceToggleButton);
             final ImageView destroyXImage = (ImageView) rewardItem.findViewById(R.id.destroyXView);
-            replaceToggleButton.setOnCheckedChangeListener(new ToggleButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        destroyXImage.setVisibility(View.GONE);
-                    } else {
-                        destroyXImage.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
-            replaceToggleButton.setChecked(true);
             ItemButton itemIcon = (ItemButton) rewardItem.findViewById(R.id.rewardItemIconView);
             itemIcon.setItem(item);
             itemIcon.setOnTouchListener(new View.OnTouchListener() {
@@ -128,12 +114,20 @@ public class RewardPage extends DialogFragment {
                             mListener.onInspectItem((ItemButton) view);
                             return true;
                         }
-                        replaceToggleButton.toggle();
+                        toggleVisible(destroyXImage);
                     }
                     return false;
                 }
             });
             mLootViewLayout.addView(rewardItem);
+        }
+    }
+
+    private void toggleVisible(View view) {
+        if (view.getVisibility() == View.VISIBLE)
+            view.setVisibility(View.GONE);
+        else if (view.getVisibility() == View.GONE) {
+            view.setVisibility(View.VISIBLE);
         }
     }
 
@@ -151,8 +145,8 @@ public class RewardPage extends DialogFragment {
             return;
         for (int index = 0; index < items.size(); index++) {
             LinearLayout itemLayout = (LinearLayout) mLootViewLayout.getChildAt(index);
-            final ToggleButton replaceToggleButton = (ToggleButton) itemLayout.findViewById(R.id.replaceToggleButton);
-            if (replaceToggleButton.isChecked()) {
+            final ImageView destroyXImage = (ImageView) itemLayout.findViewById(R.id.destroyXView);
+            if (destroyXImage.getVisibility() == View.GONE) {
                 player.giveItem(items.get(index));
             }
         }

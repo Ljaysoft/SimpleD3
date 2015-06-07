@@ -42,17 +42,4 @@
 
     </RelativeLayout>
 
-    <ToggleButton
-        android:id="@+id/replaceToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="2dp"
-        android:checked="true"
-        android:textOff="Destroy"
-        android:textOn="Replace"
-        android:textSize="10dp"
-        android:clickable="false"
-        android:visibility="gone"/>
-
 </LinearLayout>
