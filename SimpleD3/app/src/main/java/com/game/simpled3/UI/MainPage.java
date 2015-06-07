@@ -32,6 +32,7 @@ public class MainPage extends Fragment {
 
     private OnPlayerSheetInteractionListener mListener;
     final Handler mHandler = new Handler();
+    private Timer mTimer = new Timer();
 
     private static final int UPDATE_TIME_MS = 200;
 
@@ -126,7 +127,6 @@ public class MainPage extends Fragment {
     public void onStart() {
         super.onStart();
         // Start updateUI task
-        Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -139,7 +139,14 @@ public class MainPage extends Fragment {
                 });
             }
         };
-        timer.schedule(task,0,UPDATE_TIME_MS);
+        mTimer.schedule(task,0,UPDATE_TIME_MS);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mTimer.cancel();
+        mTimer.purge();
     }
 
     public void updateUI() {
