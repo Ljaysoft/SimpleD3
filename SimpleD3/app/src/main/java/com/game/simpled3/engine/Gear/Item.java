@@ -17,8 +17,8 @@ public class Item {
     private int mColor = ITEM_COLOR_GRAY;
 
     private String mFlavorText = "";
-    protected double mDPS = 0.0;
-    protected double mDEF = 0.0;
+    private double mDPS = 0.0;
+    private double mDEF = 0.0;
 
     private boolean mIsDiscovered = false;
 

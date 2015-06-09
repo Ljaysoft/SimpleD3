@@ -17,7 +17,7 @@ public class StringManipulation {
             return "0";
         int power;
         String suffix = " KMBT";
-        String formattedNumber = "";
+        String formattedNumber;
 
         NumberFormat formatter = new DecimalFormat("#,###.#");
         power = (int) StrictMath.log10(value);

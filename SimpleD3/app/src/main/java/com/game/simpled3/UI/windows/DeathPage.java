@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.windows;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -24,8 +24,8 @@ public class DeathPage extends DialogFragment {
 
     @InjectView(R.id.okDeathButton) Button mOkButton;
     private DeathCountDownTimer mCountDownTimer;
-    private long DEATH_TIMER = 5000;
-    private long UPDATE_INTERVAL = 100;
+    private final long DEATH_TIMER = 5000;
+    private final long UPDATE_INTERVAL = 100;
     private boolean isRunning = false;
 
     public DeathPage() {

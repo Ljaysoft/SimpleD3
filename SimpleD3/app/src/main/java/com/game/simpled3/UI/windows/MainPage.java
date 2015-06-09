@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.windows;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -31,8 +31,8 @@ import butterknife.InjectView;
 public class MainPage extends Fragment {
 
     private OnPlayerSheetInteractionListener mListener;
-    final Handler mHandler = new Handler();
-    private Timer mTimer = new Timer();
+    private final Handler mHandler = new Handler();
+    private final Timer mTimer = new Timer();
 
     private static final int UPDATE_TIME_MS = 200;
 
@@ -149,20 +149,18 @@ public class MainPage extends Fragment {
         mTimer.purge();
     }
 
-    public void updateUI() {
-        Game game = Game.getInstance();
-        Player player = Player.getInstance();
-        player.updateDPSandDEF();
-        mProgressBar.setProgress(game.updateDungeonProgress());
-        mPlayerLevelValueTextView.setText((String.valueOf(player.getLevel())));
-        mXpToLevelValueTextView.setText(StringManipulation.formatBigNumbers(player.getXpToLevel()));
-        mPlayerDPSValueTextView.setText(StringManipulation.formatBigNumbers(player.getDPS()));
-        mPlayerDEFValueTextView.setText(StringManipulation.formatBigNumbers(player.getDEF()));
-        mPlayerShardsValueTextView.setText((String.valueOf(player.getShards())));
-        mPlayerGoldValueTextView.setText(StringManipulation.formatBigNumbers(player.getGold()));
-        mDungeonLevelValueTextView.setText((String.valueOf(game.getDungeonLevelForDisplay())));
-        mStartDungeonButton.setEnabled(!player.isDead() && !game.isDungeonStarted() && ItemFactory.isReady());
-        mKillButton.setEnabled(!player.isDead() && game.isDungeonStarted() && ItemFactory.areItemsBuilt());
+    private void updateUI() {
+        Player.updateDPSandDEF();
+        mProgressBar.setProgress(Game.updateDungeonProgress());
+        mPlayerLevelValueTextView.setText((String.valueOf(Player.getLevel())));
+        mXpToLevelValueTextView.setText(StringManipulation.formatBigNumbers(Player.getXpToLevel()));
+        mPlayerDPSValueTextView.setText(StringManipulation.formatBigNumbers(Player.getDPS()));
+        mPlayerDEFValueTextView.setText(StringManipulation.formatBigNumbers(Player.getDEF()));
+        mPlayerShardsValueTextView.setText((String.valueOf(Player.getShards())));
+        mPlayerGoldValueTextView.setText(StringManipulation.formatBigNumbers(Player.getGold()));
+        mDungeonLevelValueTextView.setText((String.valueOf(Game.getDungeonLevelForDisplay())));
+        mStartDungeonButton.setEnabled(!Player.isDead() && !Game.isDungeonStarted() && ItemFactory.isReady());
+        mKillButton.setEnabled(!Player.isDead() && Game.isDungeonStarted() && ItemFactory.areItemsBuilt());
     }
 
     private void onOpenGearPageButtonClicked() {
@@ -170,9 +168,7 @@ public class MainPage extends Fragment {
 
     //Kill monsters to gain xp and stuff
     private void onKillButtonClicked() {
-        Game game = Game.getInstance();
-        Player player = Player.getInstance();
-        mListener.onGetReward(game.playerAttacks(player));
+        mListener.onGetReward(Game.playerAttacks());
     }
 
     private void onStartDungeonButtonClicked() {

@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/mainPage"
-        android:name="com.game.simpled3.UI.MainPage"
+        android:name="com.game.simpled3.UI.windows.MainPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/main_page_layout" />

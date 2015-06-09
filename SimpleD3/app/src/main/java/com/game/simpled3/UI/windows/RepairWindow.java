@@ -1,7 +1,6 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.windows;
 
 import android.app.DialogFragment;
-import android.app.Fragment;
 
 /**
  * Created by JFCaron on 2015-05-15.

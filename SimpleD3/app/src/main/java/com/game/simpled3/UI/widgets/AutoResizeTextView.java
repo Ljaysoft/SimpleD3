@@ -1,4 +1,4 @@
-package com.game.simpled3.utils;
+package com.game.simpled3.UI.widgets;
 
 
 import android.content.Context;

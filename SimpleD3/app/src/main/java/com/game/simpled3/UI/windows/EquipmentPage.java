@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.windows;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.game.simpled3.R;
+import com.game.simpled3.UI.widgets.ItemButton;
 import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.Item;
 
@@ -58,7 +59,7 @@ public class EquipmentPage extends DialogFragment {
                                          }
                                      }
                 );
-                ArrayList<Item> playerItems = Player.getInstance().getItems();
+                ArrayList<Item> playerItems = Player.getItems();
                 Item item = Item.getDummy();
                 switch (v.getId()) {
                     case R.id.shoulderButton:

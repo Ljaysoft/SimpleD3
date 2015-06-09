@@ -22,9 +22,9 @@ import retrofit.client.OkClient;
  */
 public final class D3ArmoryReader {
     private static RestAdapter restAdapter;
-    private static OkHttpClient okHttpClient = new OkHttpClient();
+    private static final OkHttpClient okHttpClient = new OkHttpClient();
     private static final D3ArmoryReader sInstance = new D3ArmoryReader();
-    private boolean sIsInit = false;
+    private static boolean sIsInit = false;
     private static final String END_POINT = "https://us.api.battle.net";
     private static final String ARMORY_ADRESS = "http://us.battle.net/d3/en/item/";
     private static final byte HTTP_TIMEOUT = 6;
@@ -40,10 +40,10 @@ public final class D3ArmoryReader {
     }
 
     public static void initialize() {
-        if (sInstance.sIsInit)
+        if (sIsInit)
             return;
 
-        sInstance.sIsInit = true;
+        sIsInit = true;
     }
 
     //public static void set

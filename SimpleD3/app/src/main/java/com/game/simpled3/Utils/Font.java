@@ -24,7 +24,7 @@ public final class Font {
 
     }
 
-    public void init(Context context) {
+    private void init(Context context) {
 
         DIABLO_H = Typeface.createFromAsset(context.getAssets(),
                 "fonts/diablo_h.ttf");

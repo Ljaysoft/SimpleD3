@@ -10,7 +10,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="2dp">
 
-        <com.game.simpled3.UI.ItemButton
+        <com.game.simpled3.UI.widgets.ItemButton
             android:id="@+id/rewardItemIconView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

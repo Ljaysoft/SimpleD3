@@ -3,7 +3,7 @@ package com.game.simpled3.engine;
 /**
  * Created by JFCaron on 2015-04-27.
  */
-public class Dungeon {
+class Dungeon {
     private int mDungeonLvl = 1;
     private int mNbMonsters = 100;
     private int mNbMonstersKilled = 0;
@@ -51,10 +51,10 @@ public class Dungeon {
     /*
     @return number of monsters killed
      */
-    public int playerAttacked(Player player) {
-        double pDPS = player.getDPS();
+    public int playerAttacked() {
+        double pDPS = Player.getDPS();
         //TODO player gets attacked back
-        double pDEF = player.getDEF();
+        double pDEF = Player.getDEF();
         int newMonstersKilled = (int) (pDPS / mMonsterHP);
 
         if ((mNbMonsters - mNbMonstersKilled) > newMonstersKilled) {

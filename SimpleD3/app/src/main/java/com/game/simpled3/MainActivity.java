@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.game.simpled3.UI.DeathPage;
-import com.game.simpled3.UI.EquipmentPage;
-import com.game.simpled3.UI.ItemButton;
-import com.game.simpled3.UI.ItemTooltip;
-import com.game.simpled3.UI.LoadingScreen;
-import com.game.simpled3.UI.MainPage;
-import com.game.simpled3.UI.RewardPage;
+import com.game.simpled3.UI.windows.DeathPage;
+import com.game.simpled3.UI.windows.EquipmentPage;
+import com.game.simpled3.UI.widgets.ItemButton;
+import com.game.simpled3.UI.windows.ItemTooltip;
+import com.game.simpled3.UI.windows.LoadingScreen;
+import com.game.simpled3.UI.windows.MainPage;
+import com.game.simpled3.UI.windows.RewardPage;
 import com.game.simpled3.engine.Game;
 import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.ItemFactory;
@@ -27,15 +27,11 @@ public final class MainActivity extends AppCompatActivity
         LoadingScreen.OnLoadingScreenInteractionListener,
         Game.GameListener {
 
-    final Game game = Game.getInstance();
-    final Player player = Player.getInstance();
-    final ItemFactory itemFactory = ItemFactory.getInstance();
-    DialogFragment gearPage = null;
-    ItemTooltip itemView = null;
-    LoadingScreen loadingScreen = null;
-    DeathPage deathPage = null;
-    RewardPage rewardPage = null;
-    MainPage mainPage = null;
+    private DialogFragment gearPage = null;
+    private ItemTooltip itemView = null;
+    private LoadingScreen loadingScreen = null;
+    private DeathPage deathPage = null;
+    private RewardPage rewardPage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +42,7 @@ public final class MainActivity extends AppCompatActivity
         }
     }
 
-    void initializeGame() {
+    private void initializeGame() {
         Resources res = getResources();
         Game.initialize(res, this);
         Player.initialize(res);
@@ -57,8 +53,6 @@ public final class MainActivity extends AppCompatActivity
         itemView = new ItemTooltip(context);
         deathPage = new DeathPage();
         rewardPage = new RewardPage();
-
-        mainPage = (MainPage) getFragmentManager().findFragmentById(R.id.mainPage);
     }
 
     private void showEquipmentPage() {
@@ -82,10 +76,10 @@ public final class MainActivity extends AppCompatActivity
                 showEquipmentPage();
                 break;
             case R.id.startDungeonButton:
-                game.nextDungeon();
+                Game.nextDungeon();
                 break;
             case R.id.killButton:
-                if (player.isDead()) {
+                if (Player.isDead()) {
                     deathPage.show(getFragmentManager(), "death_page");
                 }
                 break;
@@ -111,7 +105,7 @@ public final class MainActivity extends AppCompatActivity
     public void onDeathPageInteraction(View view) {
         switch (view.getId()) {
             case R.id.okDeathButton:
-                player.revive();
+                Player.revive();
                 deathPage.dismiss();
         }
     }

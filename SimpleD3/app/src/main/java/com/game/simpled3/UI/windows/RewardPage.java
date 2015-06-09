@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.windows;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -9,12 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ToggleButton;
 
 import com.game.simpled3.R;
+import com.game.simpled3.UI.widgets.ItemButton;
 import com.game.simpled3.engine.Player;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.Loot;
@@ -86,7 +85,7 @@ public class RewardPage extends DialogFragment {
     }
 
     private void onOkButtonClicked() {
-        giveLoot(Player.getInstance());
+        giveLoot();
         mListener.onRewardPageClosed();
         dismiss();
     }
@@ -135,11 +134,9 @@ public class RewardPage extends DialogFragment {
         mLoot = loot;
     }
 
-    public void giveLoot(Player player) {
-        if (player == null)
-            return;
-        player.giveShards(mLoot.getShards());
-        player.giveGold(mLoot.getGold());
+    private void giveLoot() {
+        Player.giveShards(mLoot.getShards());
+        Player.giveGold(mLoot.getGold());
         ArrayList<Item> items = mLoot.getItems();
         if (items == null || items.isEmpty())
             return;
@@ -147,7 +144,7 @@ public class RewardPage extends DialogFragment {
             LinearLayout itemLayout = (LinearLayout) mLootViewLayout.getChildAt(index);
             final ImageView destroyXImage = (ImageView) itemLayout.findViewById(R.id.destroyXView);
             if (destroyXImage.getVisibility() == View.GONE) {
-                player.giveItem(items.get(index));
+                Player.giveItem(items.get(index));
             }
         }
     }

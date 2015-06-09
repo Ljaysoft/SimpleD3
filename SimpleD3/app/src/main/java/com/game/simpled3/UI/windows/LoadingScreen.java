@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.windows;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -27,13 +27,13 @@ import butterknife.InjectView;
 public class LoadingScreen extends DialogFragment {
     private OnLoadingScreenInteractionListener mListener;
     private static final int UPDATE_TIME_MS = 200;
-    private Timer mTimer = new Timer();
+    private final Timer mTimer = new Timer();
 
     @InjectView(R.id.loadingProgressBar)
     ProgressBar mProgressBar;
     @InjectView(R.id.okSkipLoadButton)
     ImageButton mSkipButton;
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
 
     public LoadingScreen() {
 

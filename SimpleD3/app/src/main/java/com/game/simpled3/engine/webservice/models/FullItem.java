@@ -191,7 +191,7 @@ public class FullItem implements Serializable{
 
     public Item getItem(){
         Item item = null;
-        if (slots.size() > 1 && slots.get(1) == "right-hand")
+        if (slots.size() > 1 && slots.get(1).equals("right-hand"))
             item = new Weapon(itemLevel, true);
         else {
             switch (slots.get(0)) {
@@ -250,7 +250,7 @@ public class FullItem implements Serializable{
     }
 
     private int getColorCode(String colorStr) {
-        int color = -1;
+        int color;
         switch (colorStr) {
             case "blue":
                 color = ITEM_COLOR_BLUE;

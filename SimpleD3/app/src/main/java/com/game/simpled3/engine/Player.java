@@ -11,9 +11,9 @@ import java.util.ArrayList;
 /**
  * Created by JFCaron on 2015-04-27.
  */
-public final class Player {
+public class Player {
     private static final Player sInstance = new Player();
-    private boolean sIsInit = false;
+    private static boolean sIsInit = false;
 
     private int mLevel = 0;
     private double mXpToLevel = 0;
@@ -30,132 +30,131 @@ public final class Player {
     private Player() {
     }
 
-    public static Player getInstance() {
-        return sInstance;
-    }
+    //public static Player getInstance() {
+    //    return sInstance;
+    //}
 
     public static void initialize(Resources res) {
-        if (sInstance.sIsInit)
+        if (sIsInit)
             return;
         int numberOfItemSlots = res.getInteger(R.integer.number_of_item_slots);
         sInstance.mItems = new ArrayList<>(numberOfItemSlots);
         for (int slot = 0; slot < numberOfItemSlots; slot++) {
             sInstance.mItems.add(slot, Item.getDummy());
         }
-        sInstance.sIsInit = true;
+        sIsInit = true;
     }
 
-    public double getDEF() {
-        return mDEF;
+    public static double getDEF() {
+        return sInstance.mDEF;
     }
 
-    public double getDPS() {
-        return mDPS;
+    public static double getDPS() {
+        return sInstance.mDPS;
     }
 
-    public double getGold() {
-        return mGold;
+    public static double getGold() {
+        return sInstance.mGold;
     }
 
-    public int getLevel() {
-        return mLevel;
+    public static int getLevel() {
+        return sInstance.mLevel;
     }
 
-    public double getShards() {
-        return mShards;
+    public static double getShards() {
+        return sInstance.mShards;
     }
 
-    public double getXpToLevel() {
-        return mXpToLevel;
+    public static double getXpToLevel() {
+        return sInstance.mXpToLevel;
     }
 
-    public ArrayList<Item> getItems() {
-        return mItems;
+    public static ArrayList<Item> getItems() {
+        return sInstance.mItems;
     }
 
-    public boolean isDead() {
-        return isDead;
+    public static boolean isDead() {
+        return sInstance.isDead;
     }
 
-    public boolean isGearBroke() {
-        return isGearBroke;
+    public static boolean isGearBroke() {
+        return sInstance.isGearBroke;
     }
 
-    public void giveGold(double goldGiven) {
-        mGold += goldGiven;
+    public static void giveGold(double goldGiven) {
+        sInstance.mGold += goldGiven;
     }
 
-    public void giveShards(double shardsGiven) {
-        mShards += shardsGiven;
+    public static void giveShards(double shardsGiven) {
+        sInstance.mShards += shardsGiven;
     }
 
-    public void giveXP(float xpToGive, float[] xpToLvlArr) {
+    public static void giveXP(float xpToGive, float[] xpToLvlArr) {
         double xpLeftToGive = xpToGive;
         boolean isDoneGivingXp = false;
         while (!isDoneGivingXp) {
-            if (xpLeftToGive <= mXpToLevel) {
-                mXpToLevel -= xpLeftToGive;
+            if (xpLeftToGive <= sInstance.mXpToLevel) {
+                sInstance.mXpToLevel -= xpLeftToGive;
                 isDoneGivingXp = true;
             } else {
-                xpLeftToGive -= mXpToLevel;
-                mLevel++;
-                mXpToLevel = xpToLvlArr[mLevel];
+                xpLeftToGive -= sInstance.mXpToLevel;
+                sInstance.mLevel++;
+                sInstance.mXpToLevel = xpToLvlArr[sInstance.mLevel];
             }
         }
     }
 
-    public void giveItem(Item item) {
+    public static void giveItem(Item item) {
         //TODO Player receives items
         @GameEnums.ItemSlot int iSlot = item.getSlot();
         if (iSlot != GameEnums.ITEM_SLOT_DUMMY) {
-            mItems.set(iSlot, item);
+            sInstance.mItems.set(iSlot, item);
         }
     }
 
-    public boolean takeGold(double gold) {
-        if (mGold < gold)
+    public static boolean takeGold(double gold) {
+        if (sInstance.mGold < gold)
             return false;
         else {
-            mGold -= gold;
+            sInstance.mGold -= gold;
             return true;
         }
     }
 
-    public boolean takeShards(double shards) {
-        if (mShards < shards)
+    public static boolean takeShards(double shards) {
+        if (sInstance.mShards < shards)
             return false;
         else {
-            mShards -= shards;
+            sInstance.mShards -= shards;
             return true;
         }
     }
 
-    public boolean updateDPSandDEF() {
+    public static void updateDPSandDEF() {
         double DPS = 1.0;
         double DEF = 1.0;
-        for (Item item : mItems) {
+        for (Item item : sInstance.mItems) {
             DPS += item.getDPS();
             DEF += item.getDEF();
         }
-        mDPS = DPS;
-        mDEF = DEF;
-        return mDPS != DPS || DEF != mDEF;
+        sInstance.mDPS = DPS;
+        sInstance.mDEF = DEF;
     }
 
-    public void loseDurability(double durabilityLoss) {
-        if (!isGearBroke)
-            durability-=MAX_DURABILITY*durabilityLoss;
-        if (durability <= 0)
-            isGearBroke = true;
+    private static void loseDurability(double durabilityLoss) {
+        if (!sInstance.isGearBroke)
+            sInstance.durability-=MAX_DURABILITY*durabilityLoss;
+        if (sInstance.durability <= 0)
+            sInstance.isGearBroke = true;
     }
 
-    public void kill() {
-        isDead = true;
+    public static void kill() {
+        sInstance.isDead = true;
         loseDurability(0.1);
     }
 
-    public void revive() {
-        isDead = false;
+    public static void revive() {
+        sInstance.isDead = false;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.widgets;
 
 import android.annotation.TargetApi;
 import android.content.Context;

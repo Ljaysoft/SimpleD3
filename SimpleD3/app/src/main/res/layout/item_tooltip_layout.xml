@@ -9,10 +9,10 @@
     android:clickable="false"
     android:orientation="vertical"
     android:padding="2dp"
-    tools:context="com.game.simpled3.UI.ItemTooltip">
+    tools:context="com.game.simpled3.UI.windows.ItemTooltip">
 
 
-    <com.game.simpled3.utils.AutoResizeTextView
+    <com.game.simpled3.UI.widgets.AutoResizeTextView
         android:id="@+id/itemNameTextView"
         android:layout_width="236dp"
         android:layout_height="40dp"

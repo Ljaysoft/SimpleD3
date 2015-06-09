@@ -55,7 +55,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     private static final String TAG = ItemFactory.class.getSimpleName();
     private static final ItemFactory sInstance = new ItemFactory();
     private static boolean sIsInit = false;
-    private ItemFactoryCallback mListener = Game.getInstance();
+    private final ItemFactoryCallback mListener = Game.getInstance();
 
     private ArrayList<Item> mNewItems;
     private int mNbNewItemsToBuild = 0;
@@ -146,7 +146,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         String name = "";
         if (sInstance.mGearNamesForType == null || sInstance.mGearNamesForType.isEmpty())
             return name;
-        synchronized (sInstance.mGearNamesForType) {
+        synchronized (sInstance) {
             while (!nameFound) {
                 ArrayList<String> nameList = sInstance.mGearNamesForType.get(
                         StdRandom.uniform(sInstance.mGearNamesForType.size()))
@@ -198,7 +198,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     }
 
     private static ArrayList<Item> getNewItems() {
-        synchronized (sInstance.mNewItems) {
+        synchronized (sInstance) {
             ArrayList<Item> returnArray = (ArrayList<Item>) sInstance.mNewItems.clone();
             sInstance.mNewItems.clear();
             sInstance.mNbNewItemsToBuild = 0;
@@ -207,10 +207,10 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     }
 
     private static void addNewItem(Item item) {
-        synchronized (sInstance.mNewItems) {
+        synchronized (sInstance) {
             sInstance.mNewItems.add(item);
         }
-        if (sInstance.areItemsBuilt()) {
+        if (areItemsBuilt()) {
             sInstance.mListener.onItemCreationDone(getNewItems());
         }
     }
@@ -274,10 +274,9 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     // TODO build full name
     private static String buildFullItemName(Item item) {
         String prefix = "";
-        String name = "";
         String suffix = "";
 
-        return prefix + " " + name + " " + suffix;
+        return prefix + " " + item.getName() + " " + suffix;
     }
 
     private static double buildItemDPS(Item item) {
@@ -337,7 +336,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
 
     @Override
     public void onFetchNamesForSlotsDone(ArrayList<ItemTypeNameList> slotNames) {
-        synchronized (sInstance.mGearNamesForType) {
+        synchronized (sInstance) {
             sInstance.mGearNamesForType.addAll(slotNames);
         }
     }

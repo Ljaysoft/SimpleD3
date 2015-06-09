@@ -32,7 +32,7 @@
     <Button
         style="@style/framed_button_style"
         android:id="@+id/okRewardButton"
-        android:text="OK"
+        android:text="Confirm"
         android:textSize="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

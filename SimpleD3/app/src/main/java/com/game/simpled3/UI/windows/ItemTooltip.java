@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.windows;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -17,9 +17,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.game.simpled3.R;
+import com.game.simpled3.UI.widgets.AutoResizeTextView;
+import com.game.simpled3.UI.widgets.ItemButton;
+import com.game.simpled3.UI.widgets.StatTextView;
 import com.game.simpled3.engine.gear.Item;
 import com.game.simpled3.engine.gear.Stat;
-import com.game.simpled3.utils.AutoResizeTextView;
 import com.game.simpled3.utils.FontHelper;
 import com.game.simpled3.utils.StringManipulation;
 import com.squareup.picasso.Picasso;
@@ -84,7 +86,7 @@ public class ItemTooltip extends PopupWindow {
     private Bitmap mTooltipBorders;
     private int tooltipTitleHeight;
 
-    private String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
+    private static final String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
 
     public ItemTooltip(Context ctx) {
         super(ctx);
@@ -132,9 +134,10 @@ public class ItemTooltip extends PopupWindow {
         showAtLocation(view.getRootView(), Gravity.START, 0, 0);
     }
 
+    @SuppressWarnings("deprecation")
     private void updateItemValues() {
         String name = mCurrentItem.getName();
-        if (name == "no_name") {
+        if (name.equals("no_name")) {
             mItemName.setVisibility(View.GONE);
         } else {
             mItemName.setVisibility(View.VISIBLE);

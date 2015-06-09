@@ -2,7 +2,6 @@ package com.game.simpled3.engine.gear.slots;
 
 import com.game.simpled3.engine.gear.Item;
 
-import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_LEFT_WEAPON;
 import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_RIGHT_WEAPON;
 
 /**
@@ -11,16 +10,15 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_RIGHT_WEAPON;
 public class Shield extends Item {
 
     /**
-     *
      * @param lvl item level
      */
     public Shield(int lvl) {
         super(lvl);
-            mSlot = ITEM_SLOT_RIGHT_WEAPON;
+        mSlot = ITEM_SLOT_RIGHT_WEAPON;
     }
 
     @Override
     public void setStats(double dps, double def) {
-        super.setStats(0,def);
+        super.setStats(0, def);
     }
 }

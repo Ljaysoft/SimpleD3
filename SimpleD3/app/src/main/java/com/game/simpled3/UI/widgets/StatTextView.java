@@ -1,4 +1,4 @@
-package com.game.simpled3.UI;
+package com.game.simpled3.UI.widgets;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -35,7 +35,7 @@ public class StatTextView extends TextView {
     }
 
     public void setStat(Stat stat, int slotID) {
-        Item playerItem = Player.getInstance().getItems().get(slotID);
+        Item playerItem = Player.getItems().get(slotID);
         double pStat = 0.0;
         switch (stat.text) {
             case "dps":
