@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by JFCaron on 2015-04-27.
  */
 public final class Game implements ItemFactoryCallback {
-    private static final Game sInstance = new Game();
+    private static final Game S_INSTANCE = new Game();
     private GameListener mListener;
     private static boolean sIsInit = false;
 
@@ -49,7 +49,7 @@ public final class Game implements ItemFactoryCallback {
     }
 
     public static Game getInstance() {
-        return sInstance;
+        return S_INSTANCE;
     }
 
     //Acquisition des données des arrays
@@ -57,48 +57,48 @@ public final class Game implements ItemFactoryCallback {
         if (sIsInit)
             return;
 
-        sInstance.mRes = res;
-        sInstance.mListener = activity;
+        S_INSTANCE.mRes = res;
+        S_INSTANCE.mListener = activity;
 
         //Init ints
-        sInstance.mNbMonsterPerDungeon = sInstance.mRes.getInteger(R.integer.base_number_monsters_per_dungeon);
-        sInstance.mBaseDungeonBonusGold = sInstance.mRes.getInteger(R.integer.base_bonus_gold_per_dungeon);
-        sInstance.mMaxPlayerLevel = sInstance.mRes.getInteger(R.integer.number_of_player_levels);
-        sInstance.mMaxDungeonLevel = sInstance.mRes.getInteger(R.integer.number_of_dungeon_levels);
-        sInstance.mBaseMonsterXP = sInstance.mRes.getInteger(R.integer.base_monster_xp);
-        sInstance.mBaseMonsterHP = sInstance.mRes.getInteger(R.integer.base_monster_HP);
-        sInstance.mBaseGoldPerMonster = sInstance.mRes.getInteger(R.integer.base_gold_per_monster);
+        S_INSTANCE.mNbMonsterPerDungeon = S_INSTANCE.mRes.getInteger(R.integer.base_number_monsters_per_dungeon);
+        S_INSTANCE.mBaseDungeonBonusGold = S_INSTANCE.mRes.getInteger(R.integer.base_bonus_gold_per_dungeon);
+        S_INSTANCE.mMaxPlayerLevel = S_INSTANCE.mRes.getInteger(R.integer.number_of_player_levels);
+        S_INSTANCE.mMaxDungeonLevel = S_INSTANCE.mRes.getInteger(R.integer.number_of_dungeon_levels);
+        S_INSTANCE.mBaseMonsterXP = S_INSTANCE.mRes.getInteger(R.integer.base_monster_xp);
+        S_INSTANCE.mBaseMonsterHP = S_INSTANCE.mRes.getInteger(R.integer.base_monster_HP);
+        S_INSTANCE.mBaseGoldPerMonster = S_INSTANCE.mRes.getInteger(R.integer.base_gold_per_monster);
 
         //Init Arrays
 
         // xp/gold given per lvl
         int lvl = 0;
-        TypedArray resourceTypedArr = sInstance.mRes.obtainTypedArray(R.array.float_array_xp_to_lvl);
-        sInstance.mXpToLvl = new float[sInstance.mMaxPlayerLevel];
-        while (lvl < sInstance.mMaxPlayerLevel) {
-            sInstance.mXpToLvl[lvl] = resourceTypedArr.getFloat(lvl, 0);
+        TypedArray resourceTypedArr = S_INSTANCE.mRes.obtainTypedArray(R.array.float_array_xp_to_lvl);
+        S_INSTANCE.mXpToLvl = new float[S_INSTANCE.mMaxPlayerLevel];
+        while (lvl < S_INSTANCE.mMaxPlayerLevel) {
+            S_INSTANCE.mXpToLvl[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
         resourceTypedArr.recycle();
 
         lvl = 0;
-        resourceTypedArr = sInstance.mRes.obtainTypedArray(R.array.float_array_gold_coef_per_lvl);
-        sInstance.mGoldCoefPerLvl = new float[sInstance.mMaxDungeonLevel];
-        while (lvl < sInstance.mMaxDungeonLevel) {
-            sInstance.mGoldCoefPerLvl[lvl] = resourceTypedArr.getFloat(lvl, 0);
+        resourceTypedArr = S_INSTANCE.mRes.obtainTypedArray(R.array.float_array_gold_coef_per_lvl);
+        S_INSTANCE.mGoldCoefPerLvl = new float[S_INSTANCE.mMaxDungeonLevel];
+        while (lvl < S_INSTANCE.mMaxDungeonLevel) {
+            S_INSTANCE.mGoldCoefPerLvl[lvl] = resourceTypedArr.getFloat(lvl, 0);
             lvl++;
         }
         resourceTypedArr.recycle();
 
-        sInstance.mShardForDungeonLvl = sInstance.mRes.getIntArray(R.array.int_array_shard_for_dungeon_lvl);
-        sInstance.mXpForDungeonLvl = sInstance.mRes.getIntArray(R.array.int_array_xp_for_dungeon_lvl);
+        S_INSTANCE.mShardForDungeonLvl = S_INSTANCE.mRes.getIntArray(R.array.int_array_shard_for_dungeon_lvl);
+        S_INSTANCE.mXpForDungeonLvl = S_INSTANCE.mRes.getIntArray(R.array.int_array_xp_for_dungeon_lvl);
 
-        sInstance.mBaseNumberOfItemPerDungeon = sInstance.mRes.getInteger(R.integer.base_number_of_item_per_dungeon);
+        S_INSTANCE.mBaseNumberOfItemPerDungeon = S_INSTANCE.mRes.getInteger(R.integer.base_number_of_item_per_dungeon);
         //Create Dungeons
         lvl = 0;
-        while (lvl < sInstance.mMaxDungeonLevel) {
-            sInstance.mDungeons.add(new Dungeon(lvl, sInstance.mNbMonsterPerDungeon, lvl * sInstance.mBaseMonsterHP,
-                    sInstance.mShardForDungeonLvl[lvl]));
+        while (lvl < S_INSTANCE.mMaxDungeonLevel) {
+            S_INSTANCE.mDungeons.add(new Dungeon(lvl, S_INSTANCE.mNbMonsterPerDungeon, lvl * S_INSTANCE.mBaseMonsterHP,
+                    S_INSTANCE.mShardForDungeonLvl[lvl]));
             lvl++;
         }
 
@@ -106,9 +106,9 @@ public final class Game implements ItemFactoryCallback {
     }
 
     public static byte updateDungeonProgress() {
-        if (sInstance.mCurrentDungeonLvl == -1)
+        if (S_INSTANCE.mCurrentDungeonLvl == -1)
             return 0;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress();
+        return S_INSTANCE.mDungeons.get(S_INSTANCE.mCurrentDungeonLvl).getProgress();
     }
 
     /**
@@ -117,12 +117,12 @@ public final class Game implements ItemFactoryCallback {
      * @return getLoot
      */
     public static Loot playerAttacks() {
-        if (StdRandom.bernoulli(sInstance.mChanceToDie)) {
+        if (StdRandom.bernoulli(S_INSTANCE.mChanceToDie)) {
             Player.kill();
             return null;
         }
 
-        if (sInstance.mCurrentDungeonLvl == -1)
+        if (S_INSTANCE.mCurrentDungeonLvl == -1)
             return null;
 
         // do stuff if broken
@@ -130,45 +130,45 @@ public final class Game implements ItemFactoryCallback {
         //}
 
 
-        Dungeon currentDungeon = sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl);
+        Dungeon currentDungeon = S_INSTANCE.mDungeons.get(S_INSTANCE.mCurrentDungeonLvl);
         int monstersKilled = currentDungeon.playerAttacked();
 
         if (!currentDungeon.isDone()) {
-            Player.giveGold(monstersKilled * sInstance.mBaseGoldPerMonster * sInstance.mGoldCoefPerLvl[sInstance.mCurrentDungeonLvl]);
-            Player.giveXP(monstersKilled * sInstance.mBaseMonsterXP, sInstance.mXpToLvl);
+            Player.giveGold(monstersKilled * S_INSTANCE.mBaseGoldPerMonster * S_INSTANCE.mGoldCoefPerLvl[S_INSTANCE.mCurrentDungeonLvl]);
+            Player.giveXP(monstersKilled * S_INSTANCE.mBaseMonsterXP, S_INSTANCE.mXpToLvl);
             return null;
         } else {
-            Player.giveXP(sInstance.mXpForDungeonLvl[sInstance.mCurrentDungeonLvl], sInstance.mXpToLvl);
-            return sInstance.mCurrentLoot;
+            Player.giveXP(S_INSTANCE.mXpForDungeonLvl[S_INSTANCE.mCurrentDungeonLvl], S_INSTANCE.mXpToLvl);
+            return S_INSTANCE.mCurrentLoot;
         }
     }
 
     public static int getDungeonLevelForDisplay() {
-        return sInstance.mCurrentDungeonLvl + 1;
+        return S_INSTANCE.mCurrentDungeonLvl + 1;
     }
 
     public static boolean isDungeonInProgress() {
-        if (sInstance.mCurrentDungeonLvl == -1)
+        if (S_INSTANCE.mCurrentDungeonLvl == -1)
             return false;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress() < 100;
+        return S_INSTANCE.mDungeons.get(S_INSTANCE.mCurrentDungeonLvl).getProgress() < 100;
     }
 
     public static boolean isDungeonDone() {
-        if (sInstance.mCurrentDungeonLvl == -1)
+        if (S_INSTANCE.mCurrentDungeonLvl == -1)
             return false;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress() >= 100;
+        return S_INSTANCE.mDungeons.get(S_INSTANCE.mCurrentDungeonLvl).getProgress() >= 100;
     }
 
     public static boolean isDungeonStarted() {
-        if (sInstance.mCurrentDungeonLvl == -1)
+        if (S_INSTANCE.mCurrentDungeonLvl == -1)
             return false;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress() >= 0 && !isDungeonDone();
+        return S_INSTANCE.mDungeons.get(S_INSTANCE.mCurrentDungeonLvl).getProgress() >= 0 && !isDungeonDone();
     }
 
     public static void nextDungeon() {
-        sInstance.mCurrentDungeonLvl++;
-        sInstance.mCurrentLoot = null;
-        ItemFactory.buildDungeonItems(sInstance.mBaseNumberOfItemPerDungeon);
+        S_INSTANCE.mCurrentDungeonLvl++;
+        S_INSTANCE.mCurrentLoot = null;
+        ItemFactory.buildDungeonItems(S_INSTANCE.mBaseNumberOfItemPerDungeon);
     }
 
     @Override

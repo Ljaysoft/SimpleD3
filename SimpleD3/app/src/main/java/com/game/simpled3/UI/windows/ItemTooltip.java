@@ -59,29 +59,29 @@ public class ItemTooltip extends PopupWindow {
     private Context mContext = null;
     private Item mCurrentItem = Item.createItem(1);
     @InjectView(R.id.itemNameTextView)
-    AutoResizeTextView mItemName;
+    private AutoResizeTextView mItemName;
     @InjectView(R.id.slotTextView)
-    TextView mSlot;
+    private TextView mSlot;
     @InjectView(R.id.itemILvlTextView)
-    TextView miLvl;
+    private TextView miLvl;
     @InjectView(R.id.colorTextView)
-    TextView mColor;
+    private TextView mColor;
     @InjectView(R.id.itemDpsTextView)
-    TextView mDPS;
+    private TextView mDPS;
     @InjectView(R.id.itemDefTextView)
-    TextView mDEF;
+    private TextView mDEF;
     @InjectView(R.id.dmgPerSecTextView)
-    TextView mDPSText;
+    private TextView mDPSText;
     @InjectView(R.id.defTextView)
-    TextView mDEFText;
+    private TextView mDEFText;
     @InjectView(R.id.flavorText)
-    TextView mFlavor;
+    private TextView mFlavor;
     @InjectView(R.id.itemIconView)
-    ImageView mImageIcon;
+    private ImageView mImageIcon;
     @InjectView(R.id.compareTooltipLayout)
-    LinearLayout mCompareTooltip;
+    private LinearLayout mCompareTooltip;
     @InjectView(R.id.compareStats)
-    LinearLayout mCompareStats;
+    private LinearLayout mCompareStats;
 
     private Bitmap mTooltipBorders;
     private int tooltipTitleHeight;

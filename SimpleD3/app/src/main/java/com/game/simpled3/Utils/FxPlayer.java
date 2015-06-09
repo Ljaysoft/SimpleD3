@@ -7,7 +7,7 @@ import android.media.MediaPlayer;
  * Created by JFCaron on 2015-06-08.
  */
 public class FxPlayer {
-    private static final FxPlayer sInstance = new FxPlayer();
+    private static final FxPlayer S_INSTANCE = new FxPlayer();
     private static boolean isInit = false;
     private Context mContext;
     private MediaPlayer mMediaPlayer = null;
@@ -17,7 +17,7 @@ public class FxPlayer {
 
     public static void init(Context context) {
         if (!isInit) {
-            sInstance.mContext = context;
+            S_INSTANCE.mContext = context;
             isInit = true;
         }
     }
@@ -26,12 +26,12 @@ public class FxPlayer {
         if (!isInit)
             return;
 
-        if (sInstance.mMediaPlayer != null) {
-            sInstance.mMediaPlayer.reset();
-            sInstance.mMediaPlayer.release();
+        if (S_INSTANCE.mMediaPlayer != null) {
+            S_INSTANCE.mMediaPlayer.reset();
+            S_INSTANCE.mMediaPlayer.release();
         }
 
-        sInstance.mMediaPlayer = MediaPlayer.create(sInstance.mContext, ResId);
-        sInstance.mMediaPlayer.start();
+        S_INSTANCE.mMediaPlayer = MediaPlayer.create(S_INSTANCE.mContext, ResId);
+        S_INSTANCE.mMediaPlayer.start();
     }
 }

@@ -22,21 +22,21 @@ import retrofit.client.OkClient;
  */
 public final class D3ArmoryReader {
     private static RestAdapter restAdapter;
-    private static final OkHttpClient okHttpClient = new OkHttpClient();
-    private static final D3ArmoryReader sInstance = new D3ArmoryReader();
+    private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
+    private static final D3ArmoryReader S_INSTANCE = new D3ArmoryReader();
     private static boolean sIsInit = false;
     private static final String END_POINT = "https://us.api.battle.net";
     private static final String ARMORY_ADRESS = "http://us.battle.net/d3/en/item/";
     private static final byte HTTP_TIMEOUT = 6;
 
     private D3ArmoryReader() {
-        okHttpClient.setConnectTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS);
-        okHttpClient.setWriteTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS);
-        okHttpClient.setReadTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS);
+        OK_HTTP_CLIENT.setConnectTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS);
+        OK_HTTP_CLIENT.setWriteTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS);
+        OK_HTTP_CLIENT.setReadTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS);
     }
 
     public static D3ArmoryReader getInstance() {
-        return sInstance;
+        return S_INSTANCE;
     }
 
     public static void initialize() {
@@ -58,7 +58,7 @@ public final class D3ArmoryReader {
         restAdapter = new RestAdapter.Builder()
                 .setEndpoint(END_POINT)
                 .setRequestInterceptor(new RequestInterceptor())
-                .setClient(new OkClient(okHttpClient))
+                .setClient(new OkClient(OK_HTTP_CLIENT))
                 .build();
 
         return restAdapter;
