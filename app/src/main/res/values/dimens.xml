@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="item_view_height">240dp</dimen>
+    <dimen name="item_view_width">236dp</dimen>
+    <dimen name="item_view_title_height">40px</dimen>
+    <dimen name="item_big_icon_height">128dp</dimen>
+    <dimen name="item_icon_width">64dp</dimen>
+    <dimen name="loading_progress_bar_width">200dp</dimen>
+    <dimen name="loading_progress_bar_height">20dp</dimen>
+</resources>

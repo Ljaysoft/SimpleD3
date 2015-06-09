@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="2dp">
+
+        <com.game.simpled3.UI.widgets.ItemButton
+            android:id="@+id/rewardItemIconView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/destroyXView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/destroy_x"
+            android:visibility="gone"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_centerInParent="true"
+            android:maxHeight="@dimen/item_icon_width"
+            android:maxWidth="@dimen/item_icon_width" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loupeImage"
+            android:src="@drawable/loupe"
+            android:clickable="false"
+            android:focusable="false"
+            android:maxHeight="32dp"
+            android:maxWidth="32dp"
+            android:layout_alignRight="@+id/rewardItemIconView"
+            android:layout_alignTop="@+id/rewardItemIconView"
+            android:layout_alignEnd="@+id/rewardItemIconView"
+            android:padding="4dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

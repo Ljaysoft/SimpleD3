@@ -1,0 +1,154 @@
+<RelativeLayout
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ff000000"
+    android:padding="2dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/charImageView"
+        android:maxHeight="426dp"
+        android:maxWidth="304dp"
+        android:minHeight="426dp"
+        android:minWidth="304dp"
+        android:src="@drawable/character_front"
+        android:layout_centerInParent="true" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_height="98dp"
+        android:layout_width="72dp"
+        android:id="@+id/shoulderButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_alignStart="@+id/charImageView"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="27dp"
+        android:alpha="0.65"/>
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:id="@+id/helmButton"
+        android:layout_marginTop="3dp"
+        android:layout_height="76dp"
+        android:layout_width="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="62dp"
+        android:layout_height="66dp"
+        android:id="@+id/neckButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_alignEnd="@+id/charImageView"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="47dp"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="88dp"
+        android:layout_height="125dp"
+        android:id="@+id/chestButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="72dp"
+        android:layout_height="98dp"
+        android:id="@+id/glovesButton"
+        android:layout_marginTop="126dp"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_alignStart="@+id/charImageView"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="11dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="72dp"
+        android:layout_height="98dp"
+        android:id="@+id/bracerButton"
+        android:layout_marginTop="126dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_marginRight="8dp"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="88dp"
+        android:layout_height="44dp"
+        android:id="@+id/beltButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="192dp"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="48dp"
+        android:layout_height="52dp"
+        android:id="@+id/leftRingButton"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="226dp"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="48dp"
+        android:layout_height="52dp"
+        android:id="@+id/rightRingButton"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_marginRight="20dp"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="226dp"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="72dp"
+        android:layout_height="98dp"
+        android:id="@+id/pantsButton"
+        android:minHeight="98dp"
+        android:minWidth="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="230dp"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="72dp"
+        android:layout_height="98dp"
+        android:id="@+id/bootButton"
+        android:layout_marginTop="322dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/charImageView"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="72dp"
+        android:layout_height="140dp"
+        android:id="@+id/leftWeaponButton"
+        android:layout_alignLeft="@+id/charImageView"
+        android:layout_alignStart="@+id/glovesButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_marginTop="281dp"
+        android:layout_marginLeft="8dp"
+        android:alpha="0.65" />
+
+    <com.game.simpled3.UI.widgets.ItemButton
+        android:layout_width="72dp"
+        android:layout_height="140dp"
+        android:id="@+id/rightWeaponButton"
+        android:layout_alignEnd="@+id/bracerButton"
+        android:layout_alignTop="@+id/charImageView"
+        android:layout_alignRight="@+id/charImageView"
+        android:layout_marginTop="281dp"
+        android:layout_marginRight="8dp"
+        android:alpha="0.65" />
+
+</RelativeLayout>

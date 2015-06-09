@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/reward_page_border"
+    android:backgroundTint="#ff000000"
+    android:backgroundTintMode="add"
+    android:padding="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You found these!"
+        android:gravity="center"
+        android:id="@+id/rewardTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/lootViewLayout"
+        android:layout_below="@+id/rewardTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/okRewardButton"
+        android:padding="5dp"
+        android:layout_gravity="center_horizontal">
+    </LinearLayout>
+
+    <Button
+        style="@style/framed_button_style"
+        android:id="@+id/okRewardButton"
+        android:text="Confirm"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
