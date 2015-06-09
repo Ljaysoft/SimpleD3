@@ -20,20 +20,13 @@ import java.util.TimerTask;
  * Created by JFCaron on 2015-04-27.
  */
 public final class Game implements ItemFactoryCallback {
-<<<<<<< HEAD
-    private static final Game sInstance = new Game();
-    private GameListener mListener;
-    private static boolean sIsInit = false;
-
     private static final int UPDATE_TIME_MS = 200;
     private final Timer mTimer = new Timer();
     private final Handler mHandler = new Handler();
     private static boolean isGameRunning = false;
-=======
     private static final Game S_INSTANCE = new Game();
     private GameListener mListener;
     private static boolean sIsInit = false;
->>>>>>> origin/Alpha_0_1
 
     private Resources mRes;
     private float[] mXpToLvl = null;
@@ -117,7 +110,6 @@ public final class Game implements ItemFactoryCallback {
         }
 
         sIsInit = true;
-<<<<<<< HEAD
     }
 
     public static void startGame() {
@@ -125,7 +117,7 @@ public final class Game implements ItemFactoryCallback {
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
-                    sInstance.mHandler.post(new Runnable() {
+                    S_INSTANCE.mHandler.post(new Runnable() {
                         @Override
                         public void run() {
                             Game.gameLoop();
@@ -133,14 +125,14 @@ public final class Game implements ItemFactoryCallback {
                     });
                 }
             };
-            sInstance.mTimer.schedule(task, 0, UPDATE_TIME_MS);
+            S_INSTANCE.mTimer.schedule(task, 0, UPDATE_TIME_MS);
             isGameRunning = true;
         }
     }
 
     public static void stopGame() {
-        sInstance.mTimer.cancel();
-        sInstance.mTimer.purge();
+        S_INSTANCE.mTimer.cancel();
+        S_INSTANCE.mTimer.purge();
         isGameRunning = false;
     }
 
@@ -150,17 +142,9 @@ public final class Game implements ItemFactoryCallback {
     }
 
     public static byte updateDungeonProgress() {
-        if (sInstance.mCurrentDungeonLvl == -1)
-            return 0;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress();
-=======
-    }
-
-    public static byte updateDungeonProgress() {
         if (S_INSTANCE.mCurrentDungeonLvl == -1)
             return 0;
         return S_INSTANCE.mDungeons.get(S_INSTANCE.mCurrentDungeonLvl).getProgress();
->>>>>>> origin/Alpha_0_1
     }
 
     /**
@@ -169,20 +153,12 @@ public final class Game implements ItemFactoryCallback {
      * @return getLoot
      */
     public static Loot playerAttacks() {
-<<<<<<< HEAD
-        if (StdRandom.bernoulli(sInstance.mChanceToDie)) {
-=======
         if (StdRandom.bernoulli(S_INSTANCE.mChanceToDie)) {
->>>>>>> origin/Alpha_0_1
             Player.kill();
             return null;
         }
 
-<<<<<<< HEAD
-        if (sInstance.mCurrentDungeonLvl == -1)
-=======
         if (S_INSTANCE.mCurrentDungeonLvl == -1)
->>>>>>> origin/Alpha_0_1
             return null;
 
         // do stuff if broken
@@ -190,18 +166,6 @@ public final class Game implements ItemFactoryCallback {
         //}
 
 
-<<<<<<< HEAD
-        Dungeon currentDungeon = sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl);
-        int monstersKilled = currentDungeon.playerAttacked();
-
-        if (!currentDungeon.isDone()) {
-            Player.giveGold(monstersKilled * sInstance.mBaseGoldPerMonster * sInstance.mGoldCoefPerLvl[sInstance.mCurrentDungeonLvl]);
-            Player.giveXP(monstersKilled * sInstance.mBaseMonsterXP, sInstance.mXpToLvl);
-            return null;
-        } else {
-            Player.giveXP(sInstance.mXpForDungeonLvl[sInstance.mCurrentDungeonLvl], sInstance.mXpToLvl);
-            return sInstance.mCurrentLoot;
-=======
         Dungeon currentDungeon = S_INSTANCE.mDungeons.get(S_INSTANCE.mCurrentDungeonLvl);
         int monstersKilled = currentDungeon.playerAttacked();
 
@@ -212,38 +176,10 @@ public final class Game implements ItemFactoryCallback {
         } else {
             Player.giveXP(S_INSTANCE.mXpForDungeonLvl[S_INSTANCE.mCurrentDungeonLvl], S_INSTANCE.mXpToLvl);
             return S_INSTANCE.mCurrentLoot;
->>>>>>> origin/Alpha_0_1
         }
     }
 
     public static int getDungeonLevelForDisplay() {
-<<<<<<< HEAD
-        return sInstance.mCurrentDungeonLvl + 1;
-    }
-
-    public static boolean isDungeonInProgress() {
-        if (sInstance.mCurrentDungeonLvl == -1)
-            return false;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress() < 100;
-    }
-
-    public static boolean isDungeonDone() {
-        if (sInstance.mCurrentDungeonLvl == -1)
-            return false;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress() >= 100;
-    }
-
-    public static boolean isDungeonStarted() {
-        if (sInstance.mCurrentDungeonLvl == -1)
-            return false;
-        return sInstance.mDungeons.get(sInstance.mCurrentDungeonLvl).getProgress() >= 0 && !isDungeonDone();
-    }
-
-    public static void nextDungeon() {
-        sInstance.mCurrentDungeonLvl++;
-        sInstance.mCurrentLoot = null;
-        ItemFactory.buildDungeonItems(sInstance.mBaseNumberOfItemPerDungeon);
-=======
         return S_INSTANCE.mCurrentDungeonLvl + 1;
     }
 
@@ -269,7 +205,6 @@ public final class Game implements ItemFactoryCallback {
         S_INSTANCE.mCurrentDungeonLvl++;
         S_INSTANCE.mCurrentLoot = null;
         ItemFactory.buildDungeonItems(S_INSTANCE.mBaseNumberOfItemPerDungeon);
->>>>>>> origin/Alpha_0_1
     }
 
     @Override

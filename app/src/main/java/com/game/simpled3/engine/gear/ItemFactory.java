@@ -146,11 +146,7 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         String name = "";
         if (S_INSTANCE.mGearNamesForType == null || S_INSTANCE.mGearNamesForType.isEmpty())
             return name;
-<<<<<<< HEAD
-        synchronized (sInstance) {
-=======
         synchronized (S_INSTANCE) {
->>>>>>> origin/Alpha_0_1
             while (!nameFound) {
                 ArrayList<String> nameList = S_INSTANCE.mGearNamesForType.get(
                         StdRandom.uniform(S_INSTANCE.mGearNamesForType.size()))
@@ -202,35 +198,20 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
     }
 
     private static ArrayList<Item> getNewItems() {
-<<<<<<< HEAD
-        synchronized (sInstance) {
-            ArrayList<Item> returnArray = (ArrayList<Item>) sInstance.mNewItems.clone();
-            sInstance.mNewItems.clear();
-            sInstance.mNbNewItemsToBuild = 0;
-=======
         synchronized (S_INSTANCE) {
             ArrayList<Item> returnArray = (ArrayList<Item>) S_INSTANCE.mNewItems.clone();
             S_INSTANCE.mNewItems.clear();
             S_INSTANCE.mNbNewItemsToBuild = 0;
->>>>>>> origin/Alpha_0_1
             return returnArray;
         }
     }
 
     private static void addNewItem(Item item) {
-<<<<<<< HEAD
-        synchronized (sInstance) {
-            sInstance.mNewItems.add(item);
-        }
-        if (areItemsBuilt()) {
-            sInstance.mListener.onItemCreationDone(getNewItems());
-=======
         synchronized (S_INSTANCE) {
             S_INSTANCE.mNewItems.add(item);
         }
         if (areItemsBuilt()) {
             S_INSTANCE.mListener.onItemCreationDone(getNewItems());
->>>>>>> origin/Alpha_0_1
         }
     }
 
@@ -355,13 +336,8 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
 
     @Override
     public void onFetchNamesForSlotsDone(ArrayList<ItemTypeNameList> slotNames) {
-<<<<<<< HEAD
-        synchronized (sInstance) {
-            sInstance.mGearNamesForType.addAll(slotNames);
-=======
         synchronized (S_INSTANCE) {
             S_INSTANCE.mGearNamesForType.addAll(slotNames);
->>>>>>> origin/Alpha_0_1
         }
     }
 
