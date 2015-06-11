@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.game.simpled3.BuildConfig;
@@ -32,7 +32,7 @@ public class LoadingScreen extends DialogFragment {
     @InjectView(R.id.loadingProgressBar)
     ProgressBar mProgressBar;
     @InjectView(R.id.okSkipLoadButton)
-    ImageButton mSkipButton;
+    Button mSkipButton;
     private final Handler mHandler = new Handler();
 
     public LoadingScreen() {

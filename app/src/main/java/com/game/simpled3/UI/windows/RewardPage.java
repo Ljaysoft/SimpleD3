@@ -141,7 +141,7 @@ public class RewardPage extends DialogFragment {
         if (items == null || items.isEmpty())
             return;
         for (int index = 0; index < items.size(); index++) {
-            LinearLayout itemLayout = (LinearLayout) mLootViewLayout.getChildAt(index);
+            View itemLayout = mLootViewLayout.getChildAt(index);
             final ImageView destroyXImage = (ImageView) itemLayout.findViewById(R.id.destroyXView);
             if (destroyXImage.getVisibility() == View.GONE) {
                 Player.giveItem(items.get(index));

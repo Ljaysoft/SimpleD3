@@ -23,7 +23,7 @@
         android:layout_height="@dimen/loading_progress_bar_height"
         android:layout_gravity="center_horizontal" />
 
-    <ImageButton
+    <Button
         android:id="@+id/okSkipLoadButton"
         style="@style/framed_button_style"
         android:layout_width="wrap_content"

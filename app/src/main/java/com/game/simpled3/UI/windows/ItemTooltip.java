@@ -260,7 +260,7 @@ public class ItemTooltip extends PopupWindow {
         }
         boolean isSquare = mCurrentItem.isIconSquare();
 
-        //TODO marche pas, � fixer
+        //TODO marche pas, a fixer
         if (isSquare) {
             Picasso.with(mContext).load(mediaSourceURL + mCurrentItem.getImageID() + ".png").resizeDimen(R.dimen.item_icon_width, R.dimen.item_icon_width).into(mImageIcon);
         } else {

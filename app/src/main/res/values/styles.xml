@@ -1,7 +1,7 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
-    <style name="framed_button_style" parent="@android:style/Widget.Button">
+    <style name="framed_button_style" parent="@android:style/Widget.ImageButton">
         <item name="android:background">@drawable/framed_button</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

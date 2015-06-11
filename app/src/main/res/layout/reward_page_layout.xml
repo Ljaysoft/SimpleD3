@@ -28,7 +28,7 @@
         android:padding="5dp"
         android:layout_gravity="center_horizontal">
     </LinearLayout>
-
+    
     <Button
         style="@style/framed_button_style"
         android:id="@+id/okRewardButton"

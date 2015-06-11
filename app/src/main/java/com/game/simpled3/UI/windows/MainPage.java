@@ -139,7 +139,7 @@ public class MainPage extends Fragment {
                 });
             }
         };
-        mTimer.schedule(task,0,UPDATE_TIME_MS);
+        mTimer.schedule(task, 0, UPDATE_TIME_MS);
     }
 
     @Override

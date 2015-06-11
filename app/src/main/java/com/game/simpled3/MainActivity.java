@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.game.simpled3.UI.widgets.ItemButton;
 import com.game.simpled3.UI.windows.DeathPage;
 import com.game.simpled3.UI.windows.EquipmentPage;
-import com.game.simpled3.UI.widgets.ItemButton;
 import com.game.simpled3.UI.windows.ItemTooltip;
 import com.game.simpled3.UI.windows.LoadingScreen;
 import com.game.simpled3.UI.windows.MainPage;
