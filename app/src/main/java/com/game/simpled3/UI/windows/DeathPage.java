@@ -20,12 +20,12 @@ import butterknife.InjectView;
  */
 public class DeathPage extends DialogFragment {
 
-    private OnDeathPageInteractionListener mListener;
-
-    @InjectView(R.id.okDeathButton) Button mOkButton;
-    private DeathCountDownTimer mCountDownTimer;
     private final long DEATH_TIMER = 5000;
     private final long UPDATE_INTERVAL = 100;
+    @InjectView(R.id.okDeathButton)
+    Button mOkButton;
+    private OnDeathPageInteractionListener mListener;
+    private DeathCountDownTimer mCountDownTimer;
     private boolean isRunning = false;
 
     public DeathPage() {
@@ -69,24 +69,6 @@ public class DeathPage extends DialogFragment {
         }
     }
 
-    private class DeathCountDownTimer extends CountDownTimer {
-        public DeathCountDownTimer(long startTime, long interval) {
-            super(startTime, interval);
-        }
-
-        @Override
-        public void onFinish() {
-            mOkButton.setText("Ressurect Now.");
-            mOkButton.setEnabled(true);
-            isRunning = false;
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-            mOkButton.setText("Waiting to revive " + String.valueOf((int) (millisUntilFinished / 1000)));
-        }
-    }
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -103,5 +85,23 @@ public class DeathPage extends DialogFragment {
 
     public interface OnDeathPageInteractionListener {
         void onDeathPageInteraction(View view);
+    }
+
+    private class DeathCountDownTimer extends CountDownTimer {
+        public DeathCountDownTimer(long startTime, long interval) {
+            super(startTime, interval);
+        }
+
+        @Override
+        public void onFinish() {
+            mOkButton.setText("Ressurect Now.");
+            mOkButton.setEnabled(true);
+            isRunning = false;
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mOkButton.setText("Waiting to revive " + String.valueOf((int) (millisUntilFinished / 1000)));
+        }
     }
 }

@@ -45,7 +45,7 @@ class Dungeon {
     public byte getProgress() {
         if (isDone())
             return 100;
-        return (byte)(mNbMonstersKilled * 100 / mNbMonsters);
+        return (byte) (mNbMonstersKilled * 100 / mNbMonsters);
     }
 
     /*
@@ -59,8 +59,7 @@ class Dungeon {
 
         if ((mNbMonsters - mNbMonstersKilled) > newMonstersKilled) {
             mNbMonstersKilled += newMonstersKilled;
-        }
-        else {
+        } else {
             newMonstersKilled = mNbMonsters - mNbMonstersKilled;
             mNbMonstersKilled = mNbMonsters;
         }

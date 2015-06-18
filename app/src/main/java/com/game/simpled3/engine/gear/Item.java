@@ -11,19 +11,16 @@ import static com.game.simpled3.engine.enums.GameEnums.ItemSlot;
 public class Item {
     @ItemSlot
     protected int mSlot = ITEM_SLOT_DUMMY;
+    protected boolean mIsIconSquare = false;
     private int mILvl = 0;
     private String mName = "no_name";
     @ItemColor
     private int mColor = ITEM_COLOR_GRAY;
-
     private String mFlavorText = "";
     private double mDPS = 0.0;
     private double mDEF = 0.0;
-
     private boolean mIsDiscovered = false;
-
     private String mImageID = "";
-    protected boolean mIsIconSquare = false;
 
     protected Item(int lvl) {
         mILvl = lvl;
@@ -45,8 +42,16 @@ public class Item {
         return mName;
     }
 
+    public void setName(String name) {
+        mName = name;
+    }
+
     public int getColor() {
         return mColor;
+    }
+
+    public void setColor(int color) {
+        mColor = color;
     }
 
     public int getSlot() {
@@ -73,12 +78,12 @@ public class Item {
         return mIsDiscovered;
     }
 
-    public void setImageID(String imageID) {
-        mImageID = imageID;
-    }
-
     public String getImageID() {
         return mImageID;
+    }
+
+    public void setImageID(String imageID) {
+        mImageID = imageID;
     }
 
     public boolean isIconSquare() {
@@ -92,13 +97,5 @@ public class Item {
         mDEF = def;
 
         mIsDiscovered = true;
-    }
-
-    public void setName(String name) {
-        mName = name;
-    }
-
-    public void setColor(int color) {
-        mColor = color;
     }
 }

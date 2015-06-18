@@ -30,14 +30,10 @@ import butterknife.InjectView;
  */
 public class MainPage extends Fragment {
 
-    private OnPlayerSheetInteractionListener mListener;
+    private static final int UPDATE_TIME_MS = 200;
+    private static byte mProgressValue = 0;
     private final Handler mHandler = new Handler();
     private final Timer mTimer = new Timer();
-
-    private static final int UPDATE_TIME_MS = 200;
-
-    private static byte mProgressValue = 0;
-
     @InjectView(R.id.lvlValueTextView)
     TextView mPlayerLevelValueTextView;
     @InjectView(R.id.xpToLvlValueTextView)
@@ -58,6 +54,7 @@ public class MainPage extends Fragment {
     Button mStartDungeonButton;
     @InjectView(R.id.progress_bar)
     ProgressBar mProgressBar;
+    private OnPlayerSheetInteractionListener mListener;
 
     public MainPage() {
     }

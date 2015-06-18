@@ -21,19 +21,16 @@ import java.util.TimerTask;
  */
 public final class Game implements ItemFactoryCallback {
     private static final int UPDATE_TIME_MS = 200;
+    private static final Game S_INSTANCE = new Game();
+    private static boolean isGameRunning = false;
+    private static boolean sIsInit = false;
     private final Timer mTimer = new Timer();
     private final Handler mHandler = new Handler();
-    private static boolean isGameRunning = false;
-    private static final Game S_INSTANCE = new Game();
+    private final ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
     private GameListener mListener;
-    private static boolean sIsInit = false;
-
     private Resources mRes;
     private float[] mXpToLvl = null;
     private float[] mGoldCoefPerLvl = null;
-
-
-    private final ArrayList<Dungeon> mDungeons = new ArrayList<>(100);
     private int mCurrentDungeonLvl = -1;
     private int mMaxDungeonLevel = 0;
 
@@ -138,7 +135,7 @@ public final class Game implements ItemFactoryCallback {
 
     private static void gameLoop() {
         //TODO game loop
-        
+
     }
 
     public static byte updateDungeonProgress() {

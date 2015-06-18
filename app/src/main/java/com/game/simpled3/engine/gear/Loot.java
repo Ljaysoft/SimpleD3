@@ -29,6 +29,7 @@ public class Loot {
     public void setLoot(ArrayList<Item> items) {
         mItems = items;
     }
+
     public double getGold() {
         return mGold;
     }

@@ -30,10 +30,10 @@ import butterknife.InjectView;
  */
 public class RewardPage extends DialogFragment {
 
-    private OnRewardPageInteractionListener mListener;
-    private Loot mLoot = null;
     @InjectView(R.id.lootViewLayout)
     LinearLayout mLootViewLayout;
+    private OnRewardPageInteractionListener mListener;
+    private Loot mLoot = null;
 
     public RewardPage() {
     }

@@ -341,6 +341,12 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
         }
     }
 
+    public interface ItemFactoryCallback {
+        void onItemInitialisationStarted();
+
+        void onItemCreationDone(ArrayList<Item> items);
+    }
+
     /**
      * Internal classes to manage names and color
      */
@@ -413,11 +419,5 @@ public class ItemFactory implements D3ArmoryReader.ArmoryReaderCallback {
             }
             return result;
         }
-    }
-
-    public interface ItemFactoryCallback {
-        void onItemInitialisationStarted();
-
-        void onItemCreationDone(ArrayList<Item> items);
     }
 }

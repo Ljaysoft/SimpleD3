@@ -14,8 +14,8 @@ import com.squareup.picasso.Picasso;
  * Created by JFCaron on 2015-06-03.
  */
 public class ItemButton extends ImageButton {
-    private Item mItem = null;
     private static final String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
+    private Item mItem = null;
 
     public ItemButton(Context context) {
         super(context, null);
@@ -30,13 +30,13 @@ public class ItemButton extends ImageButton {
         super(context, attrs, defStyleAttr, 0);
     }
 
+    public Item getItem() {
+        return mItem;
+    }
+
     public void setItem(Item item) {
         mItem = item;
         setImage();
-    }
-
-    public Item getItem() {
-        return mItem;
     }
 
     private void setImage() {

@@ -25,15 +25,14 @@ import butterknife.InjectView;
  * Created by JFCaron on 2015-06-06.
  */
 public class LoadingScreen extends DialogFragment {
-    private OnLoadingScreenInteractionListener mListener;
     private static final int UPDATE_TIME_MS = 200;
     private final Timer mTimer = new Timer();
-
+    private final Handler mHandler = new Handler();
     @InjectView(R.id.loadingProgressBar)
     ProgressBar mProgressBar;
     @InjectView(R.id.okSkipLoadButton)
     Button mSkipButton;
-    private final Handler mHandler = new Handler();
+    private OnLoadingScreenInteractionListener mListener;
 
     public LoadingScreen() {
 

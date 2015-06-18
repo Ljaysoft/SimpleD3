@@ -21,14 +21,13 @@ import retrofit.client.OkClient;
  * Created by JFCaron on 2015-05-26.
  */
 public final class D3ArmoryReader {
-    private static RestAdapter restAdapter;
     private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
     private static final D3ArmoryReader S_INSTANCE = new D3ArmoryReader();
-
-    private static boolean sIsInit = false;
     private static final String END_POINT = "https://us.api.battle.net";
     private static final String ARMORY_ADRESS = "http://us.battle.net/d3/en/item/";
     private static final byte HTTP_TIMEOUT = 6;
+    private static RestAdapter restAdapter;
+    private static boolean sIsInit = false;
 
     private D3ArmoryReader() {
         OK_HTTP_CLIENT.setConnectTimeout(HTTP_TIMEOUT, TimeUnit.SECONDS);
@@ -63,6 +62,10 @@ public final class D3ArmoryReader {
                 .build();
 
         return restAdapter;
+    }
+
+    public interface ArmoryReaderCallback {
+        void onFetchNamesForSlotsDone(ArrayList<ItemTypeNameList> slotsNames);
     }
 
     private static class RequestInterceptor implements retrofit.RequestInterceptor {
@@ -108,7 +111,7 @@ public final class D3ArmoryReader {
             try {
                 htmlBody = Jsoup.connect(ARMORY_ADRESS + itemType + "/").get();
             } catch (Exception e) {
-                Log.e(D3ArmoryReader.class.getSimpleName(),e.toString());
+                Log.e(D3ArmoryReader.class.getSimpleName(), e.toString());
                 e.printStackTrace();
             }
             return htmlBody;
@@ -118,10 +121,6 @@ public final class D3ArmoryReader {
         protected void onPostExecute(ArrayList<ItemTypeNameList> itemNamesForSlot) {
             mListener.onFetchNamesForSlotsDone(itemNamesForSlot);
         }
-    }
-
-    public interface ArmoryReaderCallback {
-        void onFetchNamesForSlotsDone(ArrayList<ItemTypeNameList> slotsNames);
     }
 }
 

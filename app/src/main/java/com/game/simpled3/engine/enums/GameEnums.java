@@ -30,6 +30,7 @@ public class GameEnums {
     public static final int ITEM_SLOT_RING2 = 10;
     public static final int ITEM_SLOT_LEFT_WEAPON = 11;
     public static final int ITEM_SLOT_RIGHT_WEAPON = 12;
+
     /**
      *
      */
@@ -43,6 +44,7 @@ public class GameEnums {
     @Retention(RetentionPolicy.SOURCE)
     public @interface ItemColor {
     }
+
     /**
      *
      */

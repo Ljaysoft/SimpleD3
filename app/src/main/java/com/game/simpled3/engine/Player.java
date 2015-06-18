@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Player {
     private static final Player S_INSTANCE = new Player();
+    private static final byte MAX_DURABILITY = 100;
     private static boolean sIsInit = false;
-
     private int mLevel = 0;
     private double mXpToLevel = 0;
     private double mDPS = 1.0;
@@ -25,7 +25,6 @@ public class Player {
     private boolean isDead = false;
     private boolean isGearBroke = false;
     private byte durability = 100;
-    private static final byte MAX_DURABILITY = 100;
 
     private Player() {
     }
@@ -143,7 +142,7 @@ public class Player {
 
     private static void loseDurability(double durabilityLoss) {
         if (!S_INSTANCE.isGearBroke)
-            S_INSTANCE.durability-=MAX_DURABILITY*durabilityLoss;
+            S_INSTANCE.durability -= MAX_DURABILITY * durabilityLoss;
         if (S_INSTANCE.durability <= 0)
             S_INSTANCE.isGearBroke = true;
     }

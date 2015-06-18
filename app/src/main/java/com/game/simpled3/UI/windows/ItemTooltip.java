@@ -56,8 +56,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_SLOT_SHOULDER;
  */
 public class ItemTooltip extends PopupWindow {
 
-    private Context mContext = null;
-    private Item mCurrentItem = Item.createItem(1);
+    private static final String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
     @InjectView(R.id.itemNameTextView)
     AutoResizeTextView mItemName;
     @InjectView(R.id.slotTextView)
@@ -82,11 +81,10 @@ public class ItemTooltip extends PopupWindow {
     LinearLayout mCompareTooltip;
     @InjectView(R.id.compareStats)
     LinearLayout mCompareStats;
-
+    private Context mContext = null;
+    private Item mCurrentItem = Item.createItem(1);
     private Bitmap mTooltipBorders;
     private int tooltipTitleHeight;
-
-    private static final String mediaSourceURL = "http://media.blizzard.com/d3/icons/items/large/";
 
     public ItemTooltip(Context ctx) {
         super(ctx);

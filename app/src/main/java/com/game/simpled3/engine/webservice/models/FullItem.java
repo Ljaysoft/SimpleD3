@@ -29,7 +29,7 @@ import static com.game.simpled3.engine.enums.GameEnums.ITEM_COLOR_YELLOW;
 /**
  * Created by JFCaron on 2015-05-26.
  */
-public class FullItem implements Serializable{
+public class FullItem implements Serializable {
     private static final long serialVersionUID = -4170977537570531827L;
     private String id;
     private String name;
@@ -189,7 +189,7 @@ public class FullItem implements Serializable{
         this.bonusAffixes = bonusAffixes;
     }
 
-    public Item getItem(){
+    public Item getItem() {
         Item item = null;
         if (slots.size() > 1 && slots.get(1).equals("right-hand"))
             item = new Weapon(itemLevel, true);
@@ -238,13 +238,13 @@ public class FullItem implements Serializable{
                 if (item == null)
                     throw new NullPointerException("slot.get(0)=" + slots.get(0));
             } catch (NullPointerException e) {
-                Log.e(FullItem.class.getSimpleName(),e.toString());
+                Log.e(FullItem.class.getSimpleName(), e.toString());
                 e.printStackTrace();
             }
-                item.setName(name);
-                item.setColor(getColorCode(displayColor));
-                item.setFlavorText(flavorText);
-                item.setImageID(icon);
+            item.setName(name);
+            item.setColor(getColorCode(displayColor));
+            item.setFlavorText(flavorText);
+            item.setImageID(icon);
         }
         return item;
     }
